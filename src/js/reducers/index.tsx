@@ -122,8 +122,7 @@ function transformFromStateToGrid(cells) { //TODO move this to a separate file
   tiles into 1dim array of only visible tiles to store it as a state and properly show the movement in DOM
 */
 function transformFromGridToState(grid) { //TODO move this to a separate file
-    let cells = [],
-        tile
+    let cells = []
 
     for (let x = 0; x < BOARD_WIDTH; x++) {
         for (let y = 0; y < BOARD_HEIGHT; y++) {

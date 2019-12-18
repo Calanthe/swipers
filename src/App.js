@@ -1,7 +1,6 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import './App.css';
 
 import reducers from "./js/reducers";
 import Game from "./js/components/Game";

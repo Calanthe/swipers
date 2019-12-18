@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 //TODO make it work https://www.npmjs.com/package/react-easy-swipe
-// import Grid from "./Grid"
+import Board from "./Board"
 import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
 
 import { updateCells } from "../actions/index";
@@ -18,16 +18,17 @@ export class Block extends React.Component {
     }
 }
 
-export class Board extends React.Component {
-    //do I need all those div elements? maybe just a cross bg made in css only?
+export class Grid extends React.Component {
     render() {
         let i,
             j,
+            uniqueKey = '',
             blocks = [];
 
         for (i = 0; i < BOARD_WIDTH; i++) {
             for (j = 0; j < BOARD_HEIGHT; j++) {
-                blocks.push(<Block/>)
+                uniqueKey = i + ' ' +j;
+                blocks.push(<Block key={uniqueKey}/>)
             }
         }
 
@@ -46,10 +47,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Game extends React.Component<GameProps> {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         document.addEventListener("keydown", (event) => {
             this.handleKeyPress(event)
@@ -79,22 +76,16 @@ class Game extends React.Component<GameProps> {
     }
 
     render() {
-        //TODO switch Board with Grid
-        // return (
-        //     <div className="app">
-        //         <div>
-        //             <h1>Swipers!</h1>
-        //         </div>
-        //
-        //         <div className="game">
-        //             <Board state={this.state}/>
-        //             <Grid/>
-        //         </div>
-        //     </div>
-        // );
         return (
-            <div>
-              <h1>Swipers!</h1>
+            <div className="app">
+                <div>
+                    <h1>Swipers!</h1>
+                </div>
+
+                <div className="game">
+                    <Grid/>
+                    <Board/>
+                </div>
             </div>
         );
     }
