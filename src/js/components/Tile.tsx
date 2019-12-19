@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 
-const Tile = ({ tileClassName }) => {
+interface Props {
+  tileClassName: string;
+}
+
+const Tile: React.FunctionComponent<Props> = ({ tileClassName }) => {
     const [newTileClassName, setData] = useState();
 
     useEffect(() => {

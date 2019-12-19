@@ -1,7 +1,18 @@
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import classNames from 'classnames';
 import Tile from "./Tile"
+
+type Cell = {
+    "positionX": number;
+    "positionY": number;
+    "type": string;
+    "uniqueKey": number;
+}
+
+interface Props {
+  cells: Array<Cell>;
+}
 
 const mapStateToProps = state => {
   return {
@@ -9,8 +20,7 @@ const mapStateToProps = state => {
   };
 };
 
-//this is a stateless component
-const Board = (props) => {
+const Board: React.FunctionComponent<Props> = (props) => {
     const cells = props.cells;
     let tiles = [];
 
