@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 
 interface Props {
-  tileClassName: string;
+    tileClassName: string;
 }
 
 const Tile: React.FunctionComponent<Props> = ({ tileClassName }) => {

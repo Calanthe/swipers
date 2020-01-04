@@ -5,13 +5,13 @@ import Tile from "./Tile";
 import { Cell } from "../misc/tsTypes";
 
 interface Props {
-  cells: Array<Cell>;
+    cells: Array<Cell>;
 }
 
 const mapStateToProps = state => {
-  return {
-      cells: state.cells
-  };
+    return {
+        cells: state.cells
+    };
 };
 
 const Board: React.FunctionComponent<Props> = (props) => {
