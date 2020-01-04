@@ -1,13 +1,15 @@
 import * as React from "react";
 import { connect } from "react-redux";
-//TODO make it work https://www.npmjs.com/package/react-easy-swipe
 import Board from "./Board"
 import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
-
 import { updateCells } from "../actions/index";
 
 interface GameProps {
-  updateCells: any; //todo is this correct?
+    updateCells: typeof updateCells;
+}
+
+interface KeyboardEvent {
+    key: string;
 }
 
 export class Block extends React.Component {
@@ -53,7 +55,7 @@ class Game extends React.Component<GameProps> {
         });
     }
 
-    handleKeyPress = (event) => {
+    handleKeyPress = (event: KeyboardEvent): void => {
         var KeyPressMap = {
             'ArrowUp': 1,
             'ArrowRight': 2,

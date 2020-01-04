@@ -1,13 +1,24 @@
 import { UPDATE_CELLS } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
+import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
+import { Cell, CellState, UpdateCellsAction } from "../misc/tsTypes";
 
-const initialState = {
-    articles: [],
+interface Vector {
+    x: number,
+    y: number
+}
+
+interface Traversals {
+    x: number[],
+    y: number[]
+}
+
+const initialState: CellState = {
     cells: initializeCells(),
 };
 
 // Build a grid of the specified width and height
-function initializeCells() {
+function initializeCells(): Cell[] {
     let cells = [],
         tile;
 
@@ -19,123 +30,64 @@ function initializeCells() {
         }
     } */
 
-    // this is the new state now, one dimentional array with only tiles
-
-
     const finishTile = {
         positionX: 5,
         positionY: 5,
         type: 'finish',
-        initialPosition: { x: 5, y: 5 }, //TODO I dont need this prop
         uniqueKey: 0
     };
 
     cells.push(finishTile)
 
-    // cells[finishTile.positionX][finishTile.positionY] = finishTile;
-
     tile = {
         positionX: 0,
         positionY: 0,
         type: 'primary',
-        initialPosition: { x: 0, y: 0 },
         uniqueKey: 1
     };
 
     cells.push(tile)
-    // cells[tile.positionX][tile.positionY] = tile;
 
     tile = {
         positionX: 1,
         positionY: 1,
         type: 'secondary',
-        initialPosition: { x: 1, y: 1 },
         uniqueKey: 2
     };
 
     cells.push(tile)
-    //cells[tile.positionX][tile.positionY] = tile;
 
     tile = {
         positionX: 1,
         positionY: 3,
         type: 'primary',
-        initialPosition: { x: 1, y: 3 },
         uniqueKey: 3
     };
 
     cells.push(tile)
-    //cells[tile.positionX][tile.positionY] = tile;
 
     tile = {
         positionX: 4,
         positionY: 0,
         type: 'secondary',
-        initialPosition: { x: 4, y: 0 },
         uniqueKey: 4
     };
 
     cells.push(tile)
-    //cells[tile.positionX][tile.positionY] = tile;
 
     tile = {
         positionX: 10,
         positionY: 10,
         type: 'primary',
-        initialPosition: { x: 10, y: 10 },
         uniqueKey: 5
     };
 
     cells.push(tile)
-    //cells[tile.positionX][tile.positionY] = tile;
 
     return cells;
 };
 
-/*
-  This method transforms the 1dim array of visible tiles into 2dim array of both visible and empty
-  tiles to easier calculate the collision and movement of the grid elements
-*/
-function transformFromStateToGrid(cells) { //TODO move this to a separate file
-    let grid = [],
-        tile,
-        tilesNo = cells.length;
-
-    for (let x = 0; x < BOARD_WIDTH; x++) {
-        let row = grid[x] = [];
-
-        for (let y = 0; y < BOARD_HEIGHT; y++) {
-            row.push(null);
-        }
-    }
-
-    for (let x = 0; x < tilesNo; x++) {
-        tile = cells[x];
-        grid[tile.positionX][tile.positionY] = tile;
-    }
-
-    return grid;
-}
-
-/*
-  This method transforms the 2dim array of of both visible and empty
-  tiles into 1dim array of only visible tiles to store it as a state and properly show the movement in DOM
-*/
-function transformFromGridToState(grid) { //TODO move this to a separate file
-    let cells = []
-
-    for (let x = 0; x < BOARD_WIDTH; x++) {
-        for (let y = 0; y < BOARD_HEIGHT; y++) {
-            if (grid[x][y]) {
-                cells.push(grid[x][y])
-            }
-        }
-    }
-
-    return cells;
-}
-
-function moveTile(move, cells) {
+function moveTile(move: number, cells: Cell[]): Cell[] {
     let cell, newPositionCell,
         updatedCells = transformFromStateToGrid(cells);
     const
@@ -160,7 +112,7 @@ function moveTile(move, cells) {
     // TODO if (this.isGameTerminated()) return; // Don't do anything if the game's over
 };
 
-function getMoveVector(move) {
+function getMoveVector(move: number): Vector {
     // Vectors representing tile movement
     var map = {
         1: { x: 0,  y: -1 }, // Up
@@ -173,8 +125,11 @@ function getMoveVector(move) {
 };
 
 // strongly inspired by https://github.com/gabrielecirulli/2048/blob/ac03b1f01628038039b74b67f2e284b233bd143e/js/game_manager.js#L207
-function buildTraversals(move) {
-    let traversals = { x: [], y: [] };
+function buildTraversals(move: number): Traversals {
+    let traversals = {
+        x: [],
+        y: []
+    };
 
     for (let pos = 0; pos < BOARD_WIDTH; pos++) {
         traversals.x.push(pos);
@@ -189,7 +144,7 @@ function buildTraversals(move) {
     return traversals;
 };
 
-function findAvailablePosition(cell, cells, moveVector) {
+function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector): Cell {
     let prevCell
 
     // Progress towards the move direction until an obstacle is found
@@ -199,30 +154,29 @@ function findAvailablePosition(cell, cells, moveVector) {
             positionX: cell.positionX + moveVector.x,
             positionY: cell.positionY + moveVector.y,
             type: cell.type,
-            initialPosition: { x: cell.initialPosition.x, y: cell.initialPosition.y },
             uniqueKey: cell.uniqueKey
-        }; // TODO do not create a new cell from scratch, change only positions
+        };
     } while (withinBounds(cell) &&
              !tileInCell(cells, cell));
 
     return prevCell
 };
 
-function withinBounds(cell) {
+function withinBounds(cell: Cell): boolean {
     return cell.positionX >= 0 && cell.positionX < BOARD_WIDTH &&
          cell.positionY >= 0 && cell.positionY < BOARD_HEIGHT;
 };
 
 // returns content (tile) of a particular cell
-function tileInCell(cells, cell) {
+function tileInCell(cells: Cell[][], cell: Cell): Cell {
     return cells[cell.positionX][cell.positionY];
 };
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action: UpdateCellsAction): CellState => {
     switch (action.type) {
         case UPDATE_CELLS:
             const newState = { ...state, cells: moveTile(action.payload, state.cells) };
-            console.log('UPDATE_CELLS', state, action, newState)
+            console.log('UPDATE_CELLS', 'state: ', state, 'action: ', action, 'newState: ', newState)
             return newState;
         default:
             return state;

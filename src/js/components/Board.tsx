@@ -1,14 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import classNames from 'classnames';
-import Tile from "./Tile"
-
-type Cell = {
-    "positionX": number;
-    "positionY": number;
-    "type": string;
-    "uniqueKey": number;
-}
+import Tile from "./Tile";
+import { Cell } from "../misc/tsTypes";
 
 interface Props {
   cells: Array<Cell>;
