@@ -40,6 +40,15 @@ function initializeCells(): Cell[] {
     cells.push(finishTile)
 
     tile = {
+        positionX: 5,
+        positionY: 7,
+        type: 'primary',
+        uniqueKey: 6
+    };
+
+    cells.push(tile)
+
+    tile = {
         positionX: 0,
         positionY: 0,
         type: 'primary',
@@ -98,7 +107,7 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
             cell = updatedCells[x][y];
-            if (cell) {
+            if (cell && cell.type !== 'finish') {
                 newPositionCell = findAvailablePosition(cell, updatedCells, moveVector);
                 if (newPositionCell.positionX !== cell.positionX || newPositionCell.positionY !== cell.positionY) {
                     updatedCells[newPositionCell.positionX][newPositionCell.positionY] = newPositionCell;
