@@ -5,6 +5,9 @@ export interface Cell {
     "positionY": number;
     "type": string;
     "uniqueKey": number;
+    "nextTile": Cell;
+    "toBeMergedWithFinish": boolean;
+    "actionClass": string;
 }
 
 export interface CellState {

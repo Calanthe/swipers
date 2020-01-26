@@ -56,7 +56,7 @@ class Game extends React.Component<GameProps> {
     }
 
     handleKeyPress = (event: KeyboardEvent): void => {
-        var KeyPressMap = {
+        const KeyPressMap = {
             'ArrowUp': 1,
             'ArrowRight': 2,
             'ArrowDown': 3,

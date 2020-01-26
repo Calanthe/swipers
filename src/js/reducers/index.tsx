@@ -14,7 +14,7 @@ interface Traversals {
 }
 
 const initialState: CellState = {
-    cells: initializeCells(),
+    cells: initializeCells()
 };
 
 // Build a grid of the specified width and height
@@ -34,7 +34,9 @@ function initializeCells(): Cell[] {
         positionX: 5,
         positionY: 5,
         type: 'finish',
-        uniqueKey: 0
+        uniqueKey: 0,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(finishTile)
@@ -43,7 +45,20 @@ function initializeCells(): Cell[] {
         positionX: 5,
         positionY: 7,
         type: 'primary',
-        uniqueKey: 6
+        uniqueKey: 6,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 5,
+        positionY: 9,
+        type: 'primary',
+        uniqueKey: 7,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -52,7 +67,9 @@ function initializeCells(): Cell[] {
         positionX: 0,
         positionY: 0,
         type: 'primary',
-        uniqueKey: 1
+        uniqueKey: 1,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -61,7 +78,9 @@ function initializeCells(): Cell[] {
         positionX: 1,
         positionY: 1,
         type: 'secondary',
-        uniqueKey: 2
+        uniqueKey: 2,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -70,7 +89,9 @@ function initializeCells(): Cell[] {
         positionX: 1,
         positionY: 3,
         type: 'primary',
-        uniqueKey: 3
+        uniqueKey: 3,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -79,7 +100,9 @@ function initializeCells(): Cell[] {
         positionX: 4,
         positionY: 0,
         type: 'secondary',
-        uniqueKey: 4
+        uniqueKey: 4,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -88,7 +111,9 @@ function initializeCells(): Cell[] {
         positionX: 10,
         positionY: 10,
         type: 'primary',
-        uniqueKey: 5
+        uniqueKey: 5,
+        tileFoundInNextCell: false,
+        actionClass: ''
     };
 
     cells.push(tile)
@@ -97,7 +122,8 @@ function initializeCells(): Cell[] {
 };
 
 function moveTile(move: number, cells: Cell[]): Cell[] {
-    let cell, newPositionCell,
+    let cell: Cell,
+        newPosition: Cell,
         updatedCells = transformFromStateToGrid(cells);
     const
         traversals = buildTraversals(move),
@@ -108,10 +134,19 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
         traversals.y.forEach((y) => {
             cell = updatedCells[x][y];
             if (cell && cell.type !== 'finish') {
-                newPositionCell = findAvailablePosition(cell, updatedCells, moveVector);
-                if (newPositionCell.positionX !== cell.positionX || newPositionCell.positionY !== cell.positionY) {
-                    updatedCells[newPositionCell.positionX][newPositionCell.positionY] = newPositionCell;
-                    updatedCells[cell.positionX][cell.positionY] = null;
+                newPosition = findAvailablePosition(cell, updatedCells, moveVector);
+                if (newPosition.nextTile && newPosition.nextTile.type === 'finish') {
+                    //todo add merge class to the finish tile
+                    newPosition.nextTile.actionClass = 'tile-merged';
+
+                    //animate the movement with fading
+                    newPosition.actionClass = 'tile-removed';
+
+                    //todo move the below code to a function
+                    moveCell(updatedCells, newPosition, cell);
+                    //todo delete all cells with toBeMergedWithFinish flag at the beg of the next iteration
+                } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
+                    moveCell(updatedCells, newPosition, cell);
                 }
             };
         });
@@ -121,9 +156,16 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
     // TODO if (this.isGameTerminated()) return; // Don't do anything if the game's over
 };
 
+function moveCell(updatedCells:Cell[][], newPosition: Cell, prevPosition: Cell): Cell[][] {
+    updatedCells[newPosition.positionX][newPosition.positionY] = newPosition;
+    updatedCells[prevPosition.positionX][prevPosition.positionY] = null;
+
+    return updatedCells;
+};
+
 function getMoveVector(move: number): Vector {
     // Vectors representing tile movement
-    var map = {
+    const map = {
         1: { x: 0,  y: -1 }, // Up
         2: { x: 1,  y: 0 },  // Right
         3: { x: 0,  y: 1 },  // Down
@@ -154,21 +196,27 @@ function buildTraversals(move: number): Traversals {
 };
 
 function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector): Cell {
-    let prevCell
+    let prevCell, tileFoundInNextCell, cellX, cellY;
 
     // Progress towards the move direction until an obstacle is found
     do {
         prevCell = cell;
+        cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
+        cellY = cell.positionY + moveVector.y;
+        tileFoundInNextCell = tileInCell(cells, cellX, cellY);
         cell = {
-            positionX: cell.positionX + moveVector.x,
-            positionY: cell.positionY + moveVector.y,
+            positionX: cellX,
+            positionY: cellY,
             type: cell.type,
-            uniqueKey: cell.uniqueKey
+            uniqueKey: cell.uniqueKey,
+            actionClass: '',
+            nextTile: tileFoundInNextCell,
+            toBeMergedWithFinish: (tileFoundInNextCell && (tileFoundInNextCell.type === 'finish' || tileFoundInNextCell.toBeMergedWithFinish))
         };
     } while (withinBounds(cell) &&
-             !tileInCell(cells, cell));
+             !tileFoundInNextCell); //todo make sure that the calculation continues also when the next tile has tileFoundInNextCell flag
 
-    return prevCell
+    return prevCell;
 };
 
 function withinBounds(cell: Cell): boolean {
@@ -176,9 +224,13 @@ function withinBounds(cell: Cell): boolean {
          cell.positionY >= 0 && cell.positionY < BOARD_HEIGHT;
 };
 
-// returns content (tile) of a particular cell
-function tileInCell(cells: Cell[][], cell: Cell): Cell {
-    return cells[cell.positionX][cell.positionY];
+// returns content (tile) of a particular cell or null if tile not found
+function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null {
+    if (cells[cellX]) {
+        return cells[cellX][cellY];
+    } else {
+        return null;
+    }
 };
 
 const rootReducer = (state = initialState, action: UpdateCellsAction): CellState => {
