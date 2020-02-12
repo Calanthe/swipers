@@ -22,7 +22,8 @@ const Board: React.FunctionComponent<Props> = (props) => {
             const
                 typeClass = "tile-type-" + cell.type,
                 positionClass = "tile-position-" + cell.positionX + "-" + cell.positionY,
-                tileClassName = classNames('tile', typeClass, positionClass),
+                actionClass = "tile-action-" + cell.actionClass,
+                tileClassName = classNames('tile', typeClass, positionClass, actionClass),
                 tile = <Tile tileClassName={tileClassName} key={cell.uniqueKey.toString()}/>
 
             tiles.push(tile)

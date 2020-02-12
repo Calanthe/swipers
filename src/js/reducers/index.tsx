@@ -135,14 +135,20 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
             cell = updatedCells[x][y];
             if (cell && cell.type !== 'finish') {
                 newPosition = findAvailablePosition(cell, updatedCells, moveVector);
-                if (newPosition.nextTile && newPosition.nextTile.type === 'finish') {
+                console.log(newPosition)
+                if (newPosition.nextTile && (newPosition.nextTile.type === 'finish' || newPosition.nextTile.toBeMergedWithFinish)) {
+                    //console.log('inside')
                     //todo add merge class to the finish tile
-                    newPosition.nextTile.actionClass = 'tile-merged';
+                    if (newPosition.nextTile.type === 'finish') {
+                        newPosition.nextTile.actionClass = '-merged'; //todo remove this class later so it animates only once
+                    }
 
+                    console.log(newPosition, newPosition.toBeMergedWithFinish)
                     //animate the movement with fading
-                    newPosition.actionClass = 'tile-removed';
+                    if (newPosition.toBeMergedWithFinish) {
+                        newPosition.actionClass = '-removed';
+                    }
 
-                    //todo move the below code to a function
                     moveCell(updatedCells, newPosition, cell);
                     //todo delete all cells with toBeMergedWithFinish flag at the beg of the next iteration
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
@@ -196,26 +202,31 @@ function buildTraversals(move: number): Traversals {
 };
 
 function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector): Cell {
-    let prevCell, tileFoundInNextCell, cellX, cellY;
+    let prevCell, tileFoundInNextCell, cellX, cellY, toBeMergedWithFinish;
 
     // Progress towards the move direction until an obstacle is found
     do {
         prevCell = cell;
         cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
         cellY = cell.positionY + moveVector.y;
-        tileFoundInNextCell = tileInCell(cells, cellX, cellY);
+        tileFoundInNextCell = tileInCell(cells, cellX, cellY); //todo rename to tileInCell
+        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.type === 'finish' || tileFoundInNextCell.toBeMergedWithFinish))
         cell = {
             positionX: cellX,
             positionY: cellY,
             type: cell.type,
             uniqueKey: cell.uniqueKey,
             actionClass: '',
-            nextTile: tileFoundInNextCell,
-            toBeMergedWithFinish: (tileFoundInNextCell && (tileFoundInNextCell.type === 'finish' || tileFoundInNextCell.toBeMergedWithFinish))
+            nextTile: tileFoundInNextCell, //need nextTile to animate the position to equal finish
+            toBeMergedWithFinish: toBeMergedWithFinish
         };
+        // console.log(cell, tileFoundInNextCell && tileFoundInNextCell.type === 'finish')
     } while (withinBounds(cell) &&
              !tileFoundInNextCell); //todo make sure that the calculation continues also when the next tile has tileFoundInNextCell flag
 
+    //even if not moving, I have to check if cell is going to be merged
+    prevCell.nextTile = tileFoundInNextCell;
+    prevCell.toBeMergedWithFinish = toBeMergedWithFinish;
     return prevCell;
 };
 
@@ -226,7 +237,7 @@ function withinBounds(cell: Cell): boolean {
 
 // returns content (tile) of a particular cell or null if tile not found
 function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null {
-    if (cells[cellX]) {
+    if (cells[cellX] && cells[cellX][cellY]) {
         return cells[cellX][cellY];
     } else {
         return null;
