@@ -118,6 +118,28 @@ function initializeCells(): Cell[] {
 
     cells.push(tile)
 
+    tile = {
+        positionX: 5,
+        positionY: 10,
+        type: 'primary',
+        uniqueKey: 8,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 5,
+        positionY: 9,
+        type: 'primary',
+        uniqueKey: 9,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
     return cells;
 };
 
@@ -135,18 +157,16 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
             cell = updatedCells[x][y];
             if (cell && cell.type !== 'finish') {
                 newPosition = findAvailablePosition(cell, updatedCells, moveVector);
-                console.log(newPosition)
                 if (newPosition.nextTile && (newPosition.nextTile.type === 'finish' || newPosition.nextTile.toBeMergedWithFinish)) {
-                    //console.log('inside')
-                    //todo add merge class to the finish tile
+
+                    //add merge class to the finish tile
                     if (newPosition.nextTile.type === 'finish') {
-                        newPosition.nextTile.actionClass = '-merged'; //todo remove this class later so it animates only once
+                        newPosition.nextTile.actionClass = 'merged'; //todo remove this class later so it animates only once
                     }
 
-                    console.log(newPosition, newPosition.toBeMergedWithFinish)
                     //animate the movement with fading
                     if (newPosition.toBeMergedWithFinish) {
-                        newPosition.actionClass = '-removed';
+                        newPosition.actionClass = 'removed';
                     }
 
                     moveCell(updatedCells, newPosition, cell);
