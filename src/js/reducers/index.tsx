@@ -1,5 +1,5 @@
 import { UPDATE_CELLS } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y } from "../constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, UpdateCellsAction } from "../misc/tsTypes";
 
@@ -151,6 +151,8 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
+    updatedCells[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile 
+
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
@@ -161,7 +163,7 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
 
                     //add merge class to the finish tile
                     if (newPosition.nextTile.type === 'finish') {
-                        newPosition.nextTile.actionClass = 'merged'; //todo remove this class later so it animates only once
+                        newPosition.nextTile.actionClass = 'merged';
                     }
 
                     //animate the movement with fading
