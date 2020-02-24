@@ -146,12 +146,12 @@ function initializeCells(): Cell[] {
 function moveTile(move: number, cells: Cell[]): Cell[] {
     let cell: Cell,
         newPosition: Cell,
-        updatedCells = transformFromStateToGrid(cells);
+        updatedCells = transformFromStateToGrid(removeMergedCells(cells)); //TODO rename updatedCells
     const
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
-    updatedCells[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile 
+    updatedCells[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile
 
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {
@@ -172,7 +172,6 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
                     }
 
                     moveCell(updatedCells, newPosition, cell);
-                    //todo delete all cells with toBeMergedWithFinish flag at the beg of the next iteration
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
                     moveCell(updatedCells, newPosition, cell);
                 }
@@ -182,6 +181,14 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
 
     return transformFromGridToState(updatedCells);
     // TODO if (this.isGameTerminated()) return; // Don't do anything if the game's over
+};
+
+function removeMergedCells(cells:Cell[]): Cell[] {
+    let filteredCells: Cell[];
+
+    filteredCells = cells.filter(cell => !cell.toBeMergedWithFinish)
+
+    return filteredCells;
 };
 
 function moveCell(updatedCells:Cell[][], newPosition: Cell, prevPosition: Cell): Cell[][] {
