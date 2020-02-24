@@ -146,19 +146,19 @@ function initializeCells(): Cell[] {
 function moveTile(move: number, cells: Cell[]): Cell[] {
     let cell: Cell,
         newPosition: Cell,
-        updatedCells = transformFromStateToGrid(removeMergedCells(cells)); //TODO rename updatedCells
+        cellsInGrid = transformFromStateToGrid(removeMergedCells(cells));
     const
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
-    updatedCells[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile
+    cellsInGrid[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile
 
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
-            cell = updatedCells[x][y];
+            cell = cellsInGrid[x][y];
             if (cell && cell.type !== 'finish') {
-                newPosition = findAvailablePosition(cell, updatedCells, moveVector);
+                newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
                 if (newPosition.nextTile && (newPosition.nextTile.type === 'finish' || newPosition.nextTile.toBeMergedWithFinish)) {
 
                     //add merge class to the finish tile
@@ -171,15 +171,15 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
                         newPosition.actionClass = 'removed';
                     }
 
-                    moveCell(updatedCells, newPosition, cell);
+                    moveCell(cellsInGrid, newPosition, cell);
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
-                    moveCell(updatedCells, newPosition, cell);
+                    moveCell(cellsInGrid, newPosition, cell);
                 }
             };
         });
     });
 
-    return transformFromGridToState(updatedCells);
+    return transformFromGridToState(cellsInGrid);
     // TODO if (this.isGameTerminated()) return; // Don't do anything if the game's over
 };
 
@@ -191,11 +191,11 @@ function removeMergedCells(cells:Cell[]): Cell[] {
     return filteredCells;
 };
 
-function moveCell(updatedCells:Cell[][], newPosition: Cell, prevPosition: Cell): Cell[][] {
-    updatedCells[newPosition.positionX][newPosition.positionY] = newPosition;
-    updatedCells[prevPosition.positionX][prevPosition.positionY] = null;
+function moveCell(cells:Cell[][], newPosition: Cell, prevPosition: Cell): Cell[][] {
+    cells[newPosition.positionX][newPosition.positionY] = newPosition;
+    cells[prevPosition.positionX][prevPosition.positionY] = null;
 
-    return updatedCells;
+    return cells;
 };
 
 function getMoveVector(move: number): Vector {
