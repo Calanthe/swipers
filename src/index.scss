@@ -12,39 +12,6 @@ $tile-bg-finish: #24292e;
 
 $transition-speed: 200ms;
 
-@mixin transform($args...) {
-  -webkit-transform: $args;
-  -moz-transform: $args;
-  -ms-transform: $args;
-  transform: $args;
-}
-
-@mixin animation($args...) {
-  -webkit-animation: $args;
-  -moz-animation: $args;
-  -ms-animation: $args;
-  animation: $args;
-}
-
-@mixin animation-fill-mode($args...) {
-  -webkit-animation-fill-mode: $args;
-  -moz-animation-fill-mode: $args;
-  -ms-animation-fill-mode: $args;
-  animation-fill-mode: $args;
-}
-
-@mixin keyframes($animation-name) { //TODO use it?
-  @-webkit-keyframes $animation-name {
-    @content;
-  }
-  @-moz-keyframes $animation-name {
-    @content;
-  }
-  @keyframes $animation-name {
-    @content;
-  }
-}
-
 @keyframes fade-out {
   0% {
     opacity: 1;
@@ -121,7 +88,7 @@ body {
     width: ceil($tile-size);
     height: ceil($tile-size);
     line-height: ceil($tile-size);
-    position: absolute; //TODO use transition or animate mixins
+    position: absolute;
     transition-property: top, left;
     transition-duration: $transition-speed;
     transition-timing-function: linear;
@@ -153,13 +120,10 @@ body {
   }
 
   .tile-action-merged {
-    @include animation(merged $transition-speed);
-    @include animation-fill-mode(forwards);
-    animation-delay: $transition-speed;
+    animation: $transition-speed merged $transition-speed forwards;
   }
 
   .tile-action-removed {
-    @include animation(fade-out $transition-speed);
-    @include animation-fill-mode(forwards);
+    animation: $transition-speed fade-out forwards;
   }
 }
