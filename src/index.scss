@@ -79,7 +79,7 @@ body {
     }
   }
 
-  .board {
+  .grid {
     position: absolute;
     z-index: 1;
     display: grid;
@@ -94,7 +94,7 @@ body {
     }
  }
 
-  .grid {
+  .board {
     position: absolute;
     z-index: 2;
   }
@@ -128,10 +128,12 @@ body {
 
   .tile-type-primary {
     background-color: $tile-bg-primary;
+    cursor: pointer; //TODO fix it to not repeat it?
   }
 
   .tile-type-secondary {
     background-color: $tile-bg-secondary;
+    cursor: pointer;
   }
 
   .tile-action-merged {

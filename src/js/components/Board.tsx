@@ -41,7 +41,7 @@ class Grid extends React.Component {
         }
 
         return (
-            <div className="board">
+            <div className="grid">
                 {blocks}
             </div>
         );
@@ -69,7 +69,7 @@ const Board: React.FunctionComponent<Props> = (props) => {
     return (
         <div className={boardClassName}>
             <Grid/>
-            <div className="grid">
+            <div className="board">
                 {tiles}
             </div>
         </div>
