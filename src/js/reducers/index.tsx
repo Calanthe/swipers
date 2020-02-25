@@ -1,7 +1,7 @@
-import { UPDATE_CELLS } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y } from "../constants";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE } from "../constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
-import { Cell, CellState, UpdateCellsAction } from "../misc/tsTypes";
+import { Cell, CellState, RootReducerAction } from "../misc/tsTypes";
 
 interface Vector {
     x: number,
@@ -14,7 +14,8 @@ interface Traversals {
 }
 
 const initialState: CellState = {
-    cells: initializeCells()
+    cells: initializeCells(),
+    activeType: 1
 };
 
 // Build a grid of the specified width and height
@@ -22,18 +23,10 @@ function initializeCells(): Cell[] {
     let cells = [],
         tile;
 
-    /* for (let x = 0; x < BOARD_WIDTH; x++) {
-        let row = cells[x] = [];
-
-        for (let y = 0; y < BOARD_HEIGHT; y++) {
-            row.push(null);
-        }
-    } */
-
     const finishTile = {
         positionX: 5,
         positionY: 5,
-        type: 'finish',
+        type: 0,
         uniqueKey: 0,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -44,7 +37,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 5,
         positionY: 7,
-        type: 'primary',
+        type: 1,
         uniqueKey: 6,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -55,7 +48,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 5,
         positionY: 9,
-        type: 'primary',
+        type: 1,
         uniqueKey: 7,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -66,7 +59,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 0,
         positionY: 0,
-        type: 'primary',
+        type: 1,
         uniqueKey: 1,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -77,7 +70,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 1,
         positionY: 1,
-        type: 'secondary',
+        type: 2,
         uniqueKey: 2,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -88,7 +81,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 1,
         positionY: 3,
-        type: 'primary',
+        type: 1,
         uniqueKey: 3,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -99,7 +92,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 4,
         positionY: 0,
-        type: 'secondary',
+        type: 2,
         uniqueKey: 4,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -110,7 +103,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 10,
         positionY: 10,
-        type: 'primary',
+        type: 1,
         uniqueKey: 5,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -121,7 +114,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 5,
         positionY: 10,
-        type: 'primary',
+        type: 1,
         uniqueKey: 8,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -132,7 +125,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 5,
         positionY: 9,
-        type: 'primary',
+        type: 1,
         uniqueKey: 9,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -157,12 +150,12 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
             cell = cellsInGrid[x][y];
-            if (cell && cell.type !== 'finish') {
+            if (cell && cell.type !== FINISH_TYPE) {
                 newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
-                if (newPosition.nextTile && (newPosition.nextTile.type === 'finish' || newPosition.nextTile.toBeMergedWithFinish)) {
+                if (newPosition.nextTile && (newPosition.nextTile.type === FINISH_TYPE || newPosition.nextTile.toBeMergedWithFinish)) {
 
                     //add merge class to the finish tile
-                    if (newPosition.nextTile.type === 'finish') {
+                    if (newPosition.nextTile.type === FINISH_TYPE) {
                         newPosition.nextTile.actionClass = 'merged';
                     }
 
@@ -238,8 +231,8 @@ function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector):
         prevCell = cell;
         cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
         cellY = cell.positionY + moveVector.y;
-        tileFoundInNextCell = tileInCell(cells, cellX, cellY); //todo rename to tileInCell
-        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.type === 'finish' || tileFoundInNextCell.toBeMergedWithFinish))
+        tileFoundInNextCell = tileInCell(cells, cellX, cellY);
+        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.type === FINISH_TYPE || tileFoundInNextCell.toBeMergedWithFinish))
         cell = {
             positionX: cellX,
             positionY: cellY,
@@ -249,9 +242,8 @@ function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector):
             nextTile: tileFoundInNextCell, //need nextTile to animate the position to equal finish
             toBeMergedWithFinish: toBeMergedWithFinish
         };
-        // console.log(cell, tileFoundInNextCell && tileFoundInNextCell.type === 'finish')
     } while (withinBounds(cell) &&
-             !tileFoundInNextCell); //todo make sure that the calculation continues also when the next tile has tileFoundInNextCell flag
+             !tileFoundInNextCell);
 
     //even if not moving, I have to check if cell is going to be merged
     prevCell.nextTile = tileFoundInNextCell;
@@ -273,11 +265,22 @@ function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null 
     }
 };
 
-const rootReducer = (state = initialState, action: UpdateCellsAction): CellState => {
+function setActiveType(newType, activeType) {
+    console.log(newType, activeType)
+    return newType !== 0 ? newType : activeType;
+};
+
+const rootReducer = (state = initialState, action: RootReducerAction): CellState => {
+    let newState
+
     switch (action.type) {
         case UPDATE_CELLS:
-            const newState = { ...state, cells: moveTile(action.payload, state.cells) };
+            newState = { ...state, cells: moveTile(action.payload, state.cells) };
             console.log('UPDATE_CELLS', 'state: ', state, 'action: ', action, 'newState: ', newState)
+            return newState;
+        case SET_ACTIVE_TYPE:
+            newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
+            console.log('SET_ACTIVE_TYPE', 'state: ', state, 'action: ', action, 'newState: ', newState)
             return newState;
         default:
             return state;

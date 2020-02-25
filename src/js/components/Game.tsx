@@ -2,14 +2,21 @@ import * as React from "react";
 import { connect } from "react-redux";
 import Board from "./Board"
 import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
-import { updateCells } from "../actions/index";
+import { updateCells, setActiveType } from "../actions/index";
 
 interface GameProps {
-    updateCells: typeof updateCells;
+    updateCells: typeof updateCells,
+    setActiveType: typeof setActiveType
 }
 
 interface KeyboardEvent {
-    key: string;
+    key: string
+}
+
+interface MouseEvent {
+    target: {
+        getAttribute: (attributeName: string) => number
+    }
 }
 
 export class Block extends React.Component {
@@ -44,7 +51,8 @@ export class Grid extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCells: cells => dispatch(updateCells(cells))
+        updateCells: keyPressedNo => dispatch(updateCells(keyPressedNo)),
+        setActiveType: cellType => dispatch(setActiveType(cellType))
     };
 };
 
@@ -77,6 +85,10 @@ class Game extends React.Component<GameProps> {
         // }
     }
 
+    handleMouseClick = (event: MouseEvent): void => {
+        this.props.setActiveType(event.target.getAttribute('data-type'));
+    }
+
     render() {
         return (
             <div className="app">
@@ -86,7 +98,7 @@ class Game extends React.Component<GameProps> {
 
                 <div className="game">
                     <Grid/>
-                    <Board/>
+                    <Board onMouseClick={this.handleMouseClick}/>
                 </div>
             </div>
         );

@@ -1,10 +1,12 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 
 interface Props {
-    tileClassName: string;
+    tileClassName: string,
+    tileType: number,
+    onMouseClick: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const Tile: React.FunctionComponent<Props> = ({ tileClassName }) => {
+const Tile: React.FunctionComponent<Props> = ({ tileClassName, tileType, onMouseClick }) => {
     const [newTileClassName, setData] = useState();
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const Tile: React.FunctionComponent<Props> = ({ tileClassName }) => {
     }, [tileClassName]);
 
     return (
-        <div className={newTileClassName}/>
+        <div className={newTileClassName} data-type={tileType} onClick={onMouseClick}/>
     )
 }
 
