@@ -265,9 +265,8 @@ function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null 
     }
 };
 
-function setActiveType(newType, activeType) {
-    console.log(newType, activeType)
-    return newType !== 0 ? newType : activeType;
+function setActiveType(newType: number, activeType: number): number {
+    return newType !== FINISH_TYPE ? newType : activeType;
 };
 
 const rootReducer = (state = initialState, action: RootReducerAction): CellState => {

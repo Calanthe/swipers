@@ -8,6 +8,7 @@ $grid-spacing: 4;
 
 $tile-bg-primary: red;
 $tile-bg-secondary: green;
+$tile-bg-tertiary: #f67c5f;
 $tile-bg-finish: #24292e;
 
 $transition-speed: 200ms;
@@ -62,6 +63,20 @@ body {
     position: relative;
     width: 600px;
     height: 600px;
+    border: 10px solid $tile-bg-primary;
+    padding: 2px;
+
+    &.primary {
+      border-color: $tile-bg-primary;
+    }
+
+    &.secondary {
+      border-color: $tile-bg-secondary;
+    }
+
+    &.tertiary {
+      border-color: $tile-bg-tertiary;
+    }
   }
 
   .board {

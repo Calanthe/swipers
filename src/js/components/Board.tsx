@@ -1,23 +1,57 @@
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import classNames from 'classnames';
-import { FINISH_POSITION_X, FINISH_POSITION_Y, TILE_TYPES } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, TILE_TYPES } from "../constants";
 import Tile from "./Tile";
 import { Cell } from "../misc/tsTypes";
 
 interface Props {
     cells: Array<Cell>,
+    activeType: number,
     onMouseClick: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const mapStateToProps = state => {
     return {
-        cells: state.cells
+        cells: state.cells,
+        activeType: state.activeType
     };
 };
 
+class Block extends React.Component {
+    render() {
+        return (
+            <div className="block"/>
+        );
+    }
+}
+
+class Grid extends React.Component {
+    render() {
+        let i,
+            j,
+            uniqueKey = '',
+            blocks = [];
+
+        for (i = 0; i < BOARD_WIDTH; i++) {
+            for (j = 0; j < BOARD_HEIGHT; j++) {
+                uniqueKey = i + ' ' +j;
+                blocks.push(<Block key={uniqueKey}/>)
+            }
+        }
+
+        return (
+            <div className="board">
+                {blocks}
+            </div>
+        );
+    }
+}
+
 const Board: React.FunctionComponent<Props> = (props) => {
-    const cells = props.cells;
+    const
+        cells = props.cells,
+        boardClassName = classNames('game', TILE_TYPES[props.activeType]);
     let tiles = [];
 
         cells.forEach((cell, i) => {
@@ -33,8 +67,11 @@ const Board: React.FunctionComponent<Props> = (props) => {
         });
 
     return (
-        <div className="grid">
-            {tiles}
+        <div className={boardClassName}>
+            <Grid/>
+            <div className="grid">
+                {tiles}
+            </div>
         </div>
     );
 };

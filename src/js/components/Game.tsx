@@ -1,7 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import Board from "./Board"
-import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
 import { updateCells, setActiveType } from "../actions/index";
 
 interface GameProps {
@@ -15,37 +14,7 @@ interface KeyboardEvent {
 
 interface MouseEvent {
     target: {
-        getAttribute: (attributeName: string) => number
-    }
-}
-
-export class Block extends React.Component {
-    render() {
-        return (
-            <div className="block"/>
-        );
-    }
-}
-
-export class Grid extends React.Component {
-    render() {
-        let i,
-            j,
-            uniqueKey = '',
-            blocks = [];
-
-        for (i = 0; i < BOARD_WIDTH; i++) {
-            for (j = 0; j < BOARD_HEIGHT; j++) {
-                uniqueKey = i + ' ' +j;
-                blocks.push(<Block key={uniqueKey}/>)
-            }
-        }
-
-        return (
-            <div className="board">
-                {blocks}
-            </div>
-        );
+        getAttribute: (attributeName: string) => string
     }
 }
 
@@ -86,7 +55,7 @@ class Game extends React.Component<GameProps> {
     }
 
     handleMouseClick = (event: MouseEvent): void => {
-        this.props.setActiveType(event.target.getAttribute('data-type'));
+        this.props.setActiveType(parseInt(event.target.getAttribute('data-type'), 10));
     }
 
     render() {
@@ -96,10 +65,7 @@ class Game extends React.Component<GameProps> {
                     <h1>Swipers!</h1>
                 </div>
 
-                <div className="game">
-                    <Grid/>
-                    <Board onMouseClick={this.handleMouseClick}/>
-                </div>
+                <Board onMouseClick={this.handleMouseClick}/>
             </div>
         );
     }
