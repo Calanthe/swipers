@@ -136,10 +136,10 @@ function initializeCells(): Cell[] {
     return cells;
 };
 
-function moveTile(move: number, cells: Cell[]): Cell[] {
+function moveTile(move: number, state: CellState): Cell[] {
     let cell: Cell,
         newPosition: Cell,
-        cellsInGrid = transformFromStateToGrid(removeMergedCells(cells));
+        cellsInGrid = transformFromStateToGrid(removeMergedCells(state.cells));
     const
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
@@ -150,7 +150,7 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
             cell = cellsInGrid[x][y];
-            if (cell && cell.type !== FINISH_TYPE) {
+            if (cell && cell.type === state.activeType) {
                 newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
                 if (newPosition.nextTile && (newPosition.nextTile.type === FINISH_TYPE || newPosition.nextTile.toBeMergedWithFinish)) {
 
@@ -173,7 +173,6 @@ function moveTile(move: number, cells: Cell[]): Cell[] {
     });
 
     return transformFromGridToState(cellsInGrid);
-    // TODO if (this.isGameTerminated()) return; // Don't do anything if the game's over
 };
 
 function removeMergedCells(cells:Cell[]): Cell[] {
@@ -274,7 +273,7 @@ const rootReducer = (state = initialState, action: RootReducerAction): CellState
 
     switch (action.type) {
         case UPDATE_CELLS:
-            newState = { ...state, cells: moveTile(action.payload, state.cells) };
+            newState = { ...state, cells: moveTile(action.payload, state) };
             console.log('UPDATE_CELLS', 'state: ', state, 'action: ', action, 'newState: ', newState)
             return newState;
         case SET_ACTIVE_TYPE:
