@@ -1,2 +1,3 @@
 export const UPDATE_CELLS = "UPDATE_CELLS";
 export const SET_ACTIVE_TYPE = "SET_ACTIVE_TYPE";
+export const UPDATE_SCORE = "UPDATE_SCORE";

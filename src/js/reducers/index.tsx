@@ -1,7 +1,8 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, UPDATE_SCORE } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE } from "../constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, RootReducerAction } from "../misc/tsTypes";
+import { updateScore } from "../actions/index";
 
 interface Vector {
     x: number,
@@ -15,7 +16,8 @@ interface Traversals {
 
 const initialState: CellState = {
     cells: initializeCells(),
-    activeType: 1
+    activeType: 1,
+    score: 0
 };
 
 // Build a grid of the specified width and height
@@ -164,6 +166,8 @@ function moveTile(move: number, state: CellState): Cell[] {
                         newPosition.actionClass = 'removed';
                     }
 
+                    updateScore(1);
+
                     moveCell(cellsInGrid, newPosition, cell);
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
                     moveCell(cellsInGrid, newPosition, cell);
@@ -268,17 +272,22 @@ function setActiveType(newType: number, activeType: number): number {
     return newType !== FINISH_TYPE ? newType : activeType;
 };
 
+function setScore(points: number, currentScore: number): number {
+    return currentScore + points;
+};
+
 const rootReducer = (state = initialState, action: RootReducerAction): CellState => {
     let newState
 
     switch (action.type) {
         case UPDATE_CELLS:
             newState = { ...state, cells: moveTile(action.payload, state) };
-            console.log('UPDATE_CELLS', 'state: ', state, 'action: ', action, 'newState: ', newState)
             return newState;
         case SET_ACTIVE_TYPE:
             newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
-            console.log('SET_ACTIVE_TYPE', 'state: ', state, 'action: ', action, 'newState: ', newState)
+            return newState;
+        case UPDATE_SCORE:
+            newState = { ...state, score: setScore(action.payload, state.score) };
             return newState;
         default:
             return state;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import Board from "./Board"
+import Header from "./Header"
 import { updateCells, setActiveType } from "../actions/index";
 
 interface GameProps {
@@ -61,10 +62,7 @@ class Game extends React.Component<GameProps> {
     render() {
         return (
             <div className="app">
-                <div>
-                    <h1>Swipers!</h1>
-                </div>
-
+                <Header/>
                 <Board onMouseClick={this.handleMouseClick}/>
             </div>
         );

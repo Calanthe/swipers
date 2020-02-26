@@ -1,4 +1,4 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, UPDATE_SCORE } from "../actions/actionTypes";
 
 export interface Cell {
     "positionX": number,
@@ -12,7 +12,8 @@ export interface Cell {
 
 export interface CellState {
     cells: Cell[],
-    activeType: number
+    activeType: number,
+    score: number
 }
 
 export interface UpdateCellsAction {
@@ -22,6 +23,11 @@ export interface UpdateCellsAction {
 
 export interface SetActiveTypeAction {
     type: typeof SET_ACTIVE_TYPE,
+    payload: number
+}
+
+export interface UpdateScoreAction {
+    type: typeof UPDATE_SCORE,
     payload: number
 }
 

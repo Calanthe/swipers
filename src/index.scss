@@ -59,6 +59,12 @@ body {
   width: 500px;
   margin: 0 auto;
 
+  .header {
+    .score{
+      margin: 10px 0;
+    }
+  }
+
   .game {
     position: relative;
     width: 600px;
