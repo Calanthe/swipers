@@ -7,5 +7,6 @@ export const TILE_TYPES = {
     0: 'finish',
     1: 'primary',
     2: 'secondary',
-    3: 'tertiary'
+    3: 'tertiary',
+    4: 'quaternary'
 };

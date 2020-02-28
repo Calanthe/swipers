@@ -60,7 +60,8 @@ const Board: React.FunctionComponent<Props> = (props) => {
                 positionClass = "tile-position-" + cell.positionX + "-" + cell.positionY,
                 positionClassFinish = "tile-position-" + FINISH_POSITION_X + "-" + FINISH_POSITION_Y,
                 actionClass = "tile-action-" + cell.actionClass,
-                tileClassName = classNames('tile', typeClass, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass),
+                isTileActive = props.activeType === cell.type,
+                tileClassName = classNames('tile', typeClass, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass, {'tile-active': isTileActive}),
                 tile = <Tile tileClassName={tileClassName} tileType={cell.type} onMouseClick={props.onMouseClick} key={cell.uniqueKey.toString()}/>
 
             tiles.push(tile)

@@ -125,10 +125,54 @@ function initializeCells(): Cell[] {
     cells.push(tile)
 
     tile = {
-        positionX: 5,
+        positionX: 7,
         positionY: 9,
         type: 1,
         uniqueKey: 9,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 6,
+        positionY: 5,
+        type: 3,
+        uniqueKey: 10,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 8,
+        positionY: 5,
+        type: 3,
+        uniqueKey: 11,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 2,
+        positionY: 9,
+        type: 4,
+        uniqueKey: 12,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 9,
+        positionY: 2,
+        type: 4,
+        uniqueKey: 13,
         tileFoundInNextCell: false,
         actionClass: ''
     };
@@ -146,6 +190,7 @@ function moveTile(move: number, state: CellState): Cell[] {
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
+    //TODO fix a bug where finish tile does not pop out after changing active color and merging
     cellsInGrid[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile
 
     // Traverse the grid in the right direction and move tiles

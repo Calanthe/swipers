@@ -1,15 +1,15 @@
-$primary-bg-color: #fafbfc;
-$secondary-bg-color: #f6f8fa;
+$primary-bg-color: #FFFFFF;
+$secondary-bg-color: #F8F8F8;
 $primary-font-color: #24292e;
-$primary-bg-color: #fafbfc;
 $tile-size: 50px; //TODO mobile
 $grid-row-cells: 11;
 $grid-spacing: 4;
 
-$tile-bg-primary: red;
-$tile-bg-secondary: green;
-$tile-bg-tertiary: #f67c5f;
-$tile-bg-finish: #24292e;
+$tile-bg-primary: #9AE1FF;
+$tile-bg-secondary: #FFE993;
+$tile-bg-tertiary: #ABF6DE;
+$tile-bg-quaternary: #D2D3FF;
+$tile-bg-finish: #000000;
 
 $transition-speed: 200ms;
 
@@ -56,20 +56,46 @@ body {
 }
 
 .app {
-  width: 500px;
+  width: 634px;
   margin: 0 auto;
 
   .header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
     .score{
-      margin: 10px 0;
+      margin: 30px 0 10px;
+    }
+
+    .title {
+      font-family: 'Yeseva One';
+      font-size: 3rem;
+      margin: 4px;
+
+      .header-type-primary & { //todo https://codepen.io/markmead/pen/YjQKeZ ? or https://codepen.io/robertmesserle/pen/Lebco
+        color: $tile-bg-primary;
+      }
+
+      .header-type-secondary & {
+        color: $tile-bg-secondary;
+      }
+
+      .header-type-tertiary & {
+        color: $tile-bg-tertiary;
+      }
+
+      .header-type-quaternary & {
+        color: $tile-bg-quaternary;
+      }
     }
   }
 
   .game {
     position: relative;
-    width: 600px;
-    height: 600px;
-    border: 10px solid $tile-bg-primary;
+    width: 590px;
+    height: 590px;
+    border: 20px solid $tile-bg-primary;
+    border-radius: 5px;
     padding: 2px;
 
     &.primary {
@@ -82,6 +108,10 @@ body {
 
     &.tertiary {
       border-color: $tile-bg-tertiary;
+    }
+
+    &.quaternary {
+      border-color: $tile-bg-quaternary;
     }
   }
 
@@ -110,6 +140,9 @@ body {
     height: ceil($tile-size);
     line-height: ceil($tile-size);
     position: absolute;
+    border-radius: 5px;
+    opacity: 0.4;
+    cursor: pointer;
     transition-property: top, left;
     transition-duration: $transition-speed;
     transition-timing-function: linear;
@@ -130,16 +163,27 @@ body {
 
   .tile-type-finish {
     background-color: $tile-bg-finish;
+    cursor: auto;
   }
 
   .tile-type-primary {
     background-color: $tile-bg-primary;
-    cursor: pointer; //TODO fix it to not repeat it?
   }
 
   .tile-type-secondary {
     background-color: $tile-bg-secondary;
-    cursor: pointer;
+  }
+
+  .tile-type-tertiary {
+    background-color: $tile-bg-tertiary;
+  }
+
+  .tile-type-quaternary {
+    background-color: $tile-bg-quaternary;
+  }
+
+  .tile-active {
+    opacity: 1;
   }
 
   .tile-action-merged {
