@@ -55,6 +55,10 @@ body {
   color: $primary-font-color;
 }
 
+p {
+  margin: 0; //TODO add reset style? 
+}
+
 .app {
   width: 634px;
   margin: 0 auto;
