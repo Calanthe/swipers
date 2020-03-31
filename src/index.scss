@@ -1,9 +1,11 @@
 $primary-bg-color: #FFFFFF;
 $secondary-bg-color: #F8F8F8;
 $primary-font-color: #24292e;
-$tile-size: 50px; //TODO mobile
+$tile-size: 65px; //TODO mobile
 $grid-row-cells: 11;
 $grid-spacing: 4;
+$tiles-no-width: 8;
+$tiles-no-height: 8;
 
 $tile-bg-primary: #9AE1FF;
 $tile-bg-secondary: #FFE993;
@@ -97,8 +99,8 @@ p {
 
   .game {
     position: relative;
-    width: 590px;
-    height: 590px;
+    width: 548px;
+    height: 548px;
     border: 20px solid $tile-bg-primary;
     border-radius: 5px;
     padding: 2px;
@@ -124,8 +126,8 @@ p {
     position: absolute;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(11, 50px);
-    grid-template-rows: repeat(11, 50px);
+    grid-template-columns: repeat($tiles-no-height, $tile-size);
+    grid-template-rows: repeat($tiles-no-width, $tile-size);
     grid-auto-flow: row;
     grid-gap: 4px;
 

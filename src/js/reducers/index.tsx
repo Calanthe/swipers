@@ -48,17 +48,6 @@ function initializeCells(): Cell[] {
     cells.push(tile)
 
     tile = {
-        positionX: 5,
-        positionY: 9,
-        type: 1,
-        uniqueKey: 7,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
         positionX: 0,
         positionY: 0,
         type: 1,
@@ -103,76 +92,10 @@ function initializeCells(): Cell[] {
     cells.push(tile)
 
     tile = {
-        positionX: 10,
-        positionY: 10,
-        type: 1,
-        uniqueKey: 5,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 5,
-        positionY: 10,
-        type: 1,
-        uniqueKey: 8,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 7,
-        positionY: 9,
-        type: 1,
-        uniqueKey: 9,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
         positionX: 6,
         positionY: 5,
         type: 3,
         uniqueKey: 10,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 8,
-        positionY: 5,
-        type: 3,
-        uniqueKey: 11,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 2,
-        positionY: 9,
-        type: 4,
-        uniqueKey: 12,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 9,
-        positionY: 2,
-        type: 4,
-        uniqueKey: 13,
         tileFoundInNextCell: false,
         actionClass: ''
     };
@@ -184,7 +107,7 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 6,
         positionY: 6,
-        type: 5,
+        type: 100,
         uniqueKey: 14,
         tileFoundInNextCell: false,
         actionClass: ''
@@ -195,19 +118,8 @@ function initializeCells(): Cell[] {
     tile = {
         positionX: 3,
         positionY: 5,
-        type: 5,
+        type: 100,
         uniqueKey: 15,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 5,
-        positionY: 8,
-        type: 5,
-        uniqueKey: 16,
         tileFoundInNextCell: false,
         actionClass: ''
     };
