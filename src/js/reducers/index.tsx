@@ -1,5 +1,5 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE, WALL_TYPE } from "../constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, RootReducerAction } from "../misc/tsTypes";
 
@@ -179,6 +179,41 @@ function initializeCells(): Cell[] {
 
     cells.push(tile)
 
+    //a few grey blocks
+
+    tile = {
+        positionX: 6,
+        positionY: 6,
+        type: 5,
+        uniqueKey: 14,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 3,
+        positionY: 5,
+        type: 5,
+        uniqueKey: 15,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
+    tile = {
+        positionX: 5,
+        positionY: 8,
+        type: 5,
+        uniqueKey: 16,
+        tileFoundInNextCell: false,
+        actionClass: ''
+    };
+
+    cells.push(tile)
+
     return cells;
 };
 
@@ -326,7 +361,7 @@ function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null 
 };
 
 function setActiveType(newType: number, activeType: number): number {
-    return newType !== FINISH_TYPE ? newType : activeType;
+    return (newType !== FINISH_TYPE && newType !== WALL_TYPE) ? newType : activeType;
 };
 
 const rootReducer = (state = initialState, action: RootReducerAction): CellState => {

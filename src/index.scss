@@ -10,6 +10,7 @@ $tile-bg-secondary: #FFE993;
 $tile-bg-tertiary: #ABF6DE;
 $tile-bg-quaternary: #D2D3FF;
 $tile-bg-finish: #000000;
+$tile-bg-wall: #848484;
 
 $transition-speed: 200ms;
 
@@ -56,7 +57,7 @@ body {
 }
 
 p {
-  margin: 0; //TODO add reset style? 
+  margin: 0; //TODO add reset style?
 }
 
 .app {
@@ -76,7 +77,7 @@ p {
       font-size: 3rem;
       margin: 4px;
 
-      .header-type-primary & { //todo https://codepen.io/markmead/pen/YjQKeZ ? or https://codepen.io/robertmesserle/pen/Lebco
+      .header-type-primary & {
         color: $tile-bg-primary;
       }
 
@@ -168,6 +169,13 @@ p {
   .tile-type-finish {
     background-color: $tile-bg-finish;
     cursor: auto;
+    opacity: 1;
+  }
+
+  .tile-type-wall {
+    background-color: $tile-bg-wall;
+    cursor: auto;
+    opacity: 1;
   }
 
   .tile-type-primary {
