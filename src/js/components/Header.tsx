@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from "react-redux";
 import classNames from 'classnames';
-import { TILE_TYPES } from "../constants";
+import { TILE_TYPES } from "../misc/constants";
 
 interface Props {
     score: number,

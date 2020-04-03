@@ -1,5 +1,5 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE, WALL_TYPE } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE, WALL_TYPE } from "../misc/constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, RootReducerAction } from "../misc/tsTypes";
 

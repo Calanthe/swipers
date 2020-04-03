@@ -1,5 +1,5 @@
-export const BOARD_WIDTH = 8;
-export const BOARD_HEIGHT = 8;
+export const BOARD_WIDTH = 9;
+export const BOARD_HEIGHT = 9;
 export const FINISH_POSITION_X = 5;
 export const FINISH_POSITION_Y = 5;
 export const FINISH_TYPE = 0;

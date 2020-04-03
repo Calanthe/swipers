@@ -1,11 +1,11 @@
 $primary-bg-color: #FFFFFF;
 $secondary-bg-color: #F8F8F8;
 $primary-font-color: #24292e;
-$tile-size: 65px; //TODO mobile
-$grid-row-cells: 11;
+$tile-size: 58px; //TODO mobile
+$grid-row-cells: 9;
 $grid-spacing: 4;
-$tiles-no-width: 8;
-$tiles-no-height: 8;
+$tiles-no-width: 9;
+$tiles-no-height: 9;
 
 $tile-bg-primary: #9AE1FF;
 $tile-bg-secondary: #FFE993;
@@ -99,8 +99,8 @@ p {
 
   .game {
     position: relative;
-    width: 548px;
-    height: 548px;
+    width: 555px;
+    height: 555px;
     border: 20px solid $tile-bg-primary;
     border-radius: 5px;
     padding: 2px;

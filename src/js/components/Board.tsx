@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import classNames from 'classnames';
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, TILE_TYPES } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, TILE_TYPES } from "../misc/constants";
 import Tile from "./Tile";
 import { Cell } from "../misc/tsTypes";
 

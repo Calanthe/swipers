@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
+import { BOARD_WIDTH, BOARD_HEIGHT } from "../misc/constants";
 import { Cell } from "../misc/tsTypes";
 
 /*
