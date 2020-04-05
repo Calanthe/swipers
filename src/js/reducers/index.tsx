@@ -1,7 +1,8 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, FINISH_TYPE, WALL_TYPE } from "../misc/constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_TYPE, WALL_TYPE } from "../misc/constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
-import { Cell, CellState, RootReducerAction } from "../misc/tsTypes";
+import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
+import { LEVELS } from "../misc/levels";
 
 interface Vector {
     x: number,
@@ -16,117 +17,48 @@ interface Traversals {
 const initialState: CellState = {
     cells: initializeCells(),
     activeType: 1,
+    level: 0,
+    finishCords: setFinishCords(),
     score: 0,
     scoreClass: ''
 };
 
-// Build a grid of the specified width and height
-function initializeCells(): Cell[] {
+// Build a grid based on the current level, 0 by default
+function initializeCells(level:number = 0): Cell[] {
     let cells = [],
-        tile;
+        newTile,
+        currentLevel = LEVELS[level],
+        uniqueKey = 0;
 
-    const finishTile = {
-        positionX: 5,
-        positionY: 5,
-        type: 0,
-        uniqueKey: 0,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(finishTile)
-
-    tile = {
-        positionX: 5,
-        positionY: 7,
-        type: 1,
-        uniqueKey: 6,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 0,
-        positionY: 0,
-        type: 1,
-        uniqueKey: 1,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 1,
-        positionY: 1,
-        type: 2,
-        uniqueKey: 2,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 1,
-        positionY: 3,
-        type: 1,
-        uniqueKey: 3,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 4,
-        positionY: 0,
-        type: 2,
-        uniqueKey: 4,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 6,
-        positionY: 5,
-        type: 3,
-        uniqueKey: 10,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    //a few grey blocks
-
-    tile = {
-        positionX: 6,
-        positionY: 6,
-        type: 100,
-        uniqueKey: 14,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
-
-    tile = {
-        positionX: 3,
-        positionY: 5,
-        type: 100,
-        uniqueKey: 15,
-        tileFoundInNextCell: false,
-        actionClass: ''
-    };
-
-    cells.push(tile)
+    currentLevel.forEach(tile => {
+        newTile = {
+            ...tile,
+            uniqueKey: uniqueKey,
+            tileFoundInNextCell: false,
+            actionClass: ''
+        }
+        uniqueKey++;
+        cells.push(newTile)
+    });
 
     return cells;
+};
+
+function setFinishCords(level:number = 0): FinishCords {
+    let cords = {
+            positionX: 0,
+            positionY: 0,
+        },
+        currentLevel = LEVELS[level];
+
+    currentLevel.forEach(tile => {
+        if (tile.type === FINISH_TYPE) {
+            cords.positionX = tile.positionX;
+            cords.positionY = tile.positionY;
+        }
+    });
+
+    return cords;
 };
 
 function moveTile(move: number, state: CellState): Cell[] {
@@ -140,7 +72,7 @@ function moveTile(move: number, state: CellState): Cell[] {
         moveVector = getMoveVector(move);
 
     //TODO fix a bug where finish tile does not pop out after changing active color and merging
-    cellsInGrid[FINISH_POSITION_X][FINISH_POSITION_Y].actionClass = ''; //remove merged css class from the finish tile
+    cellsInGrid[state.finishCords.positionX][state.finishCords.positionY].actionClass = ''; //remove merged css class from the finish tile
 
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {

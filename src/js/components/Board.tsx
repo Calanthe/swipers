@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import classNames from 'classnames';
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_POSITION_X, FINISH_POSITION_Y, TILE_TYPES } from "../misc/constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, TILE_TYPES } from "../misc/constants";
 import Tile from "./Tile";
-import { Cell } from "../misc/tsTypes";
+import { Cell, FinishCords } from "../misc/tsTypes";
 
 interface Props {
     cells: Array<Cell>,
+    finishCords: FinishCords,
     activeType: number,
     onMouseClick: (event: React.MouseEvent<HTMLDivElement>) => void
 }
@@ -14,6 +15,7 @@ interface Props {
 const mapStateToProps = state => {
     return {
         cells: state.cells,
+        finishCords: state.finishCords,
         activeType: state.activeType
     };
 };
@@ -51,6 +53,7 @@ class Grid extends React.Component {
 const Board: React.FunctionComponent<Props> = (props) => {
     const
         cells = props.cells,
+        finishCords = props.finishCords,
         boardClassName = classNames('game', TILE_TYPES[props.activeType]);
     let tiles = [];
 
@@ -58,7 +61,7 @@ const Board: React.FunctionComponent<Props> = (props) => {
             const
                 typeClass = "tile-type-" + TILE_TYPES[cell.type],
                 positionClass = "tile-position-" + cell.positionX + "-" + cell.positionY,
-                positionClassFinish = "tile-position-" + FINISH_POSITION_X + "-" + FINISH_POSITION_Y,
+                positionClassFinish = "tile-position-" + finishCords.positionX + "-" + finishCords.positionY,
                 actionClass = "tile-action-" + cell.actionClass,
                 isTileActive = props.activeType === cell.type,
                 tileClassName = classNames('tile', typeClass, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass, {'tile-active': isTileActive}),

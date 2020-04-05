@@ -1,37 +1,43 @@
-import { FINISH_TYPE, WALL_TYPE } from "./constants";
+import { FINISH_TYPE } from "./constants";
 
-export const LEVELS = {
-    0: [
+export const LEVELS = [
+    //level 0
+    [
         {
-            posX: 4,
-            posY: 4,
+            positionX: 4,
+            positionY: 1,
             type: FINISH_TYPE
         },
         {
-            posX: 4,
-            posY: 8,
+            positionX: 4,
+            positionY: 6,
             type: 1
         }
     ],
-    1: [
+    //level 1
+    [
         {
-            posX: 8,
-            posY: 8,
+            positionX: 8,
+            positionY: 8,
             type: FINISH_TYPE
         },
         {
-            posX: 2,
-            posY: 3,
+            positionX: 2,
+            positionY: 3,
             type: 1
         },
         {
-            posX: 5,
-            posY: 5,
+            positionX: 5,
+            positionY: 5,
             type: 1
         }
     ],
-    2: [],
-    3: [],
-    4: [],
-    5: []
-};
+    //level 2
+    [],
+    //level 3
+    [],
+    //level 4
+    [],
+    //level 5
+    []
+];

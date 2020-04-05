@@ -10,9 +10,16 @@ export interface Cell {
     "actionClass": string
 }
 
+export interface FinishCords {
+    positionX: number,
+    positionY: number
+}
+
 export interface CellState {
     cells: Cell[],
     activeType: number,
+    level: number,
+    finishCords: FinishCords,
     score: number,
     scoreClass: string
 }
