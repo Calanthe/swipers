@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import Board from "./Board"
 import Header from "./Header"
+import InfoOverlay from "./InfoOverlay"
 import { updateCells, setActiveType } from "../actions/index";
 
 interface GameProps {
@@ -64,6 +65,7 @@ class Game extends React.Component<GameProps> {
             <div className="app">
                 <Header/>
                 <Board onMouseClick={this.handleMouseClick}/>
+                <InfoOverlay/>
             </div>
         );
     }

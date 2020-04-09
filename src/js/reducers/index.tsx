@@ -20,7 +20,8 @@ const initialState: CellState = {
     level: 0,
     finishCords: setFinishCords(),
     score: 0,
-    scoreClass: ''
+    scoreClass: '',
+    isLevelFinished: false
 };
 
 // Build a grid based on the current level, 0 by default
@@ -65,6 +66,7 @@ function moveTile(move: number, state: CellState): Cell[] {
     let cell: Cell,
         newPosition: Cell,
         cellsInGrid = transformFromStateToGrid(removeMergedCells(state.cells)),
+        cellsAmount = state.cells.length - 1,
         mergedCounter: number = 0;
 
     const
@@ -93,6 +95,8 @@ function moveTile(move: number, state: CellState): Cell[] {
                     }
 
                     mergedCounter++;
+
+                    cellsAmount--;
                     moveCell(cellsInGrid, newPosition, cell);
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
                     moveCell(cellsInGrid, newPosition, cell);
@@ -102,6 +106,10 @@ function moveTile(move: number, state: CellState): Cell[] {
     });
 
     updateScore(state, mergedCounter);
+
+    if (cellsAmount === 0) {
+        state.isLevelFinished = true;
+    }
 
     return transformFromGridToState(cellsInGrid);
 };

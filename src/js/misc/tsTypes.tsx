@@ -1,13 +1,13 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
 
 export interface Cell {
-    "positionX": number,
-    "positionY": number,
-    "type": number,
-    "uniqueKey": number,
-    "nextTile": Cell,
-    "toBeMergedWithFinish": boolean,
-    "actionClass": string
+    positionX: number,
+    positionY: number,
+    type: number,
+    uniqueKey: number,
+    nextTile: Cell,
+    toBeMergedWithFinish: boolean,
+    actionClass: string
 }
 
 export interface FinishCords {
@@ -21,7 +21,8 @@ export interface CellState {
     level: number,
     finishCords: FinishCords,
     score: number,
-    scoreClass: string
+    scoreClass: string,
+    isLevelFinished: boolean
 }
 
 export interface UpdateCellsAction {
