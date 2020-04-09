@@ -1,4 +1,4 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_TYPE, WALL_TYPE } from "../misc/constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
@@ -225,6 +225,13 @@ const rootReducer = (state = initialState, action: RootReducerAction): CellState
             return newState;
         case SET_ACTIVE_TYPE:
             newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
+            return newState;
+        case RESTART_LEVEL:
+            newState = { ...state, cells: initializeCells(), activeType: 1, score: 0, isLevelFinished: false};
+            console.log(RESTART_LEVEL)
+            return newState;
+        case SET_NEXT_LEVEL:
+            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
             return newState;
         default:
             return state;

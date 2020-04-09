@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import Board from "./Board"
 import Header from "./Header"
 import InfoOverlay from "./InfoOverlay"
-import { updateCells, setActiveType } from "../actions/index";
+import { updateCells, setActiveType, restartLevel, setNextLevel } from "../actions/index";
 
 interface GameProps {
     updateCells: typeof updateCells,
-    setActiveType: typeof setActiveType
+    setActiveType: typeof setActiveType,
+    restartLevel: typeof restartLevel,
+    setNextLevel: typeof setNextLevel
 }
 
 interface KeyboardEvent {
@@ -23,7 +25,9 @@ interface MouseEvent {
 const mapDispatchToProps = dispatch => {
     return {
         updateCells: keyPressedNo => dispatch(updateCells(keyPressedNo)),
-        setActiveType: cellType => dispatch(setActiveType(cellType))
+        setActiveType: cellType => dispatch(setActiveType(cellType)),
+        restartLevel: () => dispatch(restartLevel()),
+        setNextLevel: () => dispatch(setNextLevel())
     };
 };
 
@@ -49,15 +53,18 @@ class Game extends React.Component<GameProps> {
         if (KeyPressMap[event.key]) {
             this.props.updateCells(KeyPressMap[event.key]);
         }
-
-        // TODO R key restarts the game
-        // if (!modifiers && event.which === 82) {
-        //   self.restart.call(self, event);
-        // }
     }
 
     handleMouseClick = (event: MouseEvent): void => {
         this.props.setActiveType(parseInt(event.target.getAttribute('data-type'), 10));
+    }
+
+    handleRestartLevel = (): void => {
+        this.props.restartLevel();
+    }
+
+    handleSetNextLevel = (): void => {
+        this.props.setNextLevel();
     }
 
     render() {
@@ -65,7 +72,7 @@ class Game extends React.Component<GameProps> {
             <div className="app">
                 <Header/>
                 <Board onMouseClick={this.handleMouseClick}/>
-                <InfoOverlay/>
+                <InfoOverlay onRestart={this.handleRestartLevel} onNextLevel={this.handleSetNextLevel}/>
             </div>
         );
     }

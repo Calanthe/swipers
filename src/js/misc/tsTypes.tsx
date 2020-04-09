@@ -1,4 +1,4 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
 
 export interface Cell {
     positionX: number,
@@ -33,6 +33,14 @@ export interface UpdateCellsAction {
 export interface SetActiveTypeAction {
     type: typeof SET_ACTIVE_TYPE,
     payload: number
+}
+
+export interface RestartLevelAction {
+    type: typeof RESTART_LEVEL
+}
+
+export interface SetNextLevelAction {
+    type: typeof SET_NEXT_LEVEL
 }
 
 export interface RootReducerAction {

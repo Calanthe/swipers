@@ -1,2 +1,4 @@
 export const UPDATE_CELLS = "UPDATE_CELLS";
 export const SET_ACTIVE_TYPE = "SET_ACTIVE_TYPE";
+export const RESTART_LEVEL = "RESTART_LEVEL";
+export const SET_NEXT_LEVEL = "SET_NEXT_LEVEL";

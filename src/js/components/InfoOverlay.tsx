@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import classNames from 'classnames';
 
 interface Props {
-    isLevelFinished: boolean
+    isLevelFinished: boolean,
+    onRestart: () => void,
+    onNextLevel: () => void,
 }
 
 const mapStateToProps = state => {
@@ -13,7 +15,7 @@ const mapStateToProps = state => {
 };
 
 // TODO use this component to show level introductions too
-const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished }) => {
+const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, onRestart, onNextLevel }) => {
     const
         infoOverlayClass = classNames('info-overlay', { 'visible': isLevelFinished }),
         infoOverlayWrapperClass = classNames('info-overlay-wrapper', { 'visible': isLevelFinished });
@@ -28,8 +30,8 @@ const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished }) => {
                     <p>Level completed!</p>
                 </div>
                 <div>
-                    <button>Restart</button>
-                    <button>Next level</button>
+                    <button onClick={onRestart}>Restart</button>
+                    <button onClick={onNextLevel}>Next level</button>
                 </div>
             </div>
         </div>
