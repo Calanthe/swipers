@@ -6,7 +6,8 @@ export const LEVELS = [
         {
             positionX: 4,
             positionY: 1,
-            type: FINISH_TYPE
+            type: FINISH_TYPE,
+            tip: 'Use arrows or WASD to move the active blue tile to the finish one.'
         },
         {
             positionX: 4,
@@ -17,9 +18,10 @@ export const LEVELS = [
     //level 1
     [
         {
-            positionX: 8,
+            positionX: 0,
             positionY: 8,
-            type: FINISH_TYPE
+            type: FINISH_TYPE,
+            tip: 'You will get maximum points if all of the active blue tiles reaches black tile in the same move.'
         },
         {
             positionX: 2,
@@ -29,6 +31,11 @@ export const LEVELS = [
         {
             positionX: 5,
             positionY: 5,
+            type: 1
+        },
+        {
+            positionX: 0,
+            positionY: 0,
             type: 1
         }
     ],

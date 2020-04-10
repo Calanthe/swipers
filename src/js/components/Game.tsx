@@ -67,7 +67,7 @@ class Game extends React.Component<GameProps> {
         this.props.setNextLevel();
     }
 
-    render() {
+    render() { //TODO add overlay which slide down from the top with tip about the current level, add reset lvl btn
         return (
             <div className="app">
                 <Header/>

@@ -95,6 +95,7 @@ function moveTile(move: number, state: CellState): Cell[] {
                     }
 
                     mergedCounter++;
+                    updateScore(state, mergedCounter);
 
                     cellsAmount--;
                     moveCell(cellsInGrid, newPosition, cell);
@@ -105,8 +106,6 @@ function moveTile(move: number, state: CellState): Cell[] {
         });
     });
 
-    updateScore(state, mergedCounter);
-
     if (cellsAmount === 0) {
         state.isLevelFinished = true;
     }
@@ -115,11 +114,12 @@ function moveTile(move: number, state: CellState): Cell[] {
 };
 
 function updateScore(state: CellState, points: number): void {
-    state.score += points;
     if (points > 1) {
         state.scoreClass = 'score-combo';
+        state.score *= points;
     } else {
         state.scoreClass = 'score-up';
+        state.score += points;
     }
 };
 
@@ -227,11 +227,10 @@ const rootReducer = (state = initialState, action: RootReducerAction): CellState
             newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
             return newState;
         case RESTART_LEVEL:
-            newState = { ...state, cells: initializeCells(), activeType: 1, score: 0, isLevelFinished: false};
-            console.log(RESTART_LEVEL)
+            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), activeType: 1, score: 0, isLevelFinished: false};
             return newState;
         case SET_NEXT_LEVEL:
-            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
+            newState = { ...state, cells: initializeCells(state.level + 1), finishCords: setFinishCords(state.level + 1), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
             return newState;
         default:
             return state;

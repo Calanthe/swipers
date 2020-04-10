@@ -6,7 +6,7 @@ interface Props {
     isLevelFinished: boolean,
     onRestart: () => void,
     onNextLevel: () => void,
-}
+};
 
 const mapStateToProps = state => {
     return {
@@ -14,7 +14,6 @@ const mapStateToProps = state => {
     };
 };
 
-// TODO use this component to show level introductions too
 const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, onRestart, onNextLevel }) => {
     const
         infoOverlayClass = classNames('info-overlay', { 'visible': isLevelFinished }),
@@ -36,6 +35,6 @@ const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, onRestar
             </div>
         </div>
     )
-}
+};
 
 export default connect(mapStateToProps)(InfoOverlay);
