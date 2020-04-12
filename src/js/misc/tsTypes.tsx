@@ -4,6 +4,7 @@ export interface Cell {
     positionX: number,
     positionY: number,
     type: number,
+    isFinishTile: boolean,
     uniqueKey: number,
     nextTile: Cell,
     toBeMergedWithFinish: boolean,
@@ -19,7 +20,7 @@ export interface CellState {
     cells: Cell[],
     activeType: number,
     level: number,
-    finishCords: FinishCords,
+    finishCords: Array<FinishCords>,
     score: number,
     scoreClass: string,
     isLevelFinished: boolean

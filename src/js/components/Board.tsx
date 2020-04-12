@@ -53,7 +53,7 @@ class Grid extends React.Component {
 const Board: React.FunctionComponent<Props> = (props) => {
     const
         cells = props.cells,
-        finishCords = props.finishCords,
+        finishCords = props.finishCords, //here we get only finish cords of active type, not whole array
         boardClassName = classNames('game', TILE_TYPES[props.activeType]);
     let tiles = [];
 
@@ -64,7 +64,8 @@ const Board: React.FunctionComponent<Props> = (props) => {
                 positionClassFinish = "tile-position-" + finishCords.positionX + "-" + finishCords.positionY,
                 actionClass = "tile-action-" + cell.actionClass,
                 isTileActive = props.activeType === cell.type,
-                tileClassName = classNames('tile', typeClass, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass, {'tile-active': isTileActive}),
+                isTileFinish = cell.isFinishTile,
+                tileClassName = classNames('tile', typeClass, {'tile-type-finish': isTileFinish}, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass, {'tile-active': isTileActive}),
                 tile = <Tile tileClassName={tileClassName} tileType={cell.type} onMouseClick={props.onMouseClick} key={cell.uniqueKey.toString()}/>
 
             tiles.push(tile)

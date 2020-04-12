@@ -1,5 +1,5 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
-import { BOARD_WIDTH, BOARD_HEIGHT, FINISH_TYPE, WALL_TYPE } from "../misc/constants";
+import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
@@ -45,21 +45,21 @@ function initializeCells(level:number = 0): Cell[] {
     return cells;
 };
 
-function setFinishCords(level:number = 0): FinishCords {
-    let cords = {
-            positionX: 0,
-            positionY: 0,
-        },
+function setFinishCords(level:number = 0): Array<FinishCords> {
+    let finishCords = [],
         currentLevel = LEVELS[level];
 
     currentLevel.forEach(tile => {
-        if (tile.type === FINISH_TYPE) {
-            cords.positionX = tile.positionX;
-            cords.positionY = tile.positionY;
+        if (tile.isFinishTile) {
+            let coordinate = {
+                positionX: tile.positionX,
+                positionY: tile.positionY,
+            }
+            finishCords.push(coordinate);
         }
     });
 
-    return cords;
+    return finishCords;
 };
 
 function moveTile(move: number, state: CellState): Cell[] {
@@ -74,7 +74,7 @@ function moveTile(move: number, state: CellState): Cell[] {
         moveVector = getMoveVector(move);
 
     //TODO fix a bug where finish tile does not pop out after changing active color and merging
-    cellsInGrid[state.finishCords.positionX][state.finishCords.positionY].actionClass = ''; //remove merged css class from the finish tile
+    //cellsInGrid[state.finishCords.positionX][state.finishCords.positionY].actionClass = ''; //remove merged css class from the finish tile
 
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {
@@ -82,10 +82,10 @@ function moveTile(move: number, state: CellState): Cell[] {
             cell = cellsInGrid[x][y];
             if (cell && cell.type === state.activeType) {
                 newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
-                if (newPosition.nextTile && (newPosition.nextTile.type === FINISH_TYPE || newPosition.nextTile.toBeMergedWithFinish)) {
+                if (newPosition.nextTile && (newPosition.nextTile.isFinishTile || newPosition.nextTile.toBeMergedWithFinish)) {
 
                     //add merge class to the finish tile
-                    if (newPosition.nextTile.type === FINISH_TYPE) {
+                    if (newPosition.nextTile.isFinishTile) {
                         newPosition.nextTile.actionClass = 'merged';
                     }
 
@@ -179,11 +179,12 @@ function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector):
         cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
         cellY = cell.positionY + moveVector.y;
         tileFoundInNextCell = tileInCell(cells, cellX, cellY);
-        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.type === FINISH_TYPE || tileFoundInNextCell.toBeMergedWithFinish))
+        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.isFinishTile || tileFoundInNextCell.toBeMergedWithFinish))
         cell = {
             positionX: cellX,
             positionY: cellY,
             type: cell.type,
+            isFinishTile: cell.isFinishTile,
             uniqueKey: cell.uniqueKey,
             actionClass: '',
             nextTile: tileFoundInNextCell, //need nextTile to animate the position to equal finish
@@ -213,7 +214,8 @@ function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null 
 };
 
 function setActiveType(newType: number, activeType: number): number {
-    return (newType !== FINISH_TYPE && newType !== WALL_TYPE) ? newType : activeType;
+    //return (newType !== FINISH_TYPE && newType !== WALL_TYPE) ? newType : activeType;
+    return newType;
 };
 
 const rootReducer = (state = initialState, action: RootReducerAction): CellState => {

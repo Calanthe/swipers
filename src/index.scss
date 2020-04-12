@@ -205,18 +205,6 @@ p {
     }
   }
 
-  .tile-type-finish {
-    background-color: $tile-bg-finish;
-    cursor: auto;
-    opacity: 1;
-  }
-
-  .tile-type-wall {
-    background-color: $tile-bg-wall;
-    cursor: auto;
-    opacity: 1;
-  }
-
   .tile-type-primary {
     background-color: $tile-bg-primary;
   }
@@ -231,6 +219,22 @@ p {
 
   .tile-type-quaternary {
     background-color: $tile-bg-quaternary;
+  }
+
+  .tile-type-finish {
+    background-color: $tile-bg-finish;
+    cursor: auto;
+    opacity: 1;
+
+    &.tile-type-primary {
+      border: 2px solid $tile-bg-primary;
+    }
+  }
+
+  .tile-type-wall {
+    background-color: $tile-bg-wall;
+    cursor: auto;
+    opacity: 1;
   }
 
   .tile-active {
