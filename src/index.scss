@@ -229,6 +229,18 @@ p {
     &.tile-type-primary {
       border: 2px solid $tile-bg-primary;
     }
+
+    &.tile-type-secondary {
+      border: 2px solid $tile-bg-secondary;
+    }
+
+    &.tile-type-tertiary {
+      border: 2px solid $tile-bg-tertiary;
+    }
+
+    &.tile-type-quaternary {
+      border: 2px solid $tile-bg-quaternary;
+    }
   }
 
   .tile-type-wall {

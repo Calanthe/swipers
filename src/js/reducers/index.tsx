@@ -80,12 +80,12 @@ function moveTile(move: number, state: CellState): Cell[] {
     traversals.x.forEach((x) => {
         traversals.y.forEach((y) => {
             cell = cellsInGrid[x][y];
-            if (cell && cell.type === state.activeType) {
+            if (cell && cell.type === state.activeType && !cell.isFinishTile) {
                 newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
-                if (newPosition.nextTile && (newPosition.nextTile.isFinishTile || newPosition.nextTile.toBeMergedWithFinish)) {
+                if (newPosition.nextTile && ((newPosition.nextTile.isFinishTile && newPosition.nextTile.type === cell.type) || newPosition.nextTile.toBeMergedWithFinish)) {
 
                     //add merge class to the finish tile
-                    if (newPosition.nextTile.isFinishTile) {
+                    if (newPosition.nextTile.isFinishTile && newPosition.nextTile.type === cell.type) {
                         newPosition.nextTile.actionClass = 'merged';
                     }
 
@@ -179,7 +179,7 @@ function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector):
         cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
         cellY = cell.positionY + moveVector.y;
         tileFoundInNextCell = tileInCell(cells, cellX, cellY);
-        toBeMergedWithFinish = (tileFoundInNextCell && (tileFoundInNextCell.isFinishTile || tileFoundInNextCell.toBeMergedWithFinish))
+        toBeMergedWithFinish = (tileFoundInNextCell && ((tileFoundInNextCell.isFinishTile && tileFoundInNextCell.type === cell.type) || tileFoundInNextCell.toBeMergedWithFinish))
         cell = {
             positionX: cellX,
             positionY: cellY,

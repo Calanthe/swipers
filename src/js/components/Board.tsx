@@ -53,7 +53,7 @@ class Grid extends React.Component {
 const Board: React.FunctionComponent<Props> = (props) => {
     const
         cells = props.cells,
-        finishCords = props.finishCords, //here we get only finish cords of active type, not whole array
+        finishCords = props.finishCords[props.activeType - 1], //here we get only finish cords of active type, not whole array
         boardClassName = classNames('game', TILE_TYPES[props.activeType]);
     let tiles = [];
 
