@@ -225,21 +225,26 @@ p {
     background-color: $tile-bg-finish;
     cursor: auto;
     opacity: 1;
+    border-radius: 0px;
 
     &.tile-type-primary {
-      border: 2px solid $tile-bg-primary;
+      outline: 2px solid $tile-bg-primary;
+      outline-offset: -4px;
     }
 
     &.tile-type-secondary {
-      border: 2px solid $tile-bg-secondary;
+      outline: 2px solid $tile-bg-secondary;
+      outline-offset: -4px;
     }
 
     &.tile-type-tertiary {
-      border: 2px solid $tile-bg-tertiary;
+      outline: 2px solid $tile-bg-tertiary;
+      outline-offset: -4px;
     }
 
     &.tile-type-quaternary {
-      border: 2px solid $tile-bg-quaternary;
+      outline: 2px solid $tile-bg-quaternary;
+      outline-offset: -4px;
     }
   }
 

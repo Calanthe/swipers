@@ -33,7 +33,7 @@ export interface UpdateCellsAction {
 
 export interface SetActiveTypeAction {
     type: typeof SET_ACTIVE_TYPE,
-    payload: number
+    payload: Cell
 }
 
 export interface RestartLevelAction {
@@ -46,5 +46,5 @@ export interface SetNextLevelAction {
 
 export interface RootReducerAction {
     type: string,
-    payload: number
+    payload: any
 }

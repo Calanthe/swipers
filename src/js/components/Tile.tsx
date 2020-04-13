@@ -1,12 +1,13 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
+import { Cell } from "../misc/tsTypes";
 
 interface Props {
     tileClassName: string,
-    tileType: number,
-    onMouseClick: (event: React.MouseEvent<HTMLDivElement>) => void
+    cell: Cell,
+    onMouseClick: (cell: Cell) => void
 }
 
-const Tile: React.FunctionComponent<Props> = ({ tileClassName, tileType, onMouseClick }) => {
+const Tile: React.FunctionComponent<Props> = ({ tileClassName, cell, onMouseClick }) => {
     const [newTileClassName, setData] = useState();
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const Tile: React.FunctionComponent<Props> = ({ tileClassName, tileType, onMouse
     }, [tileClassName]);
 
     return (
-        <div className={newTileClassName} data-type={tileType} onClick={onMouseClick}/>
+        <div className={newTileClassName} onClick={() => onMouseClick(cell)}/>
     )
 }
 

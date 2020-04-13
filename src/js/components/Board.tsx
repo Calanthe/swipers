@@ -9,7 +9,7 @@ interface Props {
     cells: Array<Cell>,
     finishCords: FinishCords,
     activeType: number,
-    onMouseClick: (event: React.MouseEvent<HTMLDivElement>) => void
+    onMouseClick: (cell: Cell) => void
 }
 
 const mapStateToProps = state => {
@@ -53,7 +53,7 @@ class Grid extends React.Component {
 const Board: React.FunctionComponent<Props> = (props) => {
     const
         cells = props.cells,
-        finishCords = props.finishCords[props.activeType - 1], //here we get only finish cords of active type, not whole array
+        finishCords = props.finishCords[props.activeType - 1], //get only finish cords of active type, not the whole array
         boardClassName = classNames('game', TILE_TYPES[props.activeType]);
     let tiles = [];
 
@@ -63,10 +63,10 @@ const Board: React.FunctionComponent<Props> = (props) => {
                 positionClass = "tile-position-" + cell.positionX + "-" + cell.positionY,
                 positionClassFinish = "tile-position-" + finishCords.positionX + "-" + finishCords.positionY,
                 actionClass = "tile-action-" + cell.actionClass,
-                isTileActive = props.activeType === cell.type,
+                isTileActive = props.activeType === cell.type && !cell.isFinishTile,
                 isTileFinish = cell.isFinishTile,
                 tileClassName = classNames('tile', typeClass, {'tile-type-finish': isTileFinish}, cell.toBeMergedWithFinish ? positionClassFinish : positionClass, actionClass, {'tile-active': isTileActive}),
-                tile = <Tile tileClassName={tileClassName} tileType={cell.type} onMouseClick={props.onMouseClick} key={cell.uniqueKey.toString()}/>
+                tile = <Tile tileClassName={tileClassName} cell={cell} onMouseClick={props.onMouseClick} key={cell.uniqueKey.toString()}/>
 
             tiles.push(tile)
         });

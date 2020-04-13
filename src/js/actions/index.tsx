@@ -1,5 +1,5 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "./actionTypes";
-import { UpdateCellsAction, SetActiveTypeAction, RestartLevelAction, SetNextLevelAction } from "../misc/tsTypes";
+import { Cell, UpdateCellsAction, SetActiveTypeAction, RestartLevelAction, SetNextLevelAction } from "../misc/tsTypes";
 
 export function updateCells(keyPressedNo: number): UpdateCellsAction {
     return {
@@ -8,7 +8,7 @@ export function updateCells(keyPressedNo: number): UpdateCellsAction {
     }
 };
 
-export function setActiveType(clickedTile: number): SetActiveTypeAction {
+export function setActiveType(clickedTile: Cell): SetActiveTypeAction {
     return {
         type: SET_ACTIVE_TYPE,
         payload: clickedTile

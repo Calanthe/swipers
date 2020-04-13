@@ -4,6 +4,7 @@ import Board from "./Board"
 import Header from "./Header"
 import InfoOverlay from "./InfoOverlay"
 import { updateCells, setActiveType, restartLevel, setNextLevel } from "../actions/index";
+import { Cell } from "../misc/tsTypes";
 
 interface GameProps {
     updateCells: typeof updateCells,
@@ -16,16 +17,10 @@ interface KeyboardEvent {
     key: string
 }
 
-interface MouseEvent {
-    target: {
-        getAttribute: (attributeName: string) => string
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         updateCells: keyPressedNo => dispatch(updateCells(keyPressedNo)),
-        setActiveType: cellType => dispatch(setActiveType(cellType)),
+        setActiveType: cell => dispatch(setActiveType(cell)),
         restartLevel: () => dispatch(restartLevel()),
         setNextLevel: () => dispatch(setNextLevel())
     };
@@ -55,8 +50,9 @@ class Game extends React.Component<GameProps> {
         }
     }
 
-    handleMouseClick = (event: MouseEvent): void => {
-        this.props.setActiveType(parseInt(event.target.getAttribute('data-type'), 10));
+    handleMouseClick = (cell: Cell): void => {
+        console.log(cell)
+        this.props.setActiveType(cell);
     }
 
     handleRestartLevel = (): void => {

@@ -73,8 +73,10 @@ function moveTile(move: number, state: CellState): Cell[] {
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
-    //TODO fix a bug where finish tile does not pop out after changing active color and merging
-    //cellsInGrid[state.finishCords.positionX][state.finishCords.positionY].actionClass = ''; //remove merged css class from the finish tile
+    //remove 'merged' css class from the finish tiles
+    state.finishCords.forEach((finishCoordinates) => {
+        cellsInGrid[finishCoordinates.positionX][finishCoordinates.positionY].actionClass = '';
+    });
 
     // Traverse the grid in the right direction and move tiles
     traversals.x.forEach((x) => {
@@ -213,9 +215,8 @@ function tileInCell(cells: Cell[][], cellX: number, cellY: number): Cell | null 
     }
 };
 
-function setActiveType(newType: number, activeType: number): number {
-    //return (newType !== FINISH_TYPE && newType !== WALL_TYPE) ? newType : activeType;
-    return newType;
+function setActiveType(cell: Cell, activeType: number): number {
+    return (!cell.isFinishTile && cell.type !== WALL_TYPE) ? cell.type : activeType;
 };
 
 const rootReducer = (state = initialState, action: RootReducerAction): CellState => {
