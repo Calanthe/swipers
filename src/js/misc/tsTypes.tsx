@@ -24,7 +24,9 @@ export interface CellState {
     nonStandardTilesAmount: number,
     score: number,
     scoreClass: string,
-    isLevelFinished: boolean
+    isLevelFinished: boolean,
+    levelsAmount: number,
+    isGameFinished: boolean
 }
 
 export interface UpdateCellsAction {

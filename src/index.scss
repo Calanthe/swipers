@@ -12,7 +12,7 @@ $tile-bg-secondary: #FFE993;
 $tile-bg-tertiary: #ABF6DE;
 $tile-bg-quaternary: #D2D3FF;
 $tile-bg-finish: #000000;
-$tile-bg-wall: #848484;
+$tile-bg-wall: #F8F8F8;
 
 $transition-speed: 200ms;
 $overlay-transition-delay: 400ms;
@@ -167,10 +167,10 @@ p {
     grid-template-rows: repeat($tiles-no-width, $tile-size);
     grid-auto-flow: row;
     grid-gap: 4px;
+    background-color: $secondary-bg-color;
 
     .block {
-      border-radius: 5px;
-      background-color: $secondary-bg-color;
+      background-color: $primary-bg-color;
     }
  }
 
@@ -184,7 +184,7 @@ p {
     height: ceil($tile-size);
     line-height: ceil($tile-size);
     position: absolute;
-    border-radius: 5px;
+    border-radius: 50%;
     opacity: 0.4;
     cursor: pointer;
     transition-property: top, left;
@@ -224,7 +224,7 @@ p {
   .tile-type-finish {
     background-color: $tile-bg-finish;
     cursor: auto;
-    opacity: 1;
+    opacity: 0.4;
     border-radius: 0px;
 
     &.tile-type-primary {
@@ -250,6 +250,7 @@ p {
 
   .tile-type-wall {
     background-color: $tile-bg-wall;
+    border-radius: 0px;
     cursor: auto;
     opacity: 1;
   }

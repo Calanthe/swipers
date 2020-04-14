@@ -4,6 +4,8 @@ import { transformFromStateToGrid, transformFromGridToState } from "../misc/util
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
 
+const INITIAL_LEVEL = 5;
+
 interface Vector {
     x: number,
     y: number
@@ -15,14 +17,16 @@ interface Traversals {
 }
 
 const initialState: CellState = {
-    cells: initializeCells(),
+    cells: initializeCells(INITIAL_LEVEL),
     activeType: 1,
-    level: 0,
-    finishCords: setFinishCords(),
-    nonStandardTilesAmount: countTiles(), //counter of nonstandard tiles, needed to calc if lvl is finished
+    level: INITIAL_LEVEL,
+    finishCords: setFinishCords(INITIAL_LEVEL),
+    nonStandardTilesAmount: countTiles(INITIAL_LEVEL), //counter of nonstandard tiles, needed to calc if lvl is finished
     score: 0,
     scoreClass: '',
-    isLevelFinished: false
+    isLevelFinished: false,
+    levelsAmount: LEVELS.length,
+    isGameFinished: false
 };
 
 // Build a grid based on the current level, 0 by default
@@ -89,8 +93,6 @@ function moveTile(move: number, state: CellState): Cell[] {
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
 
-    console.log(cellsAmount, availableCells.length, availableCells, state.nonStandardTilesAmount)
-
     //remove 'merged' css class from the finish tiles
     state.finishCords.forEach((finishCoordinates) => {
         cellsInGrid[finishCoordinates.positionX][finishCoordinates.positionY].actionClass = '';
@@ -128,6 +130,10 @@ function moveTile(move: number, state: CellState): Cell[] {
 
     if (cellsAmount === 0) {
         state.isLevelFinished = true;
+
+        if (state.level === state.levelsAmount - 1) {
+            state.isGameFinished = true;
+        }
     }
 
     return transformFromGridToState(cellsInGrid);
