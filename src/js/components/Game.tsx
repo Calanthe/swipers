@@ -51,7 +51,6 @@ class Game extends React.Component<GameProps> {
     }
 
     handleMouseClick = (cell: Cell): void => {
-        console.log(cell)
         this.props.setActiveType(cell);
     }
 

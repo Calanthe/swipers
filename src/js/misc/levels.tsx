@@ -6,7 +6,7 @@ export const LEVELS = [
             positionY: 1,
             type: 1,
             isFinishTile: true,
-            hint: 'Use arrows or WASD to move the active blue tile to the finish one.' //TODO refactor
+            hint: 'Use arrows or WASD to move the blue tile to the finish one.' //TODO refactor
         },
         {
             positionX: 4,
@@ -22,7 +22,7 @@ export const LEVELS = [
             positionY: 8,
             type: 1,
             isFinishTile: true,
-            hint: 'You will get maximum points if all of the active blue tiles reaches black tile in the same move.'
+            hint: 'You will get maximum points if all of the blue tiles reach finish tile in the same move.'
         },
         {
             positionX: 2,
@@ -50,7 +50,7 @@ export const LEVELS = [
             positionY: 0,
             type: 1,
             isFinishTile: true,
-            hint: 'Click on different tile to change active color. Use inactive tiles as blockers.'
+            hint: 'Click on a different tile to change active color. Use inactive tiles as blockers.'
         },
         {
             positionX: 6,

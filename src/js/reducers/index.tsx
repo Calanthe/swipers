@@ -19,6 +19,7 @@ const initialState: CellState = {
     activeType: 1,
     level: 0,
     finishCords: setFinishCords(),
+    nonStandardTilesAmount: countTiles(), //counter of nonstandard tiles, needed to calc if lvl is finished
     score: 0,
     scoreClass: '',
     isLevelFinished: false
@@ -62,16 +63,33 @@ function setFinishCords(level:number = 0): Array<FinishCords> {
     return finishCords;
 };
 
+function countTiles(level:number = 0): number {
+    let currentLevel = LEVELS[level];
+
+    let tilesAmount = currentLevel.reduce(function (accumulator, currentValue) {
+        if (currentValue.isFinishTile || currentValue.type === WALL_TYPE) {
+            return accumulator + 1;
+        } else {
+            return accumulator;
+        }
+    }, 0)
+
+    return tilesAmount;
+};
+
 function moveTile(move: number, state: CellState): Cell[] {
     let cell: Cell,
         newPosition: Cell,
-        cellsInGrid = transformFromStateToGrid(removeMergedCells(state.cells)),
-        cellsAmount = state.cells.length - 1,
+        availableCells = removeMergedCells(state.cells),
+        cellsInGrid = transformFromStateToGrid(availableCells),
+        cellsAmount = availableCells.length - state.nonStandardTilesAmount,
         mergedCounter: number = 0;
 
     const
         traversals = buildTraversals(move),
         moveVector = getMoveVector(move);
+
+    console.log(cellsAmount, availableCells.length, availableCells, state.nonStandardTilesAmount)
 
     //remove 'merged' css class from the finish tiles
     state.finishCords.forEach((finishCoordinates) => {
@@ -230,10 +248,10 @@ const rootReducer = (state = initialState, action: RootReducerAction): CellState
             newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
             return newState;
         case RESTART_LEVEL:
-            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), activeType: 1, score: 0, isLevelFinished: false};
+            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), nonStandardTilesAmount: countTiles(state.level), activeType: 1, score: 0, isLevelFinished: false};
             return newState;
         case SET_NEXT_LEVEL:
-            newState = { ...state, cells: initializeCells(state.level + 1), finishCords: setFinishCords(state.level + 1), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
+            newState = { ...state, cells: initializeCells(state.level + 1), finishCords: setFinishCords(state.level + 1), nonStandardTilesAmount: countTiles(state.level + 1), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
             return newState;
         default:
             return state;

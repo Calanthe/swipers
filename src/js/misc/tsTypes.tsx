@@ -21,6 +21,7 @@ export interface CellState {
     activeType: number,
     level: number,
     finishCords: Array<FinishCords>,
+    nonStandardTilesAmount: number,
     score: number,
     scoreClass: string,
     isLevelFinished: boolean
