@@ -4,7 +4,7 @@ import { transformFromStateToGrid, transformFromGridToState } from "../misc/util
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
 
-const INITIAL_LEVEL = 5;
+const INITIAL_LEVEL = 0;
 
 interface Vector {
     x: number,
