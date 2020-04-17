@@ -1,6 +1,9 @@
 $primary-bg-color: #FFFFFF;
 $secondary-bg-color: #F8F8F8;
 $primary-font-color: #24292e;
+$secondary-font-color: #658FFF;
+$tertiary-font-color: #3369ff;
+
 $tile-size: 58px; //TODO mobile
 $grid-row-cells: 9;
 $grid-spacing: 4;
@@ -283,18 +286,56 @@ p {
   }
 
   .info-overlay {
-    padding: 10px;
+    padding: 15px;
     background-color: $secondary-bg-color;
-    border: 10px solid $tile-bg-wall;
     position: absolute;
     border-radius: 5px;
     top: 30%;
     left: 38%;
     opacity: 0;
     z-index: 0;
+    font-family: sans-serif;
+    outline: 1px solid $secondary-font-color;
 
       &.visible {
         animation: $transition-speed info-overlay-fade-in $overlay-transition-delay forwards;
+      }
+
+      .title {
+        margin: 2px 0px 10px;
+      }
+
+      .text {
+        margin: 10px 0px 10px;
+      }
+
+      .button {
+        display:inline-block;
+        padding: 10px 10px;
+        margin-right: 20px;
+        border: none;
+        border-radius:0.15em;
+        text-decoration:none;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        color: $primary-bg-color;
+        background-color: $secondary-font-color;
+        box-shadow: inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:active {
+          top: 1px;
+        }
+
+        &.next {
+          background-color: $tertiary-font-color;
+        }
       }
   }
 }

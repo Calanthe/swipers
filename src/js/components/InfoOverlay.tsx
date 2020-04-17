@@ -26,18 +26,18 @@ const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, isGameFi
             <div className={infoOverlayWrapperClass}>
             </div>
             <div className={infoOverlayClass}>
-                <h1 className="title">Congratulations :)</h1>
-                <div>
+                <h1 className="title">Congratulations!</h1>
+                <div className="text">
                     {isGameFinished
-                        ? <p>You finished the game!</p>
-                        : <p>Level completed!</p>
+                        ? <p>You finished the game :D</p>
+                        : <p>Level completed :)</p>
                     }
                 </div>
                 <div>
-                    <button onClick={onRestart}>Restart level</button>
+                    <button className="button restart" onClick={onRestart}>Restart level</button>
                     {isGameFinished
                         ? null
-                        : <button onClick={onNextLevel}>Next level</button>
+                        : <button className="button next" onClick={onNextLevel}>Next level</button>
                     }
                 </div>
             </div>
