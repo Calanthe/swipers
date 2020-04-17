@@ -24,6 +24,7 @@ const initialState: CellState = {
     nonStandardTilesAmount: countTiles(INITIAL_LEVEL), //counter of nonstandard tiles, needed to calc if lvl is finished
     score: 0,
     scoreClass: '',
+    moves: 0,
     isLevelFinished: false,
     levelsAmount: LEVELS.length,
     isGameFinished: false
@@ -87,7 +88,8 @@ function moveTile(move: number, state: CellState): Cell[] {
         availableCells = removeMergedCells(state.cells),
         cellsInGrid = transformFromStateToGrid(availableCells),
         cellsAmount = availableCells.length - state.nonStandardTilesAmount,
-        mergedCounter: number = 0;
+        mergedCounter: number = 0,
+        alreadyMovedTile: boolean = false;
 
     const
         traversals = buildTraversals(move),
@@ -123,6 +125,10 @@ function moveTile(move: number, state: CellState): Cell[] {
                     moveCell(cellsInGrid, newPosition, cell);
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
                     moveCell(cellsInGrid, newPosition, cell);
+                }
+                if (!alreadyMovedTile) {
+                    state.moves++;
+                    alreadyMovedTile = true;
                 }
             };
         });
@@ -254,10 +260,10 @@ const rootReducer = (state = initialState, action: RootReducerAction): CellState
             newState = { ...state, activeType: setActiveType(action.payload, state.activeType) };
             return newState;
         case RESTART_LEVEL:
-            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), nonStandardTilesAmount: countTiles(state.level), activeType: 1, score: 0, isLevelFinished: false};
+            newState = { ...state, cells: initializeCells(state.level), finishCords: setFinishCords(state.level), nonStandardTilesAmount: countTiles(state.level), activeType: 1, score: 0, moves: 0, isLevelFinished: false};
             return newState;
         case SET_NEXT_LEVEL:
-            newState = { ...state, cells: initializeCells(state.level + 1), finishCords: setFinishCords(state.level + 1), nonStandardTilesAmount: countTiles(state.level + 1), level: state.level + 1, activeType: 1, score: 0, isLevelFinished: false };
+            newState = { ...state, cells: initializeCells(state.level + 1), finishCords: setFinishCords(state.level + 1), nonStandardTilesAmount: countTiles(state.level + 1), level: state.level + 1, activeType: 1, score: 0, moves: 0, isLevelFinished: false };
             return newState;
         default:
             return state;
