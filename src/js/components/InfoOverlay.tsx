@@ -32,7 +32,7 @@ const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, isGameFi
                 <div className="text">
                     {isGameFinished
                         ? <p>You finished the game :D</p>
-                        : <p>Level completed in just {moves} {moves > 1 ? + 'moves' : 'move'} :)</p>
+                        : <p>Level completed in just {moves} {moves > 1 ? 'moves' : 'move'} :)</p>
                     }
                 </div>
                 <div>

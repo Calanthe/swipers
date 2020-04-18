@@ -108,14 +108,33 @@ p {
 
   .header {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: [col] 430px [col] 180px;
 
-    .score{
-      margin: 30px 0 10px;
+    .score-wrapper {
+      margin: 10px 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
       grid-auto-flow: row;
+
+      .score-unit {
+        background-color: $secondary-bg-color;
+        padding: 10px;
+        width: 60px;
+        border-radius: 5px;
+        margin: 0 0 8px 0;
+
+        .score-subheader {
+          border-bottom: 1px solid $tertiary-font-color;
+          margin-bottom: 6px;
+        }
+
+        .score {
+          font-weight: bold;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
     }
 
     .title {

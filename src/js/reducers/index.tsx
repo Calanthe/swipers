@@ -126,6 +126,7 @@ function moveTile(move: number, state: CellState): Cell[] {
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
                     moveCell(cellsInGrid, newPosition, cell);
                 }
+
                 if (!alreadyMovedTile) {
                     state.moves++;
                     alreadyMovedTile = true;
