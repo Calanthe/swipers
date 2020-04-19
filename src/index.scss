@@ -19,6 +19,7 @@ $tile-bg-wall: #F8F8F8;
 
 $transition-speed: 200ms;
 $overlay-transition-delay: 400ms;
+$score-transition-speed: 1s;
 
 @keyframes fade-out {
   0% {
@@ -49,6 +50,24 @@ $overlay-transition-delay: 400ms;
 
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes score-up {
+  0% {
+    opacity: 1;
+    left: 34px;
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.6);
+  }
+
+  100% {
+    opacity: 0;
+    left: 64px;
+    transform: scale(0);
   }
 }
 
@@ -116,6 +135,7 @@ p {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
       grid-auto-flow: row;
+      position: relative;
 
       .score-unit {
         background-color: $secondary-bg-color;
@@ -123,6 +143,7 @@ p {
         width: 60px;
         border-radius: 5px;
         margin: 0 0 8px 0;
+        box-shadow: inset 0 -0.6em 0 -0.5em rgba(0,0,0,0.17);
 
         .score-subheader {
           border-bottom: 1px solid $tertiary-font-color;
@@ -133,6 +154,19 @@ p {
           font-weight: bold;
           text-align: center;
           text-transform: uppercase;
+        }
+
+        .single-score {
+          position: absolute;
+          opacity: 0;
+          bottom: 24px;
+          left: 34px;
+          font-weight: bold;
+          color: $tertiary-font-color;
+
+          &.score-up {
+            animation: $score-transition-speed score-up backwards;
+          }
         }
       }
     }
@@ -249,7 +283,6 @@ p {
 
   .tile-type-finish {
     background-color: $tile-bg-finish;
-    cursor: auto;
     opacity: 0.4;
     border-radius: 0px;
 

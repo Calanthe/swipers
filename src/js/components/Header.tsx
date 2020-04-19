@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 const Header: React.FunctionComponent<Props> = ({ score, level, moves, activeType, scoreClass }) => {
     const
         headerClass = classNames('header header-type-', TILE_TYPES[activeType]),
-        scoreClassName = classNames('score', scoreClass),
+        singleScoreClassName = classNames('single-score', scoreClass),
         levelToShow = level + 1;
 
     return (
@@ -41,7 +41,8 @@ const Header: React.FunctionComponent<Props> = ({ score, level, moves, activeTyp
                 </div>
                 <div className="score-unit">
                     <p className="score-subheader score">Score</p>
-                    <p className={scoreClassName}>{score}</p>
+                    <p className="score">{score}</p>
+                    <span className={singleScoreClassName}>+3</span>
                 </div>
                 <div className="score-unit">
                     <p className="score-subheader score">Best</p>
