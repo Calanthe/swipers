@@ -79,7 +79,7 @@ export const LEVELS = [
             positionY: 5,
             type: 1,
             isFinishTile: true,
-            hint: 'Use walls as blockers too.'
+            hint: 'Use grey blocks as walls.'
         },
         {
             positionX: 0,

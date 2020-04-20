@@ -1,6 +1,6 @@
 import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
-import { transformFromStateToGrid, transformFromGridToState } from "../misc/utils";
+import { transformFromStateToGrid, transformFromGridToState, factorial } from "../misc/utils";
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
 
@@ -24,6 +24,7 @@ function initializeState(level:number = 0): CellState {
         finishCords: setFinishCords(level),
         nonStandardTilesAmount: countTiles(level), //counter of nonstandard tiles, needed to calc if lvl is finished
         score: 0,
+        singleScore: 0,
         scoreClass: '',
         moves: 0,
         isLevelFinished: false,
@@ -121,8 +122,6 @@ function moveTile(move: number, state: CellState): Cell[] {
                     }
 
                     mergedCounter++;
-                    updateScore(state, mergedCounter);
-
                     cellsAmount--;
                     moveCell(cellsInGrid, newPosition, cell);
                 } else if (newPosition.positionX !== cell.positionX || newPosition.positionY !== cell.positionY) {
@@ -139,6 +138,8 @@ function moveTile(move: number, state: CellState): Cell[] {
 
     if (!mergedCounter) {
         state.scoreClass = '';
+    } else {
+        updateScore(state, mergedCounter);
     }
 
     if (cellsAmount === 0) {
@@ -152,12 +153,12 @@ function moveTile(move: number, state: CellState): Cell[] {
     return transformFromGridToState(cellsInGrid);
 };
 
-function updateScore(state: CellState, points: number): void {
-    if (points > 1) {
-        state.score *= points;
-    } else {
-        state.score += points;
-    }
+function updateScore(state: CellState, mergedCounter: number): void {
+    const singleScore = factorial(mergedCounter);
+    console.log(mergedCounter, singleScore)
+
+    state.singleScore = singleScore;
+    state.score += singleScore;
     state.scoreClass = 'score-up';
 };
 

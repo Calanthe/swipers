@@ -5,6 +5,7 @@ import { TILE_TYPES } from "../misc/constants";
 
 interface Props {
     score: number,
+    singleScore: number,
     level: number,
     moves: number,
     activeType: number,
@@ -14,6 +15,7 @@ interface Props {
 const mapStateToProps = state => {
     return {
         score: state.score,
+        singleScore: state.singleScore,
         level: state.level,
         moves: state.moves,
         activeType: state.activeType,
@@ -21,10 +23,11 @@ const mapStateToProps = state => {
     };
 };
 
-const Header: React.FunctionComponent<Props> = ({ score, level, moves, activeType, scoreClass }) => {
+const Header: React.FunctionComponent<Props> = ({ score, singleScore, level, moves, activeType, scoreClass }) => {
     const
         headerClass = classNames('header header-type-', TILE_TYPES[activeType]),
         singleScoreClassName = classNames('single-score', scoreClass),
+        singleScoreValue = '+' + singleScore,
         levelToShow = level + 1;
 
     return (
@@ -42,7 +45,7 @@ const Header: React.FunctionComponent<Props> = ({ score, level, moves, activeTyp
                 <div className="score-unit">
                     <p className="score-subheader score">Score</p>
                     <p className="score">{score}</p>
-                    <span className={singleScoreClassName}>+3</span>
+                    <span className={singleScoreClassName}>{singleScoreValue}</span>
                 </div>
                 <div className="score-unit">
                     <p className="score-subheader score">Best</p>

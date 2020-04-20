@@ -23,6 +23,7 @@ export interface CellState {
     finishCords: Array<FinishCords>,
     nonStandardTilesAmount: number,
     score: number,
+    singleScore: number,
     scoreClass: string,
     moves: number,
     isLevelFinished: boolean,
