@@ -109,7 +109,7 @@ p {
   margin: 0; //TODO add reset style?
 }
 
-.app {
+.app, .footer {
   width: 634px;
   margin: 0 auto;
 
@@ -419,5 +419,15 @@ p {
       & .buttons {
          padding: 14px 0 0 324px;
       }
+  }
+}
+
+.footer {
+  text-align: center;
+  margin: 0 auto 10px auto;
+
+  .footer-link {
+    text-decoration: none;
+    color: $secondary-font-color;
   }
 }
