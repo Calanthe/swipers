@@ -1,4 +1,4 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, RESTART_GAME, SET_NEXT_LEVEL } from "../actions/actionTypes";
 
 export interface Cell {
     positionX: number,
@@ -22,6 +22,7 @@ export interface CellState {
     level: number,
     finishCords: Array<FinishCords>,
     nonStandardTilesAmount: number,
+    hint: string,
     score: number,
     singleScore: number,
     scoreClass: string,
@@ -43,6 +44,10 @@ export interface SetActiveTypeAction {
 
 export interface RestartLevelAction {
     type: typeof RESTART_LEVEL
+}
+
+export interface RestartGameAction {
+    type: typeof RESTART_GAME
 }
 
 export interface SetNextLevelAction {

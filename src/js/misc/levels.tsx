@@ -51,7 +51,7 @@ export const LEVELS = [
             positionY: 0,
             type: 1,
             isFinishTile: true,
-            hint: 'Click on a different tile to change active color. Use inactive tiles as blockers.'
+            hint: 'Click on a different tile to change active color. Use inactive tiles as walls.'
         },
         {
             positionX: 6,
@@ -79,7 +79,7 @@ export const LEVELS = [
             positionY: 5,
             type: 1,
             isFinishTile: true,
-            hint: 'Use grey blocks as walls.'
+            hint: 'Use grey blocks as walls too.'
         },
         {
             positionX: 0,

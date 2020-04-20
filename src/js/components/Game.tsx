@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import Board from "./Board"
 import Header from "./Header"
 import InfoOverlay from "./InfoOverlay"
-import { updateCells, setActiveType, restartLevel, setNextLevel } from "../actions/index";
+import Hint from "./Hint"
+import { updateCells, setActiveType, restartLevel, restartGame, setNextLevel } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 
 interface GameProps {
     updateCells: typeof updateCells,
     setActiveType: typeof setActiveType,
     restartLevel: typeof restartLevel,
+    restartGame: typeof restartGame,
     setNextLevel: typeof setNextLevel
 }
 
@@ -22,6 +24,7 @@ const mapDispatchToProps = dispatch => {
         updateCells: keyPressedNo => dispatch(updateCells(keyPressedNo)),
         setActiveType: cell => dispatch(setActiveType(cell)),
         restartLevel: () => dispatch(restartLevel()),
+        restartGame: () => dispatch(restartGame()),
         setNextLevel: () => dispatch(setNextLevel())
     };
 };
@@ -58,6 +61,10 @@ class Game extends React.Component<GameProps> {
         this.props.restartLevel();
     }
 
+    handleRestartGame = (): void => {
+        this.props.restartGame();
+    }
+
     handleSetNextLevel = (): void => {
         this.props.setNextLevel();
     }
@@ -67,7 +74,8 @@ class Game extends React.Component<GameProps> {
             <div className="app">
                 <Header/>
                 <Board onMouseClick={this.handleMouseClick}/>
-                <InfoOverlay onRestart={this.handleRestartLevel} onNextLevel={this.handleSetNextLevel}/>
+                <Hint onLevelRestart={this.handleRestartLevel} onGameRestart={this.handleRestartGame}/>
+                <InfoOverlay onLevelRestart={this.handleRestartLevel} onNextLevel={this.handleSetNextLevel}/>
             </div>
         );
     }

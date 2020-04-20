@@ -1,4 +1,4 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "../actions/actionTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, RESTART_GAME, SET_NEXT_LEVEL } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import { transformFromStateToGrid, transformFromGridToState, factorial } from "../misc/utils";
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
@@ -23,6 +23,7 @@ function initializeState(level:number = 0): CellState {
         level: level,
         finishCords: setFinishCords(level),
         nonStandardTilesAmount: countTiles(level), //counter of nonstandard tiles, needed to calc if lvl is finished
+        hint: setHint(level),
         score: 0,
         singleScore: 0,
         scoreClass: '',
@@ -83,6 +84,20 @@ function countTiles(level:number = 0): number {
     }, 0)
 
     return tilesAmount;
+};
+
+function setHint(level:number = 0): string {
+    let hint = '',
+        currentLevel = LEVELS[level];
+
+    currentLevel.forEach(tile => {
+        if (tile.hint) {
+            hint = tile.hint
+            return;
+        }
+    });
+
+    return hint;
 };
 
 function moveTile(move: number, state: CellState): Cell[] {
@@ -268,6 +283,9 @@ const rootReducer = (state = initializeState(INITIAL_LEVEL), action: RootReducer
             return newState;
         case RESTART_LEVEL:
             newState = initializeState(state.level);
+            return newState;
+        case RESTART_GAME:
+            newState = initializeState(INITIAL_LEVEL);
             return newState;
         case SET_NEXT_LEVEL:
             newState = initializeState(state.level + 1);

@@ -1,5 +1,5 @@
-import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, SET_NEXT_LEVEL } from "./actionTypes";
-import { Cell, UpdateCellsAction, SetActiveTypeAction, RestartLevelAction, SetNextLevelAction } from "../misc/tsTypes";
+import { UPDATE_CELLS, SET_ACTIVE_TYPE, RESTART_LEVEL, RESTART_GAME, SET_NEXT_LEVEL } from "./actionTypes";
+import { Cell, UpdateCellsAction, SetActiveTypeAction, RestartLevelAction, RestartGameAction, SetNextLevelAction } from "../misc/tsTypes";
 
 export function updateCells(keyPressedNo: number): UpdateCellsAction {
     return {
@@ -18,6 +18,12 @@ export function setActiveType(clickedTile: Cell): SetActiveTypeAction {
 export function restartLevel(): RestartLevelAction {
     return {
         type: RESTART_LEVEL
+    }
+};
+
+export function restartGame(): RestartGameAction {
+    return {
+        type: RESTART_GAME
     }
 };
 
