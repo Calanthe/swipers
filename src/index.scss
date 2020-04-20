@@ -71,18 +71,6 @@ $score-transition-speed: 1s;
   }
 }
 
-@keyframes overlay-fade-out { //remove?
-  0% {
-    opacity: 0.7;
-    z-index: 3;
-  }
-
-  100% {
-    opacity: 0;
-    z-index: 0;
-  }
-}
-
 @keyframes overlay-fade-in {
   0% {
     opacity: 0;
@@ -130,7 +118,7 @@ p {
     grid-template-columns: [col] 430px [col] 180px;
 
     .score-wrapper {
-      margin: 10px 0;
+      margin: 10px 0 0 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
@@ -171,25 +159,38 @@ p {
       }
     }
 
-    .title {
-      font-family: 'Yeseva One';
-      font-size: 3rem;
+    .logo {
+      font-family: sans-serif;
+      font-size: 4.5rem;
+      font-weight: bold;
       margin: 4px;
+      padding: 34px;
+      -webkit-text-stroke-width: 1px;
+      -moz-text-stroke-width: 1px;
+      color: $primary-bg-color;
 
-      .header-type-primary & {
-        color: $tile-bg-primary;
+      &.logo-primary {
+        text-shadow: 6px 6px $tile-bg-primary;
+        -webkit-text-stroke-color: $tile-bg-primary;
+        -moz-text-stroke-color: $tile-bg-primary;
       }
 
-      .header-type-secondary & {
-        color: $tile-bg-secondary;
+      &.logo-secondary {
+        text-shadow: 6px 6px $tile-bg-secondary;
+        -webkit-text-stroke-color: $tile-bg-secondary;
+        -moz-text-stroke-color: $tile-bg-secondary;
       }
 
-      .header-type-tertiary & {
-        color: $tile-bg-tertiary;
+      &.logo-tertiary {
+        text-shadow: 6px 6px $tile-bg-tertiary;
+        -webkit-text-stroke-color: $tile-bg-tertiary;
+        -moz-text-stroke-color: $tile-bg-tertiary;
       }
 
-      .header-type-quaternary & {
-        color: $tile-bg-quaternary;
+      &.logo-quaternary {
+        text-shadow: 6px 6px $tile-bg-quaternary;
+        -webkit-text-stroke-color: $tile-bg-quaternary;
+        -moz-text-stroke-color: $tile-bg-quaternary;
       }
     }
   }
