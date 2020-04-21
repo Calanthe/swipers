@@ -32,7 +32,7 @@ const Header: React.FunctionComponent<Props> = ({ score, singleScore, level, mov
 
     return (
         <div className='header'>
-            <h1 className={logoClass}>SWIPERS</h1>
+            <h1 className={logoClass}>Swipers</h1>
             <div className="score-wrapper">
                 <div className="score-unit">
                     <p className="score-subheader score">Level</p>
