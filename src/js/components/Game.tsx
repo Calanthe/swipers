@@ -69,13 +69,13 @@ class Game extends React.Component<GameProps> {
         this.props.setNextLevel();
     }
 
-    render() { //TODO add overlay which slide down from the top with tip about the current level, add reset lvl btn
+    render() {
         return (
             <div className="app">
                 <Header/>
                 <Board onMouseClick={this.handleMouseClick}/>
                 <Hint onLevelRestart={this.handleRestartLevel} onGameRestart={this.handleRestartGame}/>
-                <InfoOverlay onLevelRestart={this.handleRestartLevel} onNextLevel={this.handleSetNextLevel}/>
+                <InfoOverlay onLevelRestart={this.handleRestartLevel} onGameRestart={this.handleRestartGame} onNextLevel={this.handleSetNextLevel}/>
             </div>
         );
     }

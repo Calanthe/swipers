@@ -7,7 +7,7 @@ export const LEVELS = [
             positionY: 1,
             type: 1,
             isFinishTile: true,
-            hint: 'Use arrows or WASD to move the blue tile to the finish one.' //TODO refactor
+            hint: 'Use arrows or WASD to move the blue tile to the finish one.'
         },
         {
             positionX: 4,

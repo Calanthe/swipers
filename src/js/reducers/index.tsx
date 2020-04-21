@@ -4,7 +4,7 @@ import { transformFromStateToGrid, transformFromGridToState, factorial } from ".
 import { Cell, CellState, FinishCords, RootReducerAction } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
 
-const INITIAL_LEVEL = 0; //starts with 0
+const INITIAL_LEVEL = 5; //starts with 0
 
 interface Vector {
     x: number,
@@ -230,7 +230,7 @@ function findAvailablePosition(cell: Cell, cells: Cell[][], moveVector: Vector):
     // Progress towards the move direction until an obstacle is found
     do {
         prevCell = cell;
-        cellX = cell.positionX + moveVector.x; //TODO prevent pressing two keys at once
+        cellX = cell.positionX + moveVector.x;
         cellY = cell.positionY + moveVector.y;
         tileFoundInNextCell = tileInCell(cells, cellX, cellY);
         toBeMergedWithFinish = (tileFoundInNextCell && ((tileFoundInNextCell.isFinishTile && tileFoundInNextCell.type === cell.type) || tileFoundInNextCell.toBeMergedWithFinish))

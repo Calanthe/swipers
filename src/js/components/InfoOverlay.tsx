@@ -7,6 +7,7 @@ interface Props {
     isGameFinished: boolean,
     moves: number,
     onLevelRestart: () => void,
+    onGameRestart: () => void,
     onNextLevel: () => void,
 };
 
@@ -18,7 +19,7 @@ const mapStateToProps = state => {
     };
 };
 
-const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, isGameFinished, moves, onLevelRestart, onNextLevel }) => {
+const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, isGameFinished, moves, onLevelRestart, onGameRestart, onNextLevel }) => {
     const
         infoOverlayClass = classNames('info-overlay', { 'visible': isLevelFinished }),
         infoOverlayWrapperClass = classNames('info-overlay-wrapper', { 'visible': isLevelFinished });
@@ -38,7 +39,7 @@ const InfoOverlay: React.FunctionComponent<Props> = ({ isLevelFinished, isGameFi
                 <div>
                     <button className="button restart" onClick={onLevelRestart}>Restart level</button>
                     {isGameFinished
-                        ? null
+                        ? <button className="button next" onClick={onGameRestart}>Restart game</button>
                         : <button className="button next" onClick={onNextLevel}>Next level</button>
                     }
                 </div>
