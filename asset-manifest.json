@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/swipers/static/css/main.c47a06bd.chunk.css",
+    "main.js": "/swipers/static/js/main.276a4c68.chunk.js",
+    "main.js.map": "/swipers/static/js/main.276a4c68.chunk.js.map",
+    "runtime-main.js": "/swipers/static/js/runtime-main.e34253b7.js",
+    "runtime-main.js.map": "/swipers/static/js/runtime-main.e34253b7.js.map",
+    "static/js/2.6921a33a.chunk.js": "/swipers/static/js/2.6921a33a.chunk.js",
+    "static/js/2.6921a33a.chunk.js.map": "/swipers/static/js/2.6921a33a.chunk.js.map",
+    "index.html": "/swipers/index.html",
+    "precache-manifest.84d298bac842714f63a0fb4a0b035324.js": "/swipers/precache-manifest.84d298bac842714f63a0fb4a0b035324.js",
+    "service-worker.js": "/swipers/service-worker.js",
+    "static/css/main.c47a06bd.chunk.css.map": "/swipers/static/css/main.c47a06bd.chunk.css.map",
+    "static/js/2.6921a33a.chunk.js.LICENSE": "/swipers/static/js/2.6921a33a.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e34253b7.js",
+    "static/js/2.6921a33a.chunk.js",
+    "static/css/main.c47a06bd.chunk.css",
+    "static/js/main.276a4c68.chunk.js"
+  ]
+}
