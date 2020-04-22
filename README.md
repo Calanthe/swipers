@@ -1,4 +1,4 @@
-Swipers - a sliding puzzle game made entirely in React, TypeScript and Redux.
+# Swipers - a sliding puzzle game made entirely in React, TypeScript and Redux.
 
 You can play it here: http://zofiakorcz.pl/swipers
 
