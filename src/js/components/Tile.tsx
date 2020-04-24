@@ -2,7 +2,7 @@ import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Cell } from "../misc/tsTypes";
 
 interface Props {
-    tileClassName: string,
+    tileClassName: any,
     cell: Cell,
     onMouseClick: (cell: Cell) => void
 }
