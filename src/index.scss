@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -24,22 +92,35 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
 body {
 	line-height: 1;
 }
-ol, ul {
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
 	content: none;
 }
 table {
@@ -48,10 +129,10 @@ table {
 }
 /* End of reset */
 
-$primary-bg-color: #FFFFFF;
-$secondary-bg-color: #F8F8F8;
+$primary-bg-color: #ffffff;
+$secondary-bg-color: #f8f8f8;
 $primary-font-color: #24292e;
-$secondary-font-color: #658FFF;
+$secondary-font-color: #658fff;
 $tertiary-font-color: #3369ff;
 
 $tile-size: 58px;
@@ -60,426 +141,433 @@ $grid-spacing: 4;
 $tiles-no-width: 9;
 $tiles-no-height: 9;
 
-$tile-bg-primary: #838EFF;
-$tile-bg-secondary: #FF848B;
-$tile-bg-tertiary: #90FF91;
-$tile-bg-quaternary: #F2F532;
+$tile-bg-primary: #838eff;
+$tile-bg-secondary: #ff848b;
+$tile-bg-tertiary: #90ff91;
+$tile-bg-quaternary: #f2f532;
 $tile-bg-finish: #000000;
-$tile-bg-wall: #E6E6E6;
+$tile-bg-wall: #e6e6e6;
 
 $transition-speed: 200ms;
 $overlay-transition-delay: 400ms;
 $score-transition-speed: 1s;
 
 @keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 1;
+	}
 
-  90% {
-    opacity: 1;
-  }
+	90% {
+		opacity: 1;
+	}
 
-  99% {
-    opacity: 0.6;
-  }
+	99% {
+		opacity: 0.6;
+	}
 
-  100% {
-    opacity: 0;
-  }
+	100% {
+		opacity: 0;
+	}
 }
 
 @keyframes merged {
-  0% {
-    transform: scale(0);
-  }
+	0% {
+		transform: scale(0);
+	}
 
-  60% {
-    transform: scale(1.1);
-  }
+	60% {
+		transform: scale(1.1);
+	}
 
-  100% {
-    transform: scale(1);
-  }
+	100% {
+		transform: scale(1);
+	}
 }
 
 @keyframes score-up {
-  0% {
-    opacity: 1;
-    left: 34px;
-    transform: scale(0);
-  }
+	0% {
+		opacity: 1;
+		left: 34px;
+		transform: scale(0);
+	}
 
-  50% {
-    transform: scale(1.6);
-  }
+	50% {
+		transform: scale(1.6);
+	}
 
-  100% {
-    opacity: 0;
-    left: 64px;
-    transform: scale(0);
-  }
+	100% {
+		opacity: 0;
+		left: 64px;
+		transform: scale(0);
+	}
 }
 
 @keyframes overlay-fade-in {
-  0% {
-    opacity: 0;
-    z-index: 0;
-  }
+	0% {
+		opacity: 0;
+		z-index: 0;
+	}
 
-  100% {
-    opacity: 0.7;
-    z-index: 3;
-  }
+	100% {
+		opacity: 0.7;
+		z-index: 3;
+	}
 }
 
 @keyframes info-overlay-fade-in {
-  0% {
-    opacity: 0;
-    z-index: 0;
-  }
+	0% {
+		opacity: 0;
+		z-index: 0;
+	}
 
-  100% {
-    opacity: 1;
-    z-index: 4;
-  }
+	100% {
+		opacity: 1;
+		z-index: 4;
+	}
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: helvetica, arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: $primary-bg-color;
-  color: $primary-font-color;
-  background: linear-gradient(to bottom, $secondary-bg-color 0%, $primary-bg-color 100%);
+	margin: 0;
+	padding: 0;
+	font-family: helvetica, arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: $primary-bg-color;
+	color: $primary-font-color;
+	background: linear-gradient(
+		to bottom,
+		$secondary-bg-color 0%,
+		$primary-bg-color 100%
+	);
 }
 
 p {
-  margin: 0;
+	margin: 0;
 }
 
-.app, .footer {
-  width: 634px;
-  margin: 0 auto;
+.app,
+.footer {
+	width: 634px;
+	margin: 0 auto;
 
-  .header {
-    display: grid;
-    grid-template-columns: [col] 430px [col] 180px;
+	.header {
+		display: grid;
+		grid-template-columns: [col] 430px [col] 180px;
 
-    .score-wrapper {
-      margin: 10px 0 0 0;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      grid-auto-flow: row;
-      position: relative;
+		.score-wrapper {
+			margin: 10px 0 0 0;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			grid-auto-flow: row;
+			position: relative;
 
-      .score-unit {
-        background-color: $secondary-bg-color;
-        padding: 10px;
-        width: 60px;
-        border-radius: 5px;
-        border: #F3ECEC 1px solid;
-        margin: 0 0 8px 0;
-        box-shadow: inset 0 -0.6em 0 -0.5em rgba(0,0,0,0.17);
+			.score-unit {
+				background-color: $secondary-bg-color;
+				padding: 10px;
+				width: 60px;
+				border-radius: 5px;
+				border: #f3ecec 1px solid;
+				margin: 0 0 8px 0;
+				box-shadow: inset 0 -0.6em 0 -0.5em rgba(0, 0, 0, 0.17);
 
-        .score-subheader {
-          border-bottom: 1px solid $tertiary-font-color;
-          margin-bottom: 6px;
-        }
+				.score-subheader {
+					border-bottom: 1px solid $tertiary-font-color;
+					margin-bottom: 6px;
+				}
 
-        .score {
-          font-weight: bold;
-          text-align: center;
-          text-transform: uppercase;
-        }
+				.score {
+					font-weight: bold;
+					text-align: center;
+					text-transform: uppercase;
+				}
 
-        .single-score {
-          position: absolute;
-          opacity: 0;
-          bottom: 24px;
-          left: 34px;
-          font-weight: bold;
-          color: $tertiary-font-color;
+				.single-score {
+					position: absolute;
+					opacity: 0;
+					bottom: 24px;
+					left: 34px;
+					font-weight: bold;
+					color: $tertiary-font-color;
 
-          &.score-up {
-            animation: $score-transition-speed score-up backwards;
-          }
-        }
-      }
-    }
+					&.score-up {
+						animation: $score-transition-speed score-up backwards;
+					}
+				}
+			}
+		}
 
-    .logo {
-      font-family: sans-serif;
-      font-size: 4.5rem;
-      font-weight: bold;
-      margin: 4px;
-      padding: 34px;
-      -webkit-text-stroke-width: 1px;
-      -moz-text-stroke-width: 1px;
-      color: $secondary-bg-color;
+		.logo {
+			font-family: sans-serif;
+			font-size: 4.5rem;
+			font-weight: bold;
+			margin: 4px;
+			padding: 34px;
+			-webkit-text-stroke-width: 1px;
+			-moz-text-stroke-width: 1px;
+			color: $secondary-bg-color;
 
-      &.logo-primary {
-        text-shadow: 6px 6px $tile-bg-primary;
-        -webkit-text-stroke-color: $tile-bg-primary;
-        -moz-text-stroke-color: $tile-bg-primary;
-      }
+			&.logo-primary {
+				text-shadow: 6px 6px $tile-bg-primary;
+				-webkit-text-stroke-color: $tile-bg-primary;
+				-moz-text-stroke-color: $tile-bg-primary;
+			}
 
-      &.logo-secondary {
-        text-shadow: 6px 6px $tile-bg-secondary;
-        -webkit-text-stroke-color: $tile-bg-secondary;
-        -moz-text-stroke-color: $tile-bg-secondary;
-      }
+			&.logo-secondary {
+				text-shadow: 6px 6px $tile-bg-secondary;
+				-webkit-text-stroke-color: $tile-bg-secondary;
+				-moz-text-stroke-color: $tile-bg-secondary;
+			}
 
-      &.logo-tertiary {
-        text-shadow: 6px 6px $tile-bg-tertiary;
-        -webkit-text-stroke-color: $tile-bg-tertiary;
-        -moz-text-stroke-color: $tile-bg-tertiary;
-      }
+			&.logo-tertiary {
+				text-shadow: 6px 6px $tile-bg-tertiary;
+				-webkit-text-stroke-color: $tile-bg-tertiary;
+				-moz-text-stroke-color: $tile-bg-tertiary;
+			}
 
-      &.logo-quaternary {
-        text-shadow: 6px 6px $tile-bg-quaternary;
-        -webkit-text-stroke-color: $tile-bg-quaternary;
-        -moz-text-stroke-color: $tile-bg-quaternary;
-      }
-    }
-  }
+			&.logo-quaternary {
+				text-shadow: 6px 6px $tile-bg-quaternary;
+				-webkit-text-stroke-color: $tile-bg-quaternary;
+				-moz-text-stroke-color: $tile-bg-quaternary;
+			}
+		}
+	}
 
-  .game {
-    position: relative;
-    width: 555px;
-    height: 555px;
-    border: 20px solid $tile-bg-primary;
-    border-radius: 5px;
-    padding: 2px;
+	.game {
+		position: relative;
+		width: 555px;
+		height: 555px;
+		border: 20px solid $tile-bg-primary;
+		border-radius: 5px;
+		padding: 2px;
 
-    &.primary {
-      border-color: $tile-bg-primary;
-    }
+		&.primary {
+			border-color: $tile-bg-primary;
+		}
 
-    &.secondary {
-      border-color: $tile-bg-secondary;
-    }
+		&.secondary {
+			border-color: $tile-bg-secondary;
+		}
 
-    &.tertiary {
-      border-color: $tile-bg-tertiary;
-    }
+		&.tertiary {
+			border-color: $tile-bg-tertiary;
+		}
 
-    &.quaternary {
-      border-color: $tile-bg-quaternary;
-    }
-  }
+		&.quaternary {
+			border-color: $tile-bg-quaternary;
+		}
+	}
 
-  .grid {
-    position: absolute;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat($tiles-no-height, $tile-size);
-    grid-template-rows: repeat($tiles-no-width, $tile-size);
-    grid-auto-flow: row;
-    grid-gap: 4px;
-    background-color: $secondary-bg-color;
+	.grid {
+		position: absolute;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: repeat($tiles-no-height, $tile-size);
+		grid-template-rows: repeat($tiles-no-width, $tile-size);
+		grid-auto-flow: row;
+		grid-gap: 4px;
+		background-color: $secondary-bg-color;
 
-    .block {
-      background-color: $primary-bg-color;
-    }
- }
+		.block {
+			background-color: $primary-bg-color;
+		}
+	}
 
-  .board {
-    position: absolute;
-    z-index: 2;
-  }
+	.board {
+		position: absolute;
+		z-index: 2;
+	}
 
-  .tile {
-    width: ceil($tile-size);
-    height: ceil($tile-size);
-    line-height: ceil($tile-size);
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.4;
-    cursor: pointer;
-    transition-property: top, left;
-    transition-duration: $transition-speed;
-    transition-timing-function: linear;
-  }
+	.tile {
+		width: ceil($tile-size);
+		height: ceil($tile-size);
+		line-height: ceil($tile-size);
+		position: absolute;
+		border-radius: 50%;
+		opacity: 0.4;
+		cursor: pointer;
+		transition-property: top, left;
+		transition-duration: $transition-speed;
+		transition-timing-function: linear;
+	}
 
-  // Build position classes
-  @for $x from 0 through ($grid-row-cells - 1) {
-    @for $y from 0 through ($grid-row-cells - 1) {
-      .tile-position-#{$x}-#{$y} {
-        $xPos: floor(($tile-size + $grid-spacing) * $x);
-        $yPos: floor(($tile-size + $grid-spacing) * $y);
+	// Build position classes
+	@for $x from 0 through ($grid-row-cells - 1) {
+		@for $y from 0 through ($grid-row-cells - 1) {
+			.tile-position-#{$x}-#{$y} {
+				$xPos: floor(($tile-size + $grid-spacing) * $x);
+				$yPos: floor(($tile-size + $grid-spacing) * $y);
 
-        top: $yPos;
-        left: $xPos;
-      }
-    }
-  }
+				top: $yPos;
+				left: $xPos;
+			}
+		}
+	}
 
-  .tile-type-primary {
-    background-color: $tile-bg-primary;
-  }
+	.tile-type-primary {
+		background-color: $tile-bg-primary;
+	}
 
-  .tile-type-secondary {
-    background-color: $tile-bg-secondary;
-  }
+	.tile-type-secondary {
+		background-color: $tile-bg-secondary;
+	}
 
-  .tile-type-tertiary {
-    background-color: $tile-bg-tertiary;
-  }
+	.tile-type-tertiary {
+		background-color: $tile-bg-tertiary;
+	}
 
-  .tile-type-quaternary {
-    background-color: $tile-bg-quaternary;
-  }
+	.tile-type-quaternary {
+		background-color: $tile-bg-quaternary;
+	}
 
-  .tile-type-finish {
-    background-color: $tile-bg-finish;
-    opacity: 0.4;
-    border-radius: 0px;
+	.tile-type-finish {
+		background-color: $tile-bg-finish;
+		opacity: 0.4;
+		border-radius: 0px;
 
-    &.tile-type-primary {
-      outline: 2px solid $tile-bg-primary;
-      outline-offset: -4px;
-    }
+		&.tile-type-primary {
+			outline: 2px solid $tile-bg-primary;
+			outline-offset: -4px;
+		}
 
-    &.tile-type-secondary {
-      outline: 2px solid $tile-bg-secondary;
-      outline-offset: -4px;
-    }
+		&.tile-type-secondary {
+			outline: 2px solid $tile-bg-secondary;
+			outline-offset: -4px;
+		}
 
-    &.tile-type-tertiary {
-      outline: 2px solid $tile-bg-tertiary;
-      outline-offset: -4px;
-    }
+		&.tile-type-tertiary {
+			outline: 2px solid $tile-bg-tertiary;
+			outline-offset: -4px;
+		}
 
-    &.tile-type-quaternary {
-      outline: 2px solid $tile-bg-quaternary;
-      outline-offset: -4px;
-    }
-  }
+		&.tile-type-quaternary {
+			outline: 2px solid $tile-bg-quaternary;
+			outline-offset: -4px;
+		}
+	}
 
-  .tile-type-wall {
-    background-color: $tile-bg-wall;
-    border-radius: 0px;
-    cursor: auto;
-    opacity: 1;
-  }
+	.tile-type-wall {
+		background-color: $tile-bg-wall;
+		border-radius: 0px;
+		cursor: auto;
+		opacity: 1;
+	}
 
-  .tile-active {
-    opacity: 1;
-  }
+	.tile-active {
+		opacity: 1;
+	}
 
-  .tile-action-merged {
-    animation: $transition-speed merged $transition-speed forwards;
-  }
+	.tile-action-merged {
+		animation: $transition-speed merged $transition-speed forwards;
+	}
 
-  .tile-action-removed {
-    animation: $transition-speed fade-out forwards;
-  }
+	.tile-action-removed {
+		animation: $transition-speed fade-out forwards;
+	}
 
-  .info-overlay-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $primary-bg-color;
-    opacity: 0;
-    z-index: 0;
+	.info-overlay-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $primary-bg-color;
+		opacity: 0;
+		z-index: 0;
 
-      &.visible {
-        animation: $transition-speed overlay-fade-in $overlay-transition-delay forwards;
-      }
-  }
+		&.visible {
+			animation: $transition-speed overlay-fade-in $overlay-transition-delay
+				forwards;
+		}
+	}
 
-  .info-overlay {
-    padding: 15px;
-    background-color: $secondary-bg-color;
-    position: absolute;
-    border-radius: 5px;
-    top: 30%;
-    left: 38%;
-    opacity: 0;
-    z-index: 0;
-    font-family: sans-serif;
-    outline: 1px solid $secondary-font-color;
+	.info-overlay {
+		padding: 15px;
+		background-color: $secondary-bg-color;
+		position: absolute;
+		border-radius: 5px;
+		top: 30%;
+		left: 38%;
+		opacity: 0;
+		z-index: 0;
+		font-family: sans-serif;
+		outline: 1px solid $secondary-font-color;
 
-      &.visible {
-        animation: $transition-speed info-overlay-fade-in $overlay-transition-delay forwards;
-      }
+		&.visible {
+			animation: $transition-speed info-overlay-fade-in
+				$overlay-transition-delay forwards;
+		}
 
-      .title {
-        margin: 2px 0px 10px;
-      }
+		.title {
+			margin: 2px 0px 10px;
+		}
 
-      .text {
-        margin: 10px 0px 10px;
-      }
-  }
+		.text {
+			margin: 10px 0px 10px;
+		}
+	}
 
-  .button {
-    display:inline-block;
-    padding: 10px 10px;
-    margin-right: 20px;
-    border: none;
-    border-radius:0.15em;
-    text-decoration:none;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    color: $primary-bg-color;
-    background-color: $secondary-font-color;
-    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-    text-align: center;
-    cursor: pointer;
-    position: relative;
+	.button {
+		display: inline-block;
+		padding: 10px 10px;
+		margin-right: 20px;
+		border: none;
+		border-radius: 0.15em;
+		text-decoration: none;
+		font-family: sans-serif;
+		text-transform: uppercase;
+		color: $primary-bg-color;
+		background-color: $secondary-font-color;
+		box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+		text-align: center;
+		cursor: pointer;
+		position: relative;
 
-    &:focus {
-      outline: 0;
-    }
+		&:focus {
+			outline: 0;
+		}
 
-    &:active {
-      top: 1px;
-    }
+		&:active {
+			top: 1px;
+		}
 
-    &.next {
-      background-color: $tertiary-font-color;
-    }
-  }
+		&.next {
+			background-color: $tertiary-font-color;
+		}
+	}
 
-  .hint {
-      margin: 20px 0;
-      padding: 20px 0 20px 20px;
-      box-sizing: border-box;
-      width: 600px;
-      position: relative;
-      background-color: $secondary-bg-color;
-      border-radius: 5px;
-      box-shadow: inset 0 -0.6em 0 -0.5em rgba(0,0,0,0.17);
+	.hint {
+		margin: 20px 0;
+		padding: 20px 0 20px 20px;
+		box-sizing: border-box;
+		width: 600px;
+		position: relative;
+		background-color: $secondary-bg-color;
+		border-radius: 5px;
+		box-shadow: inset 0 -0.6em 0 -0.5em rgba(0, 0, 0, 0.17);
 
-      &:before {
-          content: 'HINT';
-          position: absolute;
-          top: -8px;
-          left: 6px;
-          color: $tertiary-font-color;
-          font-weight: bold;
-          font-size: 18px;
-      }
+		&:before {
+			content: "HINT";
+			position: absolute;
+			top: -8px;
+			left: 6px;
+			color: $tertiary-font-color;
+			font-weight: bold;
+			font-size: 18px;
+		}
 
-      & .buttons {
-         padding: 14px 0 0 288px;
-      }
-  }
+		& .buttons {
+			padding: 14px 0 0 288px;
+		}
+	}
 }
 
 .footer {
-  text-align: center;
-  margin: 0 auto 10px auto;
+	text-align: center;
+	margin: 0 auto 10px auto;
 
-  .footer-link {
-    text-decoration: none;
-    color: $secondary-font-color;
-  }
+	.footer-link {
+		text-decoration: none;
+		color: $secondary-font-color;
+	}
 }

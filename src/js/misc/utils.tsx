@@ -6,24 +6,24 @@ import { Cell } from "../misc/tsTypes";
   tiles to easier calculate the collision and movement of the grid elements
 */
 export function transformFromStateToGrid(cells: Cell[]): Cell[][] {
-    let grid = [],
-        tile,
-        tilesNo = cells.length;
+	let grid = [],
+		tile,
+		tilesNo = cells.length;
 
-    for (let x = 0; x < BOARD_WIDTH; x++) {
-        let row = grid[x] = [];
+	for (let x = 0; x < BOARD_WIDTH; x++) {
+		let row = (grid[x] = []);
 
-        for (let y = 0; y < BOARD_HEIGHT; y++) {
-            row.push(null);
-        }
-    }
+		for (let y = 0; y < BOARD_HEIGHT; y++) {
+			row.push(null);
+		}
+	}
 
-    for (let x = 0; x < tilesNo; x++) {
-        tile = cells[x];
-        grid[tile.positionX][tile.positionY] = tile;
-    }
+	for (let x = 0; x < tilesNo; x++) {
+		tile = cells[x];
+		grid[tile.positionX][tile.positionY] = tile;
+	}
 
-    return grid;
+	return grid;
 }
 
 /*
@@ -31,23 +31,23 @@ export function transformFromStateToGrid(cells: Cell[]): Cell[][] {
   tiles into 1dim array of only visible tiles to store it as a state and properly show the movement in DOM
 */
 export function transformFromGridToState(grid: Cell[][]): Cell[] {
-    let cells = []
+	let cells = [];
 
-    for (let x = 0; x < BOARD_WIDTH; x++) {
-        for (let y = 0; y < BOARD_HEIGHT; y++) {
-            if (grid[x][y]) {
-                cells.push(grid[x][y])
-            }
-        }
-    }
+	for (let x = 0; x < BOARD_WIDTH; x++) {
+		for (let y = 0; y < BOARD_HEIGHT; y++) {
+			if (grid[x][y]) {
+				cells.push(grid[x][y]);
+			}
+		}
+	}
 
-    return cells;
+	return cells;
 }
 
 export function factorial(n) {
-    if (n === 0) {
-        return 1;
-    } else {
-        return n * factorial( n - 1 );
-    }
+	if (n === 0) {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
 }
