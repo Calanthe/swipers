@@ -19,7 +19,7 @@ import {
 } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
 
-const INITIAL_LEVEL = 0; //starts with 0
+const INITIAL_LEVEL = 0;
 
 interface Vector {
 	x: number;
@@ -49,7 +49,7 @@ function initializeState(level: number = 0): CellState {
 	};
 }
 
-// Build a grid based on the current level, 0 by default
+// Build a grid based on the current level
 function initializeCells(level: number = 0): Cell[] {
 	let cells = [],
 		newTile,
@@ -161,13 +161,8 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 					mergedCounter++;
 					cellsAmount--;
-					moveCell(cellsInGrid, newPosition, cell);
-				} else if (
-					newPosition.positionX !== cell.positionX ||
-					newPosition.positionY !== cell.positionY
-				) {
-					moveCell(cellsInGrid, newPosition, cell);
 				}
+				moveCell(cellsInGrid, newPosition, cell);
 
 				if (!alreadyMovedTile) {
 					state.moves++;
@@ -211,15 +206,16 @@ function removeMergedCells(cells: Cell[]): Cell[] {
 	return filteredCells;
 }
 
-function moveCell(
-	cells: Cell[][],
-	newPosition: Cell,
-	prevPosition: Cell
-): Cell[][] {
-	cells[newPosition.positionX][newPosition.positionY] = newPosition;
-	cells[prevPosition.positionX][prevPosition.positionY] = null;
+function moveCell(cells: Cell[][], newPosition: Cell, prevPosition: Cell) {
+	if (
+		newPosition.positionX !== prevPosition.positionX ||
+		newPosition.positionY !== prevPosition.positionY
+	) {
+		cells[newPosition.positionX][newPosition.positionY] = newPosition;
+		cells[prevPosition.positionX][prevPosition.positionY] = null;
+	}
 
-	return cells;
+	return;
 }
 
 function getMoveVector(move: number): Vector {
