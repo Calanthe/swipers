@@ -1,6 +1,7 @@
 import {
 	UPDATE_CELLS,
 	SET_ACTIVE_TYPE,
+	RESTART_CSS_CLASSES,
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
@@ -115,6 +116,18 @@ function setHint(level: number = 0): string {
 	return hint;
 }
 
+function resetCssClasses(state: CellState): Cell[] {
+	let cellsInGrid = transformFromStateToGrid(state.cells);
+	//remove 'merged' css class from the finish tiles
+	state.finishCords.forEach((finishCoordinates) => {
+		cellsInGrid[finishCoordinates.positionX][
+			finishCoordinates.positionY
+		].actionClass = "";
+	});
+
+	return transformFromGridToState(cellsInGrid);
+}
+
 function moveTile(move: number, state: CellState): Cell[] {
 	let cell: Cell,
 		newPosition: Cell,
@@ -126,13 +139,6 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 	const traversals = buildTraversals(move),
 		moveVector = getMoveVector(move);
-
-	//remove 'merged' css class from the finish tiles
-	state.finishCords.forEach((finishCoordinates) => {
-		cellsInGrid[finishCoordinates.positionX][
-			finishCoordinates.positionY
-		].actionClass = "";
-	});
 
 	// Traverse the grid in the right direction and move tiles
 	traversals.x.forEach((x) => {
@@ -326,6 +332,13 @@ const rootReducer = (
 			newState = {
 				...state,
 				activeType: setActiveType(action.payload, state.activeType),
+			};
+			return newState;
+		case RESTART_CSS_CLASSES:
+			newState = {
+				...state,
+				cells: resetCssClasses(state),
+				scoreClass: "",
 			};
 			return newState;
 		case RESTART_LEVEL:

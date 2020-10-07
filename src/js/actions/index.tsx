@@ -1,6 +1,7 @@
 import {
 	UPDATE_CELLS,
 	SET_ACTIVE_TYPE,
+	RESTART_CSS_CLASSES,
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
@@ -9,6 +10,7 @@ import {
 	Cell,
 	UpdateCellsAction,
 	SetActiveTypeAction,
+	RestartCssClasses,
 	RestartLevelAction,
 	RestartGameAction,
 	SetNextLevelAction,
@@ -25,6 +27,12 @@ export function setActiveType(clickedTile: Cell): SetActiveTypeAction {
 	return {
 		type: SET_ACTIVE_TYPE,
 		payload: clickedTile,
+	};
+}
+
+export function restartCssClasses(): RestartCssClasses {
+	return {
+		type: RESTART_CSS_CLASSES,
 	};
 }
 

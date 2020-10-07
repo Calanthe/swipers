@@ -1,6 +1,7 @@
 import {
 	UPDATE_CELLS,
 	SET_ACTIVE_TYPE,
+	RESTART_CSS_CLASSES,
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
@@ -46,6 +47,10 @@ export interface UpdateCellsAction {
 export interface SetActiveTypeAction {
 	type: typeof SET_ACTIVE_TYPE;
 	payload: Cell;
+}
+
+export interface RestartCssClasses {
+	type: typeof RESTART_CSS_CLASSES;
 }
 
 export interface RestartLevelAction {

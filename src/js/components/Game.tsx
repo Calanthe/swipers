@@ -7,6 +7,7 @@ import Hint from "./Hint";
 import {
 	updateCells,
 	setActiveType,
+	restartCssClasses,
 	restartLevel,
 	restartGame,
 	setNextLevel,
@@ -16,6 +17,7 @@ import { Cell } from "../misc/tsTypes";
 interface GameProps {
 	updateCells: typeof updateCells;
 	setActiveType: typeof setActiveType;
+	restartCssClasses: typeof restartCssClasses;
 	restartLevel: typeof restartLevel;
 	restartGame: typeof restartGame;
 	setNextLevel: typeof setNextLevel;
@@ -25,10 +27,13 @@ interface KeyboardEvent {
 	key: string;
 }
 
+const IDLE_TIMER = 1000; //ms
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		updateCells: (keyPressedNo: number) => dispatch(updateCells(keyPressedNo)),
 		setActiveType: (cell: Cell) => dispatch(setActiveType(cell)),
+		restartCssClasses: () => dispatch(restartCssClasses()),
 		restartLevel: () => dispatch(restartLevel()),
 		restartGame: () => dispatch(restartGame()),
 		setNextLevel: () => dispatch(setNextLevel()),
@@ -39,6 +44,9 @@ class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
 			this.handleKeyPress(event);
+			window.setTimeout(() => {
+				this.props.restartCssClasses();
+			}, IDLE_TIMER);
 		});
 	}
 
