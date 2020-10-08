@@ -29,6 +29,8 @@ interface KeyboardEvent {
 
 const IDLE_TIMER = 1000; //ms
 
+let isKeyPressed = false;
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		updateCells: (keyPressedNo: number) => dispatch(updateCells(keyPressedNo)),
@@ -43,10 +45,14 @@ const mapDispatchToProps = (dispatch) => {
 class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
-			this.handleKeyPress(event);
-			window.setTimeout(() => {
-				this.props.restartCssClasses();
-			}, IDLE_TIMER);
+			if (!isKeyPressed) {
+				this.handleKeyPress(event);
+				isKeyPressed = true;
+				window.setTimeout(() => {
+					isKeyPressed = false;
+					this.props.restartCssClasses();
+				}, IDLE_TIMER);
+			}
 		});
 	}
 
