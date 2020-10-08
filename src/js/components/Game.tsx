@@ -27,9 +27,9 @@ interface KeyboardEvent {
 	key: string;
 }
 
-const IDLE_TIMER = 1000; //ms
+const IDLE_TIMER = 400; //ms
 
-let isKeyPressed = false;
+// let isKeyPressed = false; //TODO when touch event will be implemented
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -45,14 +45,14 @@ const mapDispatchToProps = (dispatch) => {
 class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
-			if (!isKeyPressed) {
-				this.handleKeyPress(event);
-				isKeyPressed = true;
-				window.setTimeout(() => {
-					isKeyPressed = false;
-					this.props.restartCssClasses();
-				}, IDLE_TIMER);
-			}
+			//if (!isKeyPressed) {
+			this.handleKeyPress(event);
+			//isKeyPressed = true;
+			window.setTimeout(() => {
+				//isKeyPressed = false;
+				this.props.restartCssClasses();
+			}, IDLE_TIMER);
+			//}
 		});
 	}
 
