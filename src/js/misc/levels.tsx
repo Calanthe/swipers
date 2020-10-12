@@ -3,15 +3,15 @@ export const LEVELS = [
 	//level 0
 	[
 		{
-			positionX: 4,
+			positionX: 3,
 			positionY: 1,
 			type: 1,
 			isFinishTile: true,
 			hint: "Use arrows or WASD to move the blue tile to the finish one.",
 		},
 		{
-			positionX: 4,
-			positionY: 6,
+			positionX: 3,
+			positionY: 5,
 			type: 1,
 			isFinishTile: false,
 		},

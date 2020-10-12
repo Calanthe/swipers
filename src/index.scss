@@ -135,11 +135,11 @@ $primary-font-color: #24292e;
 $secondary-font-color: #658fff;
 $tertiary-font-color: #3369ff;
 
-$tile-size: 58px;
-$grid-row-cells: 9;
+$tile-size: 45px;
+$grid-row-cells: 7;
 $grid-spacing: 4;
-$tiles-no-width: 9;
-$tiles-no-height: 9;
+$tiles-no-width: 7;
+$tiles-no-height: 7;
 
 $tile-bg-primary: #838eff;
 $tile-bg-secondary: #ff848b;
@@ -243,12 +243,12 @@ p {
 
 .app,
 .footer {
-	width: 634px;
+	width: 372px;
 	margin: 0 auto;
 
 	.header {
 		display: grid;
-		grid-template-columns: [col] 430px [col] 180px;
+		grid-template-columns: [col] 206px [col] 152px;
 
 		.score-wrapper {
 			margin: 10px 0 0 0;
@@ -257,11 +257,12 @@ p {
 			grid-template-rows: repeat(2, 1fr);
 			grid-auto-flow: row;
 			position: relative;
+			font-size: 12px;
 
 			.score-unit {
 				background-color: $secondary-bg-color;
 				padding: 10px;
-				width: 60px;
+				width: 50px;
 				border-radius: 5px;
 				border: #f3ecec 1px solid;
 				margin: 0 0 8px 0;
@@ -295,34 +296,34 @@ p {
 
 		.logo {
 			font-family: sans-serif;
-			font-size: 4.5rem;
+			font-size: 3rem;
 			font-weight: bold;
 			margin: 4px;
-			padding: 34px;
+			padding: 34px 4px 34px 0;
 			-webkit-text-stroke-width: 1px;
 			-moz-text-stroke-width: 1px;
 			color: $secondary-bg-color;
 
 			&.logo-primary {
-				text-shadow: 6px 6px $tile-bg-primary;
+				text-shadow: 3px 3px $tile-bg-primary;
 				-webkit-text-stroke-color: $tile-bg-primary;
 				-moz-text-stroke-color: $tile-bg-primary;
 			}
 
 			&.logo-secondary {
-				text-shadow: 6px 6px $tile-bg-secondary;
+				text-shadow: 3px 3px $tile-bg-secondary;
 				-webkit-text-stroke-color: $tile-bg-secondary;
 				-moz-text-stroke-color: $tile-bg-secondary;
 			}
 
 			&.logo-tertiary {
-				text-shadow: 6px 6px $tile-bg-tertiary;
+				text-shadow: 3px 3px $tile-bg-tertiary;
 				-webkit-text-stroke-color: $tile-bg-tertiary;
 				-moz-text-stroke-color: $tile-bg-tertiary;
 			}
 
 			&.logo-quaternary {
-				text-shadow: 6px 6px $tile-bg-quaternary;
+				text-shadow: 3px 3px $tile-bg-quaternary;
 				-webkit-text-stroke-color: $tile-bg-quaternary;
 				-moz-text-stroke-color: $tile-bg-quaternary;
 			}
@@ -331,11 +332,12 @@ p {
 
 	.game {
 		position: relative;
-		width: 555px;
-		height: 555px;
-		border: 20px solid $tile-bg-primary;
+		width: 340px;
+		height: 340px;
+		border: 10px solid $tile-bg-primary;
 		border-radius: 5px;
 		padding: 2px;
+		margin: 0 auto;
 
 		&.primary {
 			border-color: $tile-bg-primary;
@@ -537,7 +539,6 @@ p {
 		margin: 20px 0;
 		padding: 20px 0 20px 20px;
 		box-sizing: border-box;
-		width: 600px;
 		position: relative;
 		background-color: $secondary-bg-color;
 		border-radius: 5px;
@@ -554,7 +555,7 @@ p {
 		}
 
 		& .buttons {
-			padding: 14px 0 0 288px;
+			padding: 14px 0 0 0;
 		}
 	}
 }
