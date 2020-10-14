@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import Swipe from 'react-easy-swipe';
 import Board from "./Board";
 import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
@@ -23,13 +24,10 @@ interface GameProps {
 	setNextLevel: typeof setNextLevel;
 }
 
-interface KeyboardEvent {
-	key: string;
-}
-
 const IDLE_TIMER = 400; //ms
+const SWIPE_IDLE_TIMER = 100; //ms
 
-// let isKeyPressed = false; //TODO when touch event will be implemented
+let isKeyPressed = false;
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -46,7 +44,7 @@ class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
 			//if (!isKeyPressed) {
-			this.handleKeyPress(event);
+			this.handleKeyPress(event.key);
 			//isKeyPressed = true;
 			window.setTimeout(() => {
 				//isKeyPressed = false;
@@ -56,7 +54,7 @@ class Game extends React.Component<GameProps> {
 		});
 	}
 
-	handleKeyPress = (event: KeyboardEvent): void => {
+	handleKeyPress = (eventKey: string): void => {
 		const KeyPressMap = {
 			ArrowUp: 1,
 			ArrowRight: 2,
@@ -66,10 +64,18 @@ class Game extends React.Component<GameProps> {
 			d: 2, // D
 			s: 3, // S
 			a: 4, // A
+			SwipeUp: 1,
+			SwipeRight: 2,
+			SwipeDown: 3,
+			SwipeLeft: 4
 		};
 
-		if (KeyPressMap[event.key]) {
-			this.props.updateCells(KeyPressMap[event.key]);
+		if (!isKeyPressed && KeyPressMap[eventKey]) {
+			this.props.updateCells(KeyPressMap[eventKey]);
+			isKeyPressed = true;
+			window.setTimeout(() => {
+				isKeyPressed = false;
+			}, SWIPE_IDLE_TIMER);
 		}
 	};
 
@@ -89,20 +95,40 @@ class Game extends React.Component<GameProps> {
 		this.props.setNextLevel();
 	};
 
+	onSwipeUp(event) {
+		this.handleKeyPress('SwipeUp');
+	};
+
+	onSwipeDown(event) {
+		this.handleKeyPress('SwipeDown');
+	};
+
+	onSwipeLeft(event) {
+		this.handleKeyPress('SwipeLeft');
+	};
+
+	onSwipeRight(event) {
+		this.handleKeyPress('SwipeRight');
+	};
+
 	render() {
 		return (
 			<div className="app">
-				<Header />
-				<Board onMouseClick={this.handleMouseClick} />
-				<Hint
-					onLevelRestart={this.handleRestartLevel}
-					onGameRestart={this.handleRestartGame}
-				/>
-				<InfoOverlay
-					onLevelRestart={this.handleRestartLevel}
-					onGameRestart={this.handleRestartGame}
-					onNextLevel={this.handleSetNextLevel}
-				/>
+				<Swipe
+					innerRef={() => {}}
+					tolerance={50}
+					onSwipeUp={this.onSwipeUp.bind(this)}
+					onSwipeDown={this.onSwipeDown.bind(this)}
+					onSwipeLeft={this.onSwipeLeft.bind(this)}
+					onSwipeRight={this.onSwipeRight.bind(this)}>
+					<Header />
+					<Board onMouseClick={this.handleMouseClick} />
+					<InfoOverlay
+						onLevelRestart={this.handleRestartLevel}
+						onGameRestart={this.handleRestartGame}
+						onNextLevel={this.handleSetNextLevel}
+					/>
+      			</Swipe>
 			</div>
 		);
 	}
