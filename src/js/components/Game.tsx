@@ -4,6 +4,7 @@ import Swipe from 'react-easy-swipe';
 import Board from "./Board";
 import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
+import MenuBar from "./MenuBar";
 import Hint from "./Hint";
 import {
 	updateCells,
@@ -25,7 +26,6 @@ interface GameProps {
 }
 
 const IDLE_TIMER = 400; //ms
-const SWIPE_IDLE_TIMER = 100; //ms
 
 let isKeyPressed = false;
 
@@ -70,12 +70,8 @@ class Game extends React.Component<GameProps> {
 			SwipeLeft: 4
 		};
 
-		if (!isKeyPressed && KeyPressMap[eventKey]) {
+		if (KeyPressMap[eventKey]) {
 			this.props.updateCells(KeyPressMap[eventKey]);
-			isKeyPressed = true;
-			window.setTimeout(() => {
-				isKeyPressed = false;
-			}, SWIPE_IDLE_TIMER);
 		}
 	};
 
@@ -111,22 +107,30 @@ class Game extends React.Component<GameProps> {
 		this.handleKeyPress('SwipeRight');
 	};
 
+	onSwipeMove(position, event) {
+		return true; //to prevent accidental scrolling on swipe
+	};
+
 	render() {
 		return (
 			<div className="app">
 				<Swipe
 					innerRef={() => {}}
-					tolerance={50}
+					tolerance={20}
+					onSwipeMove={this.onSwipeMove}
 					onSwipeUp={this.onSwipeUp.bind(this)}
 					onSwipeDown={this.onSwipeDown.bind(this)}
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
 					onSwipeRight={this.onSwipeRight.bind(this)}>
-					<Header />
+					<Header/>
 					<Board onMouseClick={this.handleMouseClick} />
 					<InfoOverlay
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
 						onNextLevel={this.handleSetNextLevel}
+					/>
+					<MenuBar
+						onLevelRestart={this.handleRestartLevel}
 					/>
       			</Swipe>
 			</div>

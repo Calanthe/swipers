@@ -534,6 +534,25 @@ p {
 		}
 	}
 
+	.menu-bar {
+		display: grid;
+    	grid-template-columns: [col] 180px [col] 180px;
+	}
+
+	.button-link {
+		padding: 10px 10px;
+		border: none;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-family: sans-serif;
+		font-weight: bold;
+		font-size: 12px;
+		color: $secondary-font-color;
+		text-align: center;
+		background-color: $primary-bg-color;
+		cursor: pointer;
+	}
+
 	.hint {
 		margin: 20px 0;
 		padding: 20px 0 20px 20px;
@@ -556,15 +575,5 @@ p {
 		& .buttons {
 			padding: 14px 0 0 0;
 		}
-	}
-}
-
-.footer {
-	text-align: center;
-	margin: 0 auto 10px auto;
-
-	.footer-link {
-		text-decoration: none;
-		color: $secondary-font-color;
 	}
 }
