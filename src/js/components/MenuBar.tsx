@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 interface Props {
@@ -17,10 +17,10 @@ const MenuBar: React.FunctionComponent<Props> = ({
 	return (
 		<div className="menu-bar">
             <button className="button-link menu" onClick={onShowMenu}>
-                <i className="fas fa-bars"></i> menu
+                <i className="fas fa-bars"></i> Menu
             </button>
             <button className="button-link restart" onClick={onLevelRestart}>
-                <i className="fas fa-undo"></i> reset
+                <i className="fas fa-undo"></i> Reset
             </button>
 		</div>
 	);

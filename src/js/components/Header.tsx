@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import { TILE_TYPES } from "../misc/constants";

@@ -5,6 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
+	SHOW_MENU_OVERLAY
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -47,6 +48,7 @@ function initializeState(level: number = 0): CellState {
 		isLevelFinished: false,
 		levelsAmount: LEVELS.length,
 		isGameFinished: false,
+		isMenuVisible: false
 	};
 }
 
@@ -349,6 +351,12 @@ const rootReducer = (
 			return newState;
 		case SET_NEXT_LEVEL:
 			newState = initializeState(state.level + 1);
+			return newState;
+		case SHOW_MENU_OVERLAY:
+			newState = {
+				...state,
+				isMenuVisible: true
+			};
 			return newState;
 		default:
 			return state;

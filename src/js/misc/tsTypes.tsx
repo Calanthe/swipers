@@ -5,6 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
+	SHOW_MENU_OVERLAY
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -37,6 +38,7 @@ export interface CellState {
 	isLevelFinished: boolean;
 	levelsAmount: number;
 	isGameFinished: boolean;
+	isMenuVisible: boolean;
 }
 
 export interface UpdateCellsAction {
@@ -63,6 +65,10 @@ export interface RestartGameAction {
 
 export interface SetNextLevelAction {
 	type: typeof SET_NEXT_LEVEL;
+}
+
+export interface showMenuOverlayAction {
+	type: typeof SHOW_MENU_OVERLAY;
 }
 
 export interface RootReducerAction {

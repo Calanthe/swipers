@@ -1,8 +1,8 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
+import React, { useState, useEffect } from "react";
 import { Cell } from "../misc/tsTypes";
 
 interface Props {
-	tileClassName: any;
+	tileClassName: string;
 	cell: Cell;
 	onMouseClick: (cell: Cell) => void;
 }
@@ -12,7 +12,7 @@ const Tile: React.FunctionComponent<Props> = ({
 	cell,
 	onMouseClick,
 }) => {
-	const [newTileClassName, setData] = useState();
+	const [newTileClassName, setData] = useState<Props["tileClassName"] | null>(null);
 
 	useEffect(() => {
 		requestAnimationFrame(() => {

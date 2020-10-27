@@ -13,8 +13,10 @@ import {
 	restartLevel,
 	restartGame,
 	setNextLevel,
+	showMenuOverlay
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
+import MenuOverlay from "./MenuOverlay";
 
 interface GameProps {
 	updateCells: typeof updateCells;
@@ -23,6 +25,7 @@ interface GameProps {
 	restartLevel: typeof restartLevel;
 	restartGame: typeof restartGame;
 	setNextLevel: typeof setNextLevel;
+	showMenuOverlay: typeof showMenuOverlay;
 }
 
 const IDLE_TIMER = 400; //ms
@@ -37,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 		restartLevel: () => dispatch(restartLevel()),
 		restartGame: () => dispatch(restartGame()),
 		setNextLevel: () => dispatch(setNextLevel()),
+		showMenuOverlay: () => dispatch(showMenuOverlay())
 	};
 };
 
@@ -91,23 +95,27 @@ class Game extends React.Component<GameProps> {
 		this.props.setNextLevel();
 	};
 
-	onSwipeUp(event) {
+	handleShowMenu = (): void => {
+		this.props.showMenuOverlay();
+	};
+
+	onSwipeUp = (): void => {
 		this.handleKeyPress('SwipeUp');
 	};
 
-	onSwipeDown(event) {
+	onSwipeDown = (): void => {
 		this.handleKeyPress('SwipeDown');
 	};
 
-	onSwipeLeft(event) {
+	onSwipeLeft = (): void => {
 		this.handleKeyPress('SwipeLeft');
 	};
 
-	onSwipeRight(event) {
+	onSwipeRight = (): void => {
 		this.handleKeyPress('SwipeRight');
 	};
 
-	onSwipeMove(position, event) {
+	onSwipeMove = (position, event) : boolean => {
 		return true; //to prevent accidental scrolling on swipe
 	};
 
@@ -130,7 +138,12 @@ class Game extends React.Component<GameProps> {
 						onNextLevel={this.handleSetNextLevel}
 					/>
 					<MenuBar
+						onShowMenu={this.handleShowMenu}
 						onLevelRestart={this.handleRestartLevel}
+					/>
+					<MenuOverlay
+						onLevelRestart={this.handleRestartLevel}
+						onGameRestart={this.handleRestartGame}
 					/>
       			</Swipe>
 			</div>
