@@ -26,18 +26,22 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
 	return (
 		<div>
 			<div className={menuOverlayClass}>
-				<div className="text">
-					
-				</div>
-				<div>
+				<div className="content-wrapper">
 					<button className="button restart" onClick={onLevelRestart}>
+                        <i className="fas fa-long-arrow-alt-left"></i> Back to game
+					</button>
+                    <button className="button restart" onClick={onLevelRestart}>
                         <i className="fas fa-undo"></i> Restart level
 					</button>
                     <button className="button next" onClick={onGameRestart}>
-                        Restart game
+                        New game
                     </button>
 				</div>
-                <p>© <a href="http://zofiakorcz.pl" className="footer-link" target="_blank">Zofia Korcz</a></p>
+                <p className="credits">
+                    © 2020 made by <a href="http://zofiakorcz.pl" className="credits-link" target="_blank">
+                        Zofia Korcz
+                    </a>
+                </p>
 			</div>
 		</div>
 	);
