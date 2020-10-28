@@ -574,6 +574,36 @@ p {
 				width: 200px;
 				margin: 10px 0;
 			}
+
+			.levels-display {
+				position: relative;
+				display: grid;
+				grid-template-columns: repeat(3, 54px);
+    			grid-template-rows: repeat(3, 45px);
+    			grid-auto-flow: row;
+				grid-gap: 14px;
+				margin: 50px 0;
+				padding: 8px;
+				border: 1px solid $secondary-font-color;
+				border-radius: 0.15em;
+
+				.levels-header {
+					position: absolute;
+					top: -24px;
+					left: -1px;
+					text-transform: uppercase;
+					color: $primary-bg-color;
+					background-color: $secondary-font-color;
+					font-size: 12px;
+					padding: 6px;
+					border: none;
+					border-radius: 0.15em 0.15em 0 0;
+				}
+				
+				.level-no {
+					text-align: center;
+				}
+			}
 		}
 
 		.credits {
