@@ -95,7 +95,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
 				    </div>
 				</div>
                 <p className="credits">
-                    © 2020 made by <a href="http://zofiakorcz.pl" className="credits-link" target="_blank">
+                    © 2020 <a href="http://zofiakorcz.pl" className="credits-link" target="_blank">
                         Zofia Korcz
                     </a>
                 </p>
