@@ -5,7 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
-	SHOW_MENU_OVERLAY
+	TOOGLE_MENU_OVERLAY
 } from "./actionTypes";
 import {
 	Cell,
@@ -15,7 +15,7 @@ import {
 	RestartLevelAction,
 	RestartGameAction,
 	SetNextLevelAction,
-	showMenuOverlayAction
+	toggleMenuOverlayAction
 } from "../misc/tsTypes";
 
 export function updateCells(keyPressedNo: number): UpdateCellsAction {
@@ -56,8 +56,8 @@ export function setNextLevel(): SetNextLevelAction {
 	};
 }
 
-export function showMenuOverlay(): showMenuOverlayAction {
+export function toggleMenuOverlay(): toggleMenuOverlayAction {
 	return {
-		type: SHOW_MENU_OVERLAY,
+		type: TOOGLE_MENU_OVERLAY,
 	};
 }

@@ -5,7 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
-	SHOW_MENU_OVERLAY
+	TOOGLE_MENU_OVERLAY
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -352,10 +352,10 @@ const rootReducer = (
 		case SET_NEXT_LEVEL:
 			newState = initializeState(state.level + 1);
 			return newState;
-		case SHOW_MENU_OVERLAY:
+		case TOOGLE_MENU_OVERLAY:
 			newState = {
 				...state,
-				isMenuVisible: true
+				isMenuVisible: !state.isMenuVisible
 			};
 			return newState;
 		default:

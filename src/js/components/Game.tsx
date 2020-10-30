@@ -13,7 +13,7 @@ import {
 	restartLevel,
 	restartGame,
 	setNextLevel,
-	showMenuOverlay
+	toggleMenuOverlay
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 import MenuOverlay from "./MenuOverlay";
@@ -25,7 +25,7 @@ interface GameProps {
 	restartLevel: typeof restartLevel;
 	restartGame: typeof restartGame;
 	setNextLevel: typeof setNextLevel;
-	showMenuOverlay: typeof showMenuOverlay;
+	toggleMenuOverlay: typeof toggleMenuOverlay;
 }
 
 const IDLE_TIMER = 400; //ms
@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 		restartLevel: () => dispatch(restartLevel()),
 		restartGame: () => dispatch(restartGame()),
 		setNextLevel: () => dispatch(setNextLevel()),
-		showMenuOverlay: () => dispatch(showMenuOverlay())
+		toggleMenuOverlay: () => dispatch(toggleMenuOverlay())
 	};
 };
 
@@ -91,12 +91,12 @@ class Game extends React.Component<GameProps> {
 		this.props.restartGame();
 	};
 
-	handleSetNextLevel = (): void => {
-		this.props.setNextLevel();
+	handleToggleMenu = (): void => {
+		this.props.toggleMenuOverlay();
 	};
 
-	handleShowMenu = (): void => {
-		this.props.showMenuOverlay();
+	handleSetNextLevel = (): void => {
+		this.props.setNextLevel();
 	};
 
 	onSwipeUp = (): void => {
@@ -138,10 +138,11 @@ class Game extends React.Component<GameProps> {
 						onNextLevel={this.handleSetNextLevel}
 					/>
 					<MenuBar
-						onShowMenu={this.handleShowMenu}
+						onShowMenu={this.handleToggleMenu}
 						onLevelRestart={this.handleRestartLevel}
 					/>
 					<MenuOverlay
+						onCloseMenu={this.handleToggleMenu}
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
 					/>

@@ -5,7 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
-	SHOW_MENU_OVERLAY
+	TOOGLE_MENU_OVERLAY
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -67,8 +67,8 @@ export interface SetNextLevelAction {
 	type: typeof SET_NEXT_LEVEL;
 }
 
-export interface showMenuOverlayAction {
-	type: typeof SHOW_MENU_OVERLAY;
+export interface toggleMenuOverlayAction {
+	type: typeof TOOGLE_MENU_OVERLAY;
 }
 
 export interface RootReducerAction {
