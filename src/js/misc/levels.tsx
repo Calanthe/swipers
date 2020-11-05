@@ -1,10 +1,10 @@
 import { WALL_TYPE } from "../misc/constants";
 export const LEVELS = [
-	//level 0
+	//level 1
 	[
 		{
-			positionX: 3,
-			positionY: 1,
+			positionX: 6,
+			positionY: 0,
 			type: 1,
 			isFinishTile: true,
 			hint: "Use arrows or WASD to move the blue tile to the finish one.",
@@ -16,11 +16,11 @@ export const LEVELS = [
 			isFinishTile: false,
 		},
 	],
-	//level 1
+	//level 2
 	[
 		{
 			positionX: 0,
-			positionY: 8,
+			positionY: 6,
 			type: 1,
 			isFinishTile: true,
 			hint:
@@ -33,52 +33,52 @@ export const LEVELS = [
 			isFinishTile: false,
 		},
 		{
-			positionX: 5,
-			positionY: 5,
-			type: 1,
-			isFinishTile: false,
-		},
-		{
 			positionX: 0,
 			positionY: 0,
 			type: 1,
 			isFinishTile: false,
 		},
 	],
-	//level 2
+	//level 3
 	[
 		{
-			positionX: 8,
-			positionY: 0,
+			positionX: 0,
+			positionY: 6,
 			type: 1,
 			isFinishTile: true,
 			hint:
 				"Click on a different tile to change active color. Use inactive tiles as walls.",
 		},
 		{
-			positionX: 6,
-			positionY: 6,
+			positionX: 2,
+			positionY: 0,
 			type: 1,
 			isFinishTile: false,
 		},
 		{
-			positionX: 1,
-			positionY: 3,
+			positionX: 4,
+			positionY: 4,
 			type: 2,
 			isFinishTile: true,
 		},
 		{
-			positionX: 4,
-			positionY: 7,
+			positionX: 3,
+			positionY: 0,
 			type: 2,
 			isFinishTile: false,
 		},
+		{
+			positionX: 6,
+			positionY: 6,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		}
 	],
-	//level 3
+	//level 4
 	[
 		{
-			positionX: 5,
-			positionY: 5,
+			positionX: 3,
+			positionY: 4,
 			type: 1,
 			isFinishTile: true,
 			hint: "Use grey blocks as walls too.",
@@ -90,7 +90,7 @@ export const LEVELS = [
 			isFinishTile: false,
 		},
 		{
-			positionX: 4,
+			positionX: 2,
 			positionY: 2,
 			type: 2,
 			isFinishTile: true,
@@ -102,42 +102,122 @@ export const LEVELS = [
 			isFinishTile: false,
 		},
 		{
-			positionX: 6,
-			positionY: 6,
+			positionX: 4,
+			positionY: 5,
 			type: WALL_TYPE,
 			isFinishTile: false,
 		},
 		{
-			positionX: 5,
+			positionX: 3,
 			positionY: 3,
 			type: WALL_TYPE,
 			isFinishTile: false,
 		},
 	],
-	//level 4
+	//level 5
 	[
 		{
-			positionX: 8,
-			positionY: 3,
+			positionX: 1,
+			positionY: 1,
 			type: 1,
 			isFinishTile: true,
-			hint: "Try with even more colors.",
 		},
 		{
 			positionX: 2,
-			positionY: 5,
+			positionY: 3,
 			type: 1,
 			isFinishTile: false,
 		},
 		{
 			positionX: 3,
-			positionY: 6,
+			positionY: 4,
 			type: 1,
 			isFinishTile: false,
 		},
 		{
 			positionX: 4,
+			positionY: 5,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 5,
+			positionY: 6,
+			type: 2,
+			isFinishTile: true,
+		},
+		{
+			positionX: 4,
 			positionY: 4,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 5,
+			positionY: 3,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 6,
+			positionY: 2,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 1,
+			positionY: 2,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+		{
+			positionX: 0,
+			positionY: 1,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+		{
+			positionX: 1,
+			positionY: 0,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+		{
+			positionX: 5,
+			positionY: 0,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+		{
+			positionX: 6,
+			positionY: 1,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+	],
+	//level 6
+	[
+		{
+			positionX: 6,
+			positionY: 1,
+			type: 1,
+			isFinishTile: true,
+		},
+		{
+			positionX: 2,
+			positionY: 3,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 3,
+			positionY: 4,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 2,
+			positionY: 2,
 			type: 2,
 			isFinishTile: true,
 		},
@@ -149,21 +229,135 @@ export const LEVELS = [
 		},
 		{
 			positionX: 1,
+			positionY: 2,
+			type: 3,
+			isFinishTile: false,
+		},
+		{
+			positionX: 4,
+			positionY: 6,
+			type: 3,
+			isFinishTile: true,
+		},
+	],
+	//level 7
+	[
+		{
+			positionX: 1,
+			positionY: 0,
+			type: 1,
+			isFinishTile: true,
+		},
+		{
+			positionX: 3,
+			positionY: 4,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 3,
+			positionY: 0,
+			type: 2,
+			isFinishTile: true,
+		},
+		{
+			positionX: 5,
+			positionY: 4,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 5,
+			positionY: 0,
+			type: 3,
+			isFinishTile: true,
+		},
+		{
+			positionX: 1,
 			positionY: 4,
 			type: 3,
 			isFinishTile: false,
 		},
 		{
+			positionX: 0,
+			positionY: 1,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+		{
 			positionX: 6,
-			positionY: 8,
+			positionY: 1,
+			type: WALL_TYPE,
+			isFinishTile: false,
+		},
+	],
+	//level 8
+	[
+		{
+			positionX: 6,
+			positionY: 0,
+			type: 1,
+			isFinishTile: true,
+		},
+		{
+			positionX: 2,
+			positionY: 1,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 6,
+			positionY: 4,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 0,
+			positionY: 6,
+			type: 2,
+			isFinishTile: true,
+		},
+		{
+			positionX: 4,
+			positionY: 5,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 0,
+			positionY: 2,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 0,
+			positionY: 0,
 			type: 3,
 			isFinishTile: true,
 		},
+		{
+			positionX: 4,
+			positionY: 1,
+			type: 3,
+			isFinishTile: false,
+		},
+		{
+			positionX: 6,
+			positionY: 6,
+			type: 4,
+			isFinishTile: true,
+		},
+		{
+			positionX: 2,
+			positionY: 5,
+			type: 4,
+			isFinishTile: false,
+		},
 	],
-	//level 5
+	//level 9
 	[
 		{
-			positionX: 7,
+			positionX: 5,
 			positionY: 1,
 			type: 1,
 			isFinishTile: true,
@@ -171,48 +365,48 @@ export const LEVELS = [
 		},
 		{
 			positionX: 2,
-			positionY: 7,
+			positionY: 5,
 			type: 1,
 			isFinishTile: false,
 		},
 		{
 			positionX: 1,
-			positionY: 7,
+			positionY: 5,
 			type: 2,
-			isFinishTile: true,
-		},
-		{
-			positionX: 8,
-			positionY: 8,
-			type: 2,
-			isFinishTile: false,
-		},
-		{
-			positionX: 2,
-			positionY: 2,
-			type: 3,
 			isFinishTile: true,
 		},
 		{
 			positionX: 6,
 			positionY: 6,
+			type: 2,
+			isFinishTile: false,
+		},
+		{
+			positionX: 2,
+			positionY: 1,
+			type: 3,
+			isFinishTile: true,
+		},
+		{
+			positionX: 5,
+			positionY: 4,
 			type: 3,
 			isFinishTile: false,
 		},
 		{
-			positionX: 5,
-			positionY: 5,
+			positionX: 4,
+			positionY: 3,
 			type: 4,
 			isFinishTile: true,
 		},
 		{
 			positionX: 3,
-			positionY: 4,
+			positionY: 2,
 			type: 4,
 			isFinishTile: false,
 		},
 		{
-			positionX: 8,
+			positionX: 6,
 			positionY: 0,
 			type: WALL_TYPE,
 			isFinishTile: false,
