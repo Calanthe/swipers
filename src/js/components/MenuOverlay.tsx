@@ -28,6 +28,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
 
 	return (
         <div className={menuOverlayClass}>
+            <h1 className="logo">Swipers</h1>
             <div className="content-wrapper">
                 <button className="button" onClick={onCloseMenu}>
                     <i className="fas fa-long-arrow-alt-left"></i> Back to game

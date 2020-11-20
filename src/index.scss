@@ -306,40 +306,40 @@ p {
 				}
 			}
 		}
+	}
 
-		.logo {
-			font-family: sans-serif;
-			font-size: 3rem;
-			font-weight: bold;
-			margin: 4px;
-			padding: 34px 4px 34px 0;
-			-webkit-text-stroke-width: 1px;
-			-moz-text-stroke-width: 1px;
-			color: $secondary-bg-color;
+	.logo {
+		font-family: sans-serif;
+		font-size: 3rem;
+		font-weight: bold;
+		margin: 4px;
+		padding: 34px 4px 34px 0;
+		-webkit-text-stroke-width: 1px;
+		-moz-text-stroke-width: 1px;
+		color: $secondary-bg-color;
 
-			&.logo-primary {
-				text-shadow: 3px 3px $tile-bg-primary;
-				-webkit-text-stroke-color: $tile-bg-primary;
-				-moz-text-stroke-color: $tile-bg-primary;
-			}
+		&.logo-primary {
+			text-shadow: 3px 3px $tile-bg-primary;
+			-webkit-text-stroke-color: $tile-bg-primary;
+			-moz-text-stroke-color: $tile-bg-primary;
+		}
 
-			&.logo-secondary {
-				text-shadow: 3px 3px $tile-bg-secondary;
-				-webkit-text-stroke-color: $tile-bg-secondary;
-				-moz-text-stroke-color: $tile-bg-secondary;
-			}
+		&.logo-secondary {
+			text-shadow: 3px 3px $tile-bg-secondary;
+			-webkit-text-stroke-color: $tile-bg-secondary;
+			-moz-text-stroke-color: $tile-bg-secondary;
+		}
 
-			&.logo-tertiary {
-				text-shadow: 3px 3px $tile-bg-tertiary;
-				-webkit-text-stroke-color: $tile-bg-tertiary;
-				-moz-text-stroke-color: $tile-bg-tertiary;
-			}
+		&.logo-tertiary {
+			text-shadow: 3px 3px $tile-bg-tertiary;
+			-webkit-text-stroke-color: $tile-bg-tertiary;
+			-moz-text-stroke-color: $tile-bg-tertiary;
+		}
 
-			&.logo-quaternary {
-				text-shadow: 3px 3px $tile-bg-quaternary;
-				-webkit-text-stroke-color: $tile-bg-quaternary;
-				-moz-text-stroke-color: $tile-bg-quaternary;
-			}
+		&.logo-quaternary {
+			text-shadow: 3px 3px $tile-bg-quaternary;
+			-webkit-text-stroke-color: $tile-bg-quaternary;
+			-moz-text-stroke-color: $tile-bg-quaternary;
 		}
 	}
 
@@ -619,6 +619,14 @@ p {
 			animation: $transition-speed menu-overlay-fade-in
 				$menu-overlay-transition-delay forwards;
 			display: block;
+		}
+
+		.logo {
+			padding: 0 0 20px 40px;
+			margin: 0;
+			text-shadow: 3px 3px $tile-bg-primary;
+			-webkit-text-stroke-color: $tile-bg-primary;
+			-moz-text-stroke-color: $tile-bg-primary;
 		}
 
 		.content-wrapper {
