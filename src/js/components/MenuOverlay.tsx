@@ -29,13 +29,13 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
 	return (
         <div className={menuOverlayClass}>
             <div className="content-wrapper">
-                <button className="button restart" onClick={onCloseMenu}>
+                <button className="button" onClick={onCloseMenu}>
                     <i className="fas fa-long-arrow-alt-left"></i> Back to game
                 </button>
-                <button className="button restart" onClick={onLevelRestart}>
+                <button className="button" onClick={onLevelRestart}>
                     <i className="fas fa-undo"></i> Restart level
                 </button>
-                <button className="button next" onClick={onGameRestart}>
+                <button className="button" onClick={onGameRestart}>
                     New game
                 </button>
                 <LevelsDisplay/>

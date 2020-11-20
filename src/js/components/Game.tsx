@@ -28,7 +28,7 @@ interface GameProps {
 	toggleMenuOverlay: typeof toggleMenuOverlay;
 }
 
-const IDLE_TIMER = 400; //ms
+const IDLE_TIMER = 600; // at least 200ms transition speed + 200ms transition delay
 
 let isKeyPressed = false;
 
@@ -50,10 +50,10 @@ class Game extends React.Component<GameProps> {
 			//if (!isKeyPressed) {
 			this.handleKeyPress(event.key);
 			//isKeyPressed = true;
-			window.setTimeout(() => {
+			/*window.setTimeout(() => {
 				//isKeyPressed = false;
 				this.props.restartCssClasses();
-			}, IDLE_TIMER);
+			}, IDLE_TIMER);*/
 			//}
 		});
 	}
