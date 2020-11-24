@@ -6,6 +6,7 @@ import LevelsDisplay from "./LevelsDisplay";
 interface Props {
     isMenuVisible: boolean;
     level: number;
+    moves: number;
     onCloseMenu: () => void;
 	onLevelRestart: () => void;
     onGameRestart: () => void;
@@ -15,13 +16,15 @@ interface Props {
 const mapStateToProps = (state) => {
 	return {
         isMenuVisible: state.isMenuVisible,
-        level: state.level
+        level: state.level,
+        moves: state.moves,
 	};
 };
 
 const MenuOverlay: React.FunctionComponent<Props> = ({
     isMenuVisible,
     level,
+    moves,
     onCloseMenu,
 	onLevelRestart,
     onGameRestart,
@@ -35,7 +38,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
         <div className={menuOverlayClass}>
             <h1 className="logo">Swipers</h1>
             <div className="content-wrapper">
-                {level > 0 ? (
+                {level > 0 || moves > 0 ? (
                     <button className="button" onClick={onCloseMenu}>
                         <i className="fas fa-long-arrow-alt-left"></i> Back to game
                     </button>
@@ -47,7 +50,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
                 <button className="button" onClick={onLevelRestart}>
                     <i className="fas fa-undo"></i> Restart level
                 </button>
-                {level > 0 ? (
+                {level > 0 || moves > 0 ? (
                     <button className="button" onClick={onGameRestart}>
                         New game
                     </button>
