@@ -13,6 +13,7 @@ import {
 	restartLevel,
 	restartGame,
 	setNextLevel,
+	setLevel,
 	toggleMenuOverlay
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
@@ -25,6 +26,7 @@ interface GameProps {
 	restartLevel: typeof restartLevel;
 	restartGame: typeof restartGame;
 	setNextLevel: typeof setNextLevel;
+	setLevel: typeof setLevel;
 	toggleMenuOverlay: typeof toggleMenuOverlay;
 }
 
@@ -40,6 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 		restartLevel: () => dispatch(restartLevel()),
 		restartGame: () => dispatch(restartGame()),
 		setNextLevel: () => dispatch(setNextLevel()),
+		setLevel: (levelNo: number) => dispatch(setLevel(levelNo)),
 		toggleMenuOverlay: () => dispatch(toggleMenuOverlay())
 	};
 };
@@ -99,6 +102,10 @@ class Game extends React.Component<GameProps> {
 		this.props.setNextLevel();
 	};
 
+	handleSetLevel = (levelNo: number): void => {
+		this.props.setLevel(levelNo);
+	};
+
 	onSwipeUp = (): void => {
 		this.handleKeyPress('SwipeUp');
 	};
@@ -145,6 +152,7 @@ class Game extends React.Component<GameProps> {
 						onCloseMenu={this.handleToggleMenu}
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
+						onSetLevel={this.handleSetLevel}
 					/>
       			</Swipe>
 			</div>

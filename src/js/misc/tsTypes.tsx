@@ -5,6 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
+	SET_LEVEL,
 	TOOGLE_MENU_OVERLAY
 } from "../actions/actionTypes";
 
@@ -65,6 +66,11 @@ export interface RestartGameAction {
 
 export interface SetNextLevelAction {
 	type: typeof SET_NEXT_LEVEL;
+}
+
+export interface SetLevelAction {
+	type: typeof SET_LEVEL;
+	payload: number;
 }
 
 export interface toggleMenuOverlayAction {

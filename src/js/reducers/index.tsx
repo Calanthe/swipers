@@ -5,6 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
+	SET_LEVEL,
 	TOOGLE_MENU_OVERLAY
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
@@ -351,6 +352,9 @@ const rootReducer = (
 			return newState;
 		case SET_NEXT_LEVEL:
 			newState = initializeState(state.level + 1);
+			return newState;
+		case SET_LEVEL:
+			newState = initializeState(action.payload);
 			return newState;
 		case TOOGLE_MENU_OVERLAY:
 			newState = {

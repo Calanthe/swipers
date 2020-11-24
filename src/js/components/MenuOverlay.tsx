@@ -8,7 +8,8 @@ interface Props {
     level: number;
     onCloseMenu: () => void;
 	onLevelRestart: () => void;
-	onGameRestart: () => void;
+    onGameRestart: () => void;
+    onSetLevel: (levelNo: number) => void;
 }
 
 const mapStateToProps = (state) => {
@@ -23,7 +24,8 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
     level,
     onCloseMenu,
 	onLevelRestart,
-	onGameRestart
+    onGameRestart,
+    onSetLevel
 }) => {
 	const menuOverlayClass = classNames("menu-overlay", {
 			visible: isMenuVisible,
@@ -50,7 +52,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
                         New game
                     </button>
 				) : null}
-                <LevelsDisplay/>
+                <LevelsDisplay onSetLevel={onSetLevel}/>
             </div>
             <p className="credits">
                 © 2020 <a href="http://zofiakorcz.pl" className="credits-link" target="_blank" rel="noopener noreferrer">

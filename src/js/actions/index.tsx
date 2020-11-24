@@ -5,6 +5,7 @@ import {
 	RESTART_LEVEL,
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
+	SET_LEVEL,
 	TOOGLE_MENU_OVERLAY
 } from "./actionTypes";
 import {
@@ -15,6 +16,7 @@ import {
 	RestartLevelAction,
 	RestartGameAction,
 	SetNextLevelAction,
+	SetLevelAction,
 	toggleMenuOverlayAction
 } from "../misc/tsTypes";
 
@@ -53,6 +55,13 @@ export function restartGame(): RestartGameAction {
 export function setNextLevel(): SetNextLevelAction {
 	return {
 		type: SET_NEXT_LEVEL,
+	};
+}
+
+export function setLevel(levelNo: number): SetLevelAction {
+	return {
+		type: SET_LEVEL,
+		payload: levelNo
 	};
 }
 
