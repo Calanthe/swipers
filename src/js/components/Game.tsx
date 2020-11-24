@@ -59,6 +59,8 @@ class Game extends React.Component<GameProps> {
 			}, IDLE_TIMER);*/
 			//}
 		});
+
+		this.props.toggleMenuOverlay();
 	}
 
 	handleKeyPress = (eventKey: string): void => {

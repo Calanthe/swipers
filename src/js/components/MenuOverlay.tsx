@@ -39,17 +39,19 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
             <h1 className="logo">Swipers</h1>
             <div className="content-wrapper">
                 {level > 0 || moves > 0 ? (
-                    <button className="button" onClick={onCloseMenu}>
-                        <i className="fas fa-long-arrow-alt-left"></i> Back to game
-                    </button>
+                    <p>
+                        <button className="button" onClick={onCloseMenu}>
+                            <i className="fas fa-long-arrow-alt-left"></i> Back to game
+                        </button>
+                        <button className="button" onClick={onLevelRestart}>
+                            <i className="fas fa-undo"></i> Restart level
+                        </button>
+                    </p>
                 ) : (
                     <button className="button" onClick={onGameRestart}>
                         New game
                     </button>
-				)}     
-                <button className="button" onClick={onLevelRestart}>
-                    <i className="fas fa-undo"></i> Restart level
-                </button>
+				)}
                 {level > 0 || moves > 0 ? (
                     <button className="button" onClick={onGameRestart}>
                         New game
