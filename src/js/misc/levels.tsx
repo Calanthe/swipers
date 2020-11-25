@@ -56,7 +56,9 @@ export const LEVELS = [
 			type: 1,
 			isFinishTile: true,
 			hint:
-				`Select on a different tile to change active color. 
+				`Select a different tile to 
+				change active color.
+				
 				Use inactive tiles as walls.`,
 		},
 		{

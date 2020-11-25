@@ -37,7 +37,7 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 				</div>
 				<div className="buttons-wrapper">
 					<button className="button" onClick={onClose}>
-                        OK! 
+                        OK!
 					</button>
 				</div>
 			</div>

@@ -6,7 +6,6 @@ import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
 import HintsOverlay from "./HintsOverlay";
 import MenuBar from "./MenuBar";
-import Hint from "./Hint";
 import {
 	updateCells,
 	setActiveType,
