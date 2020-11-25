@@ -7,7 +7,8 @@ export const LEVELS = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
-			hint: "Use arrows or WASD to move the blue tile to the finish one.",
+			hint: `Swipe to move the blue tile 
+					to the finish one.`,
 		},
 		{
 			positionX: 3,
@@ -24,11 +25,19 @@ export const LEVELS = [
 			type: 1,
 			isFinishTile: true,
 			hint:
-				"You will get maximum points if all of the blue tiles reach finish tile in the same move.",
+				`You will get more points
+				if all of the blue tiles
+				reach finish tile in the same move.`,
 		},
 		{
 			positionX: 2,
 			positionY: 3,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 4,
+			positionY: 4,
 			type: 1,
 			isFinishTile: false,
 		},
@@ -47,7 +56,8 @@ export const LEVELS = [
 			type: 1,
 			isFinishTile: true,
 			hint:
-				"Click on a different tile to change active color. Use inactive tiles as walls.",
+				`Select on a different tile to change active color. 
+				Use inactive tiles as walls.`,
 		},
 		{
 			positionX: 2,
@@ -81,7 +91,6 @@ export const LEVELS = [
 			positionY: 4,
 			type: 1,
 			isFinishTile: true,
-			hint: "Use grey blocks as walls too.",
 		},
 		{
 			positionX: 0,

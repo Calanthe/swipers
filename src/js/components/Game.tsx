@@ -4,6 +4,7 @@ import Swipe from 'react-easy-swipe';
 import Board from "./Board";
 import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
+import HintsOverlay from "./HintsOverlay";
 import MenuBar from "./MenuBar";
 import Hint from "./Hint";
 import {
@@ -14,7 +15,8 @@ import {
 	restartGame,
 	setNextLevel,
 	setLevel,
-	toggleMenuOverlay
+	toggleMenuOverlay,
+	toggleHints
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 import MenuOverlay from "./MenuOverlay";
@@ -28,6 +30,7 @@ interface GameProps {
 	setNextLevel: typeof setNextLevel;
 	setLevel: typeof setLevel;
 	toggleMenuOverlay: typeof toggleMenuOverlay;
+	toggleHints: typeof toggleHints;
 }
 
 const IDLE_TIMER = 600; // at least 200ms transition speed + 200ms transition delay
@@ -43,7 +46,8 @@ const mapDispatchToProps = (dispatch) => {
 		restartGame: () => dispatch(restartGame()),
 		setNextLevel: () => dispatch(setNextLevel()),
 		setLevel: (levelNo: number) => dispatch(setLevel(levelNo)),
-		toggleMenuOverlay: () => dispatch(toggleMenuOverlay())
+		toggleMenuOverlay: () => dispatch(toggleMenuOverlay()),
+		toggleHints: () => dispatch(toggleHints())
 	};
 };
 
@@ -108,6 +112,10 @@ class Game extends React.Component<GameProps> {
 		this.props.setLevel(levelNo);
 	};
 
+	handleCloseHints = (): void => {
+		this.props.toggleHints();
+	};
+
 	onSwipeUp = (): void => {
 		this.handleKeyPress('SwipeUp');
 	};
@@ -140,11 +148,14 @@ class Game extends React.Component<GameProps> {
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
 					onSwipeRight={this.onSwipeRight.bind(this)}>
 					<Header/>
-					<Board onMouseClick={this.handleMouseClick} />
+					<Board onMouseClick={this.handleMouseClick}/>
 					<InfoOverlay
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
 						onNextLevel={this.handleSetNextLevel}
+					/>
+					<HintsOverlay
+						onClose={this.handleCloseHints}
 					/>
 					<MenuBar
 						onShowMenu={this.handleToggleMenu}

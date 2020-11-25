@@ -6,7 +6,8 @@ import {
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
 	SET_LEVEL,
-	TOOGLE_MENU_OVERLAY
+	TOGGLE_MENU_OVERLAY,
+	TOGGLE_HINTS
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -49,7 +50,8 @@ function initializeState(level: number = 0): CellState {
 		isLevelFinished: false,
 		levelsAmount: LEVELS.length,
 		isGameFinished: false,
-		isMenuVisible: false
+		isMenuVisible: false,
+		isHintsVisible: true
 	};
 }
 
@@ -356,10 +358,16 @@ const rootReducer = (
 		case SET_LEVEL:
 			newState = initializeState(action.payload);
 			return newState;
-		case TOOGLE_MENU_OVERLAY:
+		case TOGGLE_MENU_OVERLAY:
 			newState = {
 				...state,
 				isMenuVisible: !state.isMenuVisible
+			};
+			return newState;
+		case TOGGLE_HINTS:
+			newState = {
+				...state,
+				isHintsVisible: !state.isHintsVisible
 			};
 			return newState;
 		default:

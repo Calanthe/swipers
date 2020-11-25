@@ -6,7 +6,8 @@ import {
 	RESTART_GAME,
 	SET_NEXT_LEVEL,
 	SET_LEVEL,
-	TOOGLE_MENU_OVERLAY
+	TOGGLE_MENU_OVERLAY,
+	TOGGLE_HINTS
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -40,6 +41,7 @@ export interface CellState {
 	levelsAmount: number;
 	isGameFinished: boolean;
 	isMenuVisible: boolean;
+	isHintsVisible: boolean;
 }
 
 export interface UpdateCellsAction {
@@ -74,7 +76,11 @@ export interface SetLevelAction {
 }
 
 export interface toggleMenuOverlayAction {
-	type: typeof TOOGLE_MENU_OVERLAY;
+	type: typeof TOGGLE_MENU_OVERLAY;
+}
+
+export interface toggleHintsAction {
+	type: typeof TOGGLE_HINTS;
 }
 
 export interface RootReducerAction {
