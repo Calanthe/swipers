@@ -43,10 +43,12 @@ function initializeState(level: number = 0): CellState {
 		finishCords: setFinishCords(level),
 		nonStandardTilesAmount: countTiles(level), //counter of nonstandard tiles, needed to calc if lvl is finished
 		hint: setHint(level),
+		stars: LEVELS[level][0].stars, //an object that indicates how many moves are neeed to get 1, 2 or 3 stars
 		score: 0,
 		singleScore: 0,
 		scoreClass: "",
 		moves: 0,
+		starScore: 0,
 		isLevelFinished: false,
 		levelsAmount: LEVELS.length,
 		isGameFinished: false,
@@ -191,6 +193,7 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 	if (cellsAmount === 0) {
 		state.isLevelFinished = true;
+		state.starScore = calculateStarScore(state);
 
 		if (state.level === state.levelsAmount - 1) {
 			state.isGameFinished = true;
@@ -202,11 +205,22 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 function updateScore(state: CellState, mergedCounter: number): void {
 	const singleScore = factorial(mergedCounter);
-	console.log(mergedCounter, singleScore);
 
 	state.singleScore = singleScore;
 	state.score += singleScore;
 	state.scoreClass = "score-up";
+}
+
+function calculateStarScore(state: CellState): number {
+	let starScore = 1; //if you manage to finish the level, get at least one star
+
+	if (state.moves <= state.stars.maxPoints) {
+		starScore = 3;
+	} else if (state.moves <= state.stars.minPoints) {
+		starScore = 2;
+	}
+
+	return starScore;
 }
 
 function removeMergedCells(cells: Cell[]): Cell[] {

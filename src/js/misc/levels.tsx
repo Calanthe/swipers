@@ -1,5 +1,6 @@
 import { WALL_TYPE } from "../misc/constants";
-export const LEVELS = [
+import { tileInLevel } from "../misc/tsTypes";
+export const LEVELS: tileInLevel[][] = [
 	//level 1
 	[
 		{
@@ -9,6 +10,10 @@ export const LEVELS = [
 			isFinishTile: true,
 			hint: `Swipe to move the blue tile 
 					to the finish one.`,
+			stars: {
+				maxPoints: 2, //how many moves are needed to get maximum 3 stars
+				minPoints: 3, //how many moves are needed to get 2 stars 
+			}
 		},
 		{
 			positionX: 3,
@@ -28,6 +33,10 @@ export const LEVELS = [
 				`You will get more points
 				if all of the blue tiles
 				reach finish tile in the same move.`,
+			stars: {
+				maxPoints: 2,
+				minPoints: 3, 
+			}
 		},
 		{
 			positionX: 2,
@@ -58,8 +67,12 @@ export const LEVELS = [
 			hint:
 				`Select a different tile to 
 				change active color.
-				
+
 				Use inactive tiles as walls.`,
+			stars: {
+				maxPoints: 6,
+				minPoints: 8, 
+			}
 		},
 		{
 			positionX: 2,
@@ -93,6 +106,10 @@ export const LEVELS = [
 			positionY: 4,
 			type: 1,
 			isFinishTile: true,
+			stars: {
+				maxPoints: 17,
+				minPoints: 20, 
+			}
 		},
 		{
 			positionX: 0,
@@ -132,6 +149,10 @@ export const LEVELS = [
 			positionY: 1,
 			type: 1,
 			isFinishTile: true,
+			stars: {
+				maxPoints: 8,
+				minPoints: 11, 
+			}
 		},
 		{
 			positionX: 2,
@@ -213,6 +234,10 @@ export const LEVELS = [
 			positionY: 1,
 			type: 1,
 			isFinishTile: true,
+			stars: {
+				maxPoints: 6,
+				minPoints: 8, 
+			}
 		},
 		{
 			positionX: 2,
@@ -258,6 +283,10 @@ export const LEVELS = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
+			stars: {
+				maxPoints: 10,
+				minPoints: 11, 
+			}
 		},
 		{
 			positionX: 3,
@@ -309,6 +338,10 @@ export const LEVELS = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
+			stars: {
+				maxPoints: 12,
+				minPoints: 14, 
+			}
 		},
 		{
 			positionX: 2,
@@ -372,7 +405,10 @@ export const LEVELS = [
 			positionY: 1,
 			type: 1,
 			isFinishTile: true,
-			hint: "Good luck!",
+			stars: {
+				maxPoints: 16,
+				minPoints: 18, 
+			}
 		},
 		{
 			positionX: 2,

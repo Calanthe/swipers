@@ -26,6 +26,11 @@ export interface FinishCords {
 	positionY: number;
 }
 
+export interface StarsThresholds {
+	maxPoints: number;
+	minPoints: number;
+}
+
 export interface CellState {
 	cells: Cell[];
 	activeType: number;
@@ -33,15 +38,26 @@ export interface CellState {
 	finishCords: Array<FinishCords>;
 	nonStandardTilesAmount: number;
 	hint: string;
+	stars: StarsThresholds;
 	score: number;
 	singleScore: number;
 	scoreClass: string;
 	moves: number;
+	starScore: number;
 	isLevelFinished: boolean;
 	levelsAmount: number;
 	isGameFinished: boolean;
 	isMenuVisible: boolean;
 	isHintsVisible: boolean;
+}
+
+export interface tileInLevel {
+	positionX: number;
+	positionY: number;
+	type: number;
+	isFinishTile: boolean;
+	hint?: string;
+	stars?: StarsThresholds;
 }
 
 export interface UpdateCellsAction {
