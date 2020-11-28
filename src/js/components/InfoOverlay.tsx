@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
+import StarsPoints from "./StarsPoints";
 
 interface Props {
 	isLevelFinished: boolean;
 	isGameFinished: boolean;
-	moves: number;
 	starScore: number;
-	level: number,
+	level: number
+	moves: number;
 	onLevelRestart: () => void;
 	onGameRestart: () => void;
 	onNextLevel: () => void;
@@ -17,18 +18,18 @@ const mapStateToProps = (state) => {
 	return {
 		isLevelFinished: state.isLevelFinished,
 		isGameFinished: state.isGameFinished,
-		moves: state.moves,
 		starScore: state.starScore,
-		level: state.level
+		level: state.level,
+		moves: state.moves,
 	};
 };
 
 const InfoOverlay: React.FunctionComponent<Props> = ({
 	isLevelFinished,
 	isGameFinished,
-	moves,
 	starScore,
 	level,
+	moves,
 	onLevelRestart,
 	onGameRestart,
 	onNextLevel,
@@ -39,20 +40,6 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 		infoOverlayWrapperClass = classNames("info-overlay-wrapper", {
 			visible: isLevelFinished,
 		});
-//TODO move it to a separate component
-	let i = 0,
-		totalStarsAmount = 3,
-		uniqueKey = "",
-		stars = [];
-
-	for (i = 1; i <= totalStarsAmount; i++) {
-		uniqueKey = `star_${level}_${i}`;
-		if (i <= starScore) {
-			stars.push(<i className="far fa-star" key={uniqueKey}></i>);
-		} else {
-			stars.push(<i className="fas fa-star" key={uniqueKey}></i>);
-		}
-	}
 
 	return (
 		<div>
@@ -68,9 +55,7 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 					) : (
 						<div>
 							Level completed in {moves} {moves > 1 ? "moves" : "move"}!
-							<div>
-								{stars}
-							</div>
+							<StarsPoints level={level} score={starScore}/>
 						</div>
 					)}
 				</div>
