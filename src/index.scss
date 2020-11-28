@@ -676,10 +676,6 @@ p {
 					font-size: 20px;
 					padding: 4px 0;
 				}
-
-				.fa-star {
-					color: $primary-star-color;
-				}
 			}
 		}
 
@@ -691,6 +687,15 @@ p {
 				text-decoration: none;
 				color: $secondary-font-color;
 			}
+		}
+	}
+
+	.stars-points {
+		margin: 20px 0;
+		font-size: 22px;
+
+		.fa-star {
+			color: $primary-star-color;
 		}
 	}
 

@@ -22,14 +22,14 @@ const StarsPoints: React.FunctionComponent<Props> = ({
 	for (i = 1; i <= totalStarsAmount; i++) {
 		uniqueKey = `star_${level}_${i}`;
 		if (i <= score) {
-			stars.push(<i className="far fa-star" key={uniqueKey}></i>);
-		} else {
 			stars.push(<i className="fas fa-star" key={uniqueKey}></i>);
+		} else {
+			stars.push(<i className="far fa-star" key={uniqueKey}></i>);
 		}
 	}
 
 	return (
-		<div>
+		<div className="stars-points">
             {stars}
 		</div>
 	);

@@ -55,6 +55,8 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 					) : (
 						<div>
 							Level completed in {moves} {moves > 1 ? "moves" : "move"}!
+							<br/>
+							You've got {starScore} stars.
 							<StarsPoints level={level} score={starScore}/>
 						</div>
 					)}

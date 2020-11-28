@@ -1,5 +1,5 @@
 import { BOARD_WIDTH, BOARD_HEIGHT } from "../misc/constants";
-import { Cell } from "../misc/tsTypes";
+import { Cell, CellState } from "../misc/tsTypes";
 
 /*
   This method transforms the 1dim array of visible tiles into 2dim array of both visible and empty
@@ -50,4 +50,27 @@ export function factorial(n) {
 	} else {
 		return n * factorial(n - 1);
 	}
+}
+
+Storage.prototype.setObject = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+}
+
+Storage.prototype.getObject = function(key) {
+    return JSON.parse(this.getItem(key))
+}
+
+export function setMaxScores(state: CellState): void {
+	const localStorage = window.localStorage;
+
+	localStorage.setObject('swipers_game--best_scores', state.maxScores);
+}
+
+export function getMaxScores(): Array<number> {
+	const localStorage = window.localStorage;
+	let emptyBestScores: Array<number> = new Array(9).fill(0);
+
+	let bestScores = localStorage.getObject('swipers_game--best_scores');
+
+	return bestScores.length === 0 ? emptyBestScores : bestScores;
 }

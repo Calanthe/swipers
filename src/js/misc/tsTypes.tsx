@@ -40,6 +40,7 @@ export interface CellState {
 	hint: string;
 	stars: StarsThresholds;
 	score: number;
+	maxScores: Array<number>;
 	singleScore: number;
 	scoreClass: string;
 	moves: number;
