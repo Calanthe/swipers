@@ -216,8 +216,6 @@ function updateScore(state: CellState, mergedCounter: number): void {
 	state.score += singleScore;
 	state.scoreClass = "score-up";
 
-	console.log(state.score, state.maxScores, state.maxScores[state.level])
-
 	if (state.score > state.maxScores[state.level]) {
 		state.maxScores[state.level] = state.score;
 	}
