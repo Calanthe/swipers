@@ -212,7 +212,7 @@ function moveTile(move: number, state: CellState): Cell[] {
 }
 
 function updateScore(state: CellState, mergedCounter: number): void {
-	const singleScore = factorial(mergedCounter);
+	const singleScore = factorial(mergedCounter) * 10;
 
 	state.singleScore = singleScore;
 	state.score += singleScore;
