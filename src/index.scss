@@ -690,13 +690,13 @@ p {
 		}
 	}
 
+	.fa-star {
+		color: $primary-star-color;
+	}
+
 	.stars-points {
 		margin: 20px 0;
 		font-size: 22px;
-
-		.fa-star {
-			color: $primary-star-color;
-		}
 	}
 
 	.button-link {

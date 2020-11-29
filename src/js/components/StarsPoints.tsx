@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 interface Props {
 	score: number;
-	level: number
+    level: number;
+    customCssClass: string | null;
 }
 
 const mapStateToProps = (state) => {
@@ -12,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const StarsPoints: React.FunctionComponent<Props> = ({
 	score,
-	level,
+    level,
+    customCssClass,
 }) => {
 	let i = 0,
 		totalStarsAmount = 3,
@@ -29,7 +31,7 @@ const StarsPoints: React.FunctionComponent<Props> = ({
 	}
 
 	return (
-		<div className="stars-points">
+		<div className={customCssClass}>
             {stars}
 		</div>
 	);

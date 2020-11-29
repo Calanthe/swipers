@@ -52,7 +52,7 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 						Level completed in {moves} {moves > 1 ? "moves" : "move"}!
 						<br/>
 						You've got {starScore} stars.
-						<StarsPoints level={level} score={starScore}/>
+						<StarsPoints level={level} score={starScore} customCssClass={'stars-points'}/>
 					</div>
 				</div>
 				<div className="buttons-wrapper">
