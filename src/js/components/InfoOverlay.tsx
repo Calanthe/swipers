@@ -9,6 +9,8 @@ interface Props {
 	starScores: Array<number>;
 	level: number
 	moves: number;
+	score: number;
+	isNewBestScore: boolean;
 	onLevelRestart: () => void;
 	onGameRestart: () => void;
 	onNextLevel: () => void;
@@ -21,6 +23,8 @@ const mapStateToProps = (state) => {
 		starScores: state.starScores,
 		level: state.level,
 		moves: state.moves,
+		score: state.score,
+		isNewBestScore: state.isNewBestScore,
 	};
 };
 
@@ -30,6 +34,8 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 	starScores,
 	level,
 	moves,
+	score,
+	isNewBestScore,
 	onLevelRestart,
 	onGameRestart,
 	onNextLevel,
@@ -39,6 +45,9 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 		}),
 		infoOverlayWrapperClass = classNames("info-overlay-wrapper", {
 			visible: isLevelFinished,
+		}),
+		scoreValueClass = classNames("score-value", {
+			best: isNewBestScore,
 		}),
 		starScore = starScores[level];
 
@@ -52,6 +61,15 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 						<p className="info">
 							Level {level + 1} completed!
 						</p>
+						<div className="score-info">
+							<div className="score-title">Score:</div> 
+							<div className={scoreValueClass}>{score}</div>
+						</div>
+						<div className="score-info">
+							<div className="score-title">Moves:</div> 
+							<div className="score-value">{moves}</div>
+						</div>
+						<div className="line"></div>
 						<StarsPoints level={level} score={starScore} customCssClass={'stars-points'}/>
 					</div>
 				</div>

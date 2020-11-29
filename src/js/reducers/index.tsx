@@ -52,6 +52,7 @@ function initializeState(level: number = 0): CellState {
 		singleScore: 0,
 		scoreClass: "",
 		maxScores: getMaxScores(), //an array with the best scores for every level
+		isNewBestScore: false,
 		moves: 0,
 		starScores: getStarScores(), //an array with the best star scores for every level
 		isLevelFinished: false,
@@ -220,6 +221,7 @@ function updateScore(state: CellState, mergedCounter: number): void {
 
 	if (state.score > state.maxScores[state.level]) {
 		state.maxScores[state.level] = state.score;
+		state.isNewBestScore = true;
 	}
 }
 

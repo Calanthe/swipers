@@ -558,7 +558,7 @@ p {
 		}
 
 		.text {
-			margin: 10px 0px 30px;
+			margin: 10px 0px 20px;
 			white-space: pre-line;
 		}
 
@@ -575,6 +575,41 @@ p {
 			.button {
 				max-width: 100px;
 			}
+		}
+
+		.score-info {
+			display: grid;
+			grid-template-columns: [col] 64px [col] 50px;
+			margin-left: 100px;
+
+			.score-title {
+				padding: 14px 0 0 0;
+				font-size: 12px;
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+
+			.score-value {
+				padding: 22px 0 0 0;
+				font-size: 34px;
+				position: relative;
+
+				&.best:before {
+					content: "BEST!";
+					position: absolute;
+					top: 16px;
+					left: 26px;
+					transform: rotate(45deg);
+					color: $tertiary-font-color;
+					font-weight: bold;
+					font-size: 12px;
+				}
+			}
+		}
+
+		.line {
+			border-bottom: $secondary-font-color 2px solid;
+			padding-bottom: 10px;
 		}
 	}
 
@@ -701,7 +736,7 @@ p {
 	}
 
 	.stars-points {
-		margin: 20px auto;
+		margin: 14px auto;
 		font-size: 34px;
 		width: 133px;
 

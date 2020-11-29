@@ -43,6 +43,7 @@ export interface CellState {
 	maxScores: Array<number>;
 	singleScore: number;
 	scoreClass: string;
+	isNewBestScore: boolean;
 	moves: number;
 	starScores: Array<number>;
 	isLevelFinished: boolean;
