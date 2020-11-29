@@ -562,6 +562,12 @@ p {
 			white-space: pre-line;
 		}
 
+		.info {
+			text-transform: uppercase;
+			color: $tertiary-font-color;
+			font-size: 23px;
+		}
+
 		.buttons-wrapper {
 			display: grid;
 			grid-template-columns: [col] 167px [col] 84px;
@@ -695,8 +701,13 @@ p {
 	}
 
 	.stars-points {
-		margin: 20px 0;
-		font-size: 22px;
+		margin: 20px auto;
+		font-size: 34px;
+		width: 133px;
+
+		.fa-star {
+			padding: 0 6px 0 0;
+		}
 	}
 
 	.button-link {
