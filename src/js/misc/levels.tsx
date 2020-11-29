@@ -35,7 +35,7 @@ export const LEVELS: tileInLevel[][] = [
 				reach finish tile in the same move.`,
 			stars: {
 				maxPoints: 2,
-				minPoints: 3, 
+				minPoints: 4, 
 			}
 		},
 		{

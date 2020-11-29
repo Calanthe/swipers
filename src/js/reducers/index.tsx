@@ -15,7 +15,9 @@ import {
 	transformFromGridToState,
 	factorial,
 	getMaxScores,
-	setMaxScores
+	getStarScores,
+	setMaxScores,
+	setStarScores
 } from "../misc/utils";
 import {
 	Cell,
@@ -51,8 +53,7 @@ function initializeState(level: number = 0): CellState {
 		scoreClass: "",
 		maxScores: getMaxScores(), //an array with the best scores for every level
 		moves: 0,
-		starScore: 0,
-		//maxStarScores: getMaxStarScores(), //an array with the best star scores for every level
+		starScores: getStarScores(), //an array with the best star scores for every level
 		isLevelFinished: false,
 		levelsAmount: LEVELS.length,
 		isGameFinished: false,
@@ -197,9 +198,10 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 	if (cellsAmount === 0) {
 		state.isLevelFinished = true;
-		state.starScore = calculateStarScore(state);
+		state.starScores[state.level] = calculateStarScore(state);
 
 		setMaxScores(state);
+		setStarScores(state);
 
 		if (state.level === state.levelsAmount - 1) {
 			state.isGameFinished = true;

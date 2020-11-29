@@ -44,7 +44,7 @@ export interface CellState {
 	singleScore: number;
 	scoreClass: string;
 	moves: number;
-	starScore: number;
+	starScores: Array<number>;
 	isLevelFinished: boolean;
 	levelsAmount: number;
 	isGameFinished: boolean;

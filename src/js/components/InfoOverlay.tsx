@@ -6,7 +6,7 @@ import StarsPoints from "./StarsPoints";
 interface Props {
 	isLevelFinished: boolean;
 	isGameFinished: boolean;
-	starScore: number;
+	starScores: Array<number>;
 	level: number
 	moves: number;
 	onLevelRestart: () => void;
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 	return {
 		isLevelFinished: state.isLevelFinished,
 		isGameFinished: state.isGameFinished,
-		starScore: state.starScore,
+		starScores: state.starScores,
 		level: state.level,
 		moves: state.moves,
 	};
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 const InfoOverlay: React.FunctionComponent<Props> = ({
 	isLevelFinished,
 	isGameFinished,
-	starScore,
+	starScores,
 	level,
 	moves,
 	onLevelRestart,
@@ -39,7 +39,8 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 		}),
 		infoOverlayWrapperClass = classNames("info-overlay-wrapper", {
 			visible: isLevelFinished,
-		});
+		}),
+		starScore = starScores[level];
 
 	return (
 		<div>
@@ -47,19 +48,12 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 			<div className={infoOverlayClass}>
 				<p className="title">Congratulations!</p>
 				<div className="text">
-					{isGameFinished ? (
-						<p>
-							You just finished the game!<br/>
-							Now try to collect all the stars :)
-						</p>
-					) : (
-						<div>
-							Level completed in {moves} {moves > 1 ? "moves" : "move"}!
-							<br/>
-							You've got {starScore} stars.
-							<StarsPoints level={level} score={starScore}/>
-						</div>
-					)}
+					<div>
+						Level completed in {moves} {moves > 1 ? "moves" : "move"}!
+						<br/>
+						You've got {starScore} stars.
+						<StarsPoints level={level} score={starScore}/>
+					</div>
 				</div>
 				<div className="buttons-wrapper">
 					<button className="button" onClick={onLevelRestart}>

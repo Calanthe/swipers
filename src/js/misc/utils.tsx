@@ -72,5 +72,20 @@ export function getMaxScores(): Array<number> {
 
 	let bestScores = localStorage.getObject('swipers_game--best_scores');
 
-	return bestScores.length === 0 ? emptyBestScores : bestScores;
+	return (typeof bestScores === 'undefined' || bestScores === null || bestScores.length === 0) ? emptyBestScores : bestScores;
+}
+
+export function setStarScores(state: CellState): void {
+	const localStorage = window.localStorage;
+
+	localStorage.setObject('swipers_game--star_scores', state.starScores);
+}
+
+export function getStarScores(): Array<number> {
+	const localStorage = window.localStorage;
+	let emptyStarScores: Array<number> = new Array(9).fill(0);
+
+	let starScores = localStorage.getObject('swipers_game--star_scores');
+
+	return (typeof starScores === 'undefined' || starScores === null || starScores.length === 0) ? emptyStarScores : starScores;
 }
