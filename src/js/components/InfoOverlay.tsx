@@ -46,7 +46,7 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 		infoOverlayWrapperClass = classNames("info-overlay-wrapper", {
 			visible: isLevelFinished,
 		}),
-		scoreValueClass = classNames("score-value", {
+		scoreClass = classNames("score-title", {
 			best: isNewBestScore,
 		}),
 		starScore = starScores[level];
@@ -62,8 +62,8 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 							Level {level + 1} completed!
 						</p>
 						<div className="score-info">
-							<div className="score-title">Score:</div> 
-							<div className={scoreValueClass}>{score}</div>
+							<div className={scoreClass}>Score:</div> 
+							<div className="score-value">{score}</div>
 						</div>
 						<div className="score-info">
 							<div className="score-title">Moves:</div> 

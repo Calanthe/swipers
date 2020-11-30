@@ -11,6 +11,7 @@ interface Props {
 	onLevelRestart: () => void;
     onGameRestart: () => void;
     onSetLevel: (levelNo: number) => void;
+    onToggleHints: () => void;
 }
 
 const mapStateToProps = (state) => {
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => {
         isMenuVisible: state.isMenuVisible,
         level: state.level,
         moves: state.moves,
+        isHintsVisible: state.isHintsVisible
 	};
 };
 
@@ -28,7 +30,8 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
     onCloseMenu,
 	onLevelRestart,
     onGameRestart,
-    onSetLevel
+    onSetLevel,
+    onToggleHints
 }) => {
 	const menuOverlayClass = classNames("menu-overlay", {
 			visible: isMenuVisible,
@@ -57,6 +60,15 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
                         New game
                     </button>
 				) : null}
+
+                <button className="button hints" onClick={onToggleHints}>
+                    <span>Turn off hints</span> 
+                    <i className="fas fa-toggle-on"></i>
+                </button>
+                <button className="button hints" onClick={onToggleHints}>
+                    <span>Turn on hints</span> 
+                    <i className="fas fa-toggle-off"></i>
+                </button>
                 <LevelsDisplay onSetLevel={onSetLevel}/>
             </div>
             <p className="credits">

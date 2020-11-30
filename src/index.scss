@@ -560,6 +560,7 @@ p {
 		.text {
 			margin: 10px 0px 20px;
 			white-space: pre-line;
+			line-height: 20px;
 		}
 
 		.info {
@@ -587,23 +588,22 @@ p {
 				font-size: 12px;
 				text-transform: uppercase;
 				font-weight: bold;
-			}
-
-			.score-value {
-				padding: 22px 0 0 0;
-				font-size: 34px;
 				position: relative;
 
 				&.best:before {
 					content: "BEST!";
 					position: absolute;
-					top: 16px;
-					left: 26px;
-					transform: rotate(45deg);
+					top: 2px;
+					left: 0;
 					color: $tertiary-font-color;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 10px;
 				}
+			}
+
+			.score-value {
+				padding: 22px 0 0 0;
+				font-size: 34px;
 			}
 		}
 
@@ -678,6 +678,17 @@ p {
 				display: block;
 				width: 228px;
 				margin: 10px 0;
+			}
+
+			.hints {
+				text-align: left;
+				box-shadow: none;
+				background-color: $primary-bg-color;
+				color: $tile-bg-wall;
+
+				.fas {
+					margin-left: 76px;
+				}
 			}
 
 			.levels-display {

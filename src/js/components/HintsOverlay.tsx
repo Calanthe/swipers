@@ -31,7 +31,7 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 		<div>
 			<div className={hintsOverlayWrapperClass}></div>
 			<div className={hintsOverlayClass}>
-				<p className="title">Tip</p>
+				<p className="title">Hint</p>
 				<div className="text">
 					{hint}
 				</div>
