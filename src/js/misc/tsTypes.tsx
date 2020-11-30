@@ -7,7 +7,8 @@ import {
 	SET_NEXT_LEVEL,
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
-	TOGGLE_HINTS
+	TOGGLE_HINTS,
+	TOGGLE_HINTS_OVERLAY
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -51,6 +52,7 @@ export interface CellState {
 	isGameFinished: boolean;
 	isMenuVisible: boolean;
 	isHintsVisible: boolean;
+	isHintsOverlayVisible: boolean;
 }
 
 export interface tileInLevel {
@@ -99,6 +101,10 @@ export interface toggleMenuOverlayAction {
 
 export interface toggleHintsAction {
 	type: typeof TOGGLE_HINTS;
+}
+
+export interface toggleHintsOverlayAction {
+	type: typeof TOGGLE_HINTS_OVERLAY;
 }
 
 export interface RootReducerAction {

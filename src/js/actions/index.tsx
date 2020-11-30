@@ -7,7 +7,8 @@ import {
 	SET_NEXT_LEVEL,
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
-	TOGGLE_HINTS
+	TOGGLE_HINTS,
+	TOGGLE_HINTS_OVERLAY
 } from "./actionTypes";
 import {
 	Cell,
@@ -19,7 +20,8 @@ import {
 	SetNextLevelAction,
 	SetLevelAction,
 	toggleMenuOverlayAction,
-	toggleHintsAction
+	toggleHintsAction,
+	toggleHintsOverlayAction
 } from "../misc/tsTypes";
 
 export function updateCells(keyPressedNo: number): UpdateCellsAction {
@@ -69,13 +71,19 @@ export function setLevel(levelNo: number): SetLevelAction {
 
 export function toggleMenuOverlay(): toggleMenuOverlayAction {
 	return {
-		type: TOGGLE_MENU_OVERLAY,
+		type: TOGGLE_MENU_OVERLAY
 	};
 }
 
 export function toggleHints(): toggleHintsAction {
 	return {
-		type: TOGGLE_HINTS,
+		type: TOGGLE_HINTS
+	};
+}
+
+export function toggleHintsOverlay(): toggleHintsOverlayAction {
+	return {
+		type: TOGGLE_HINTS_OVERLAY
 	};
 }
 

@@ -15,7 +15,8 @@ import {
 	setNextLevel,
 	setLevel,
 	toggleMenuOverlay,
-	toggleHints
+	toggleHints,
+	toggleHintsOverlay
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 import MenuOverlay from "./MenuOverlay";
@@ -30,6 +31,7 @@ interface GameProps {
 	setLevel: typeof setLevel;
 	toggleMenuOverlay: typeof toggleMenuOverlay;
 	toggleHints: typeof toggleHints;
+	toggleHintsOverlay: typeof toggleHintsOverlay;
 }
 
 const IDLE_TIMER = 600; // at least 200ms transition speed + 200ms transition delay
@@ -46,7 +48,8 @@ const mapDispatchToProps = (dispatch) => {
 		setNextLevel: () => dispatch(setNextLevel()),
 		setLevel: (levelNo: number) => dispatch(setLevel(levelNo)),
 		toggleMenuOverlay: () => dispatch(toggleMenuOverlay()),
-		toggleHints: () => dispatch(toggleHints())
+		toggleHints: () => dispatch(toggleHints()),
+		toggleHintsOverlay: () => dispatch(toggleHintsOverlay())
 	};
 };
 
@@ -111,7 +114,11 @@ class Game extends React.Component<GameProps> {
 		this.props.setLevel(levelNo);
 	};
 
-	handleCloseHints = (): void => {
+	handleCloseHintsOverlay = (): void => {
+		this.props.toggleHintsOverlay();
+	};
+
+	handleToggleHints = (): void => {
 		this.props.toggleHints();
 	};
 
@@ -154,7 +161,7 @@ class Game extends React.Component<GameProps> {
 						onNextLevel={this.handleSetNextLevel}
 					/>
 					<HintsOverlay
-						onClose={this.handleCloseHints}
+						onClose={this.handleCloseHintsOverlay}
 					/>
 					<MenuBar
 						onShowMenu={this.handleToggleMenu}
@@ -165,6 +172,7 @@ class Game extends React.Component<GameProps> {
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
 						onSetLevel={this.handleSetLevel}
+						onToggleHints={this.handleToggleHints}
 					/>
       			</Swipe>
 			</div>

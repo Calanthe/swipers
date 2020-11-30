@@ -7,7 +7,8 @@ import {
 	SET_NEXT_LEVEL,
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
-	TOGGLE_HINTS
+	TOGGLE_HINTS,
+	TOGGLE_HINTS_OVERLAY
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -16,8 +17,10 @@ import {
 	factorial,
 	getMaxScores,
 	getStarScores,
+	getHintsVisibility,
 	setMaxScores,
-	setStarScores
+	setStarScores,
+	setHintsVisibility
 } from "../misc/utils";
 import {
 	Cell,
@@ -59,7 +62,8 @@ function initializeState(level: number = 0): CellState {
 		levelsAmount: LEVELS.length,
 		isGameFinished: false,
 		isMenuVisible: false,
-		isHintsVisible: true
+		isHintsVisible: getHintsVisibility(),
+		isHintsOverlayVisible: true
 	};
 }
 
@@ -351,6 +355,17 @@ function setActiveType(cell: Cell, activeType: number): number {
 	return cell.type !== WALL_TYPE ? cell.type : activeType;
 }
 
+function toogleHintsAvailable(state: CellState): CellState {
+	const newState = {
+		...state,
+		isHintsVisible: !state.isHintsVisible
+	};
+
+	setHintsVisibility(!state.isHintsVisible);
+
+	return newState;
+}
+
 const rootReducer = (
 	state = initializeState(INITIAL_LEVEL),
 	action: RootReducerAction
@@ -393,9 +408,12 @@ const rootReducer = (
 			};
 			return newState;
 		case TOGGLE_HINTS:
+			newState = toogleHintsAvailable(state);
+			return newState;
+		case TOGGLE_HINTS_OVERLAY:
 			newState = {
 				...state,
-				isHintsVisible: !state.isHintsVisible
+				isHintsOverlayVisible: !state.isHintsOverlayVisible
 			};
 			return newState;
 		default:

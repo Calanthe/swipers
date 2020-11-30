@@ -3,28 +3,31 @@ import { connect } from "react-redux";
 import classNames from "classnames";
 
 interface Props {
-    hint: string;
-    isHintsVisible: boolean;
+	hint: string;
+	isHintsVisible: boolean;
+    isHintsOverlayVisible: boolean;
 	onClose: () => void;
 }
 
 const mapStateToProps = (state) => {
 	return {
-        hint: state.hint,
-        isHintsVisible: state.isHintsVisible,
+		hint: state.hint,
+		isHintsVisible: state.isHintsVisible,
+        isHintsOverlayVisible: state.isHintsOverlayVisible,
 	};
 };
 
 const HintsOverlay: React.FunctionComponent<Props> = ({
-    hint,
-    isHintsVisible,
+	hint,
+	isHintsVisible,
+    isHintsOverlayVisible,
 	onClose
 }) => {
 	const hintsOverlayClass = classNames("info-overlay", {
-			visible: (hint && isHintsVisible) ? true : false,
+			visible: (hint && isHintsOverlayVisible && isHintsVisible) ? true : false,
 		}),
 		hintsOverlayWrapperClass = classNames("info-overlay-wrapper", {
-			visible: (hint && isHintsVisible) ? true : false,
+			visible: (hint && isHintsOverlayVisible && isHintsVisible) ? true : false,
 		});
 
 	return (

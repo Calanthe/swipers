@@ -89,3 +89,18 @@ export function getStarScores(): Array<number> {
 
 	return (typeof starScores === 'undefined' || starScores === null || starScores.length === 0) ? emptyStarScores : starScores;
 }
+
+export function setHintsVisibility(isHintsVisible: boolean): void {
+	const localStorage = window.localStorage;
+
+	localStorage.setObject('swipers_game--hints-visibility', isHintsVisible);
+}
+
+export function getHintsVisibility(): boolean {
+	const localStorage = window.localStorage;
+	let initialHintsVisibility: boolean = true;
+
+	let hintsVisibility = localStorage.getObject('swipers_game--hints-visibility');
+
+	return (typeof hintsVisibility === 'undefined' || hintsVisibility === null) ? initialHintsVisibility : hintsVisibility;
+}
