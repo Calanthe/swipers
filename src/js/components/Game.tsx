@@ -16,7 +16,7 @@ import {
 	setLevel,
 	toggleMenuOverlay,
 	toggleHints,
-	toggleHintsOverlay
+	hideHintsOverlay
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 import MenuOverlay from "./MenuOverlay";
@@ -31,7 +31,7 @@ interface GameProps {
 	setLevel: typeof setLevel;
 	toggleMenuOverlay: typeof toggleMenuOverlay;
 	toggleHints: typeof toggleHints;
-	toggleHintsOverlay: typeof toggleHintsOverlay;
+	hideHintsOverlay: typeof hideHintsOverlay;
 }
 
 const IDLE_TIMER = 600; // at least 200ms transition speed + 200ms transition delay
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 		setLevel: (levelNo: number) => dispatch(setLevel(levelNo)),
 		toggleMenuOverlay: () => dispatch(toggleMenuOverlay()),
 		toggleHints: () => dispatch(toggleHints()),
-		toggleHintsOverlay: () => dispatch(toggleHintsOverlay())
+		hideHintsOverlay: () => dispatch(hideHintsOverlay())
 	};
 };
 
@@ -114,8 +114,8 @@ class Game extends React.Component<GameProps> {
 		this.props.setLevel(levelNo);
 	};
 
-	handleCloseHintsOverlay = (): void => {
-		this.props.toggleHintsOverlay();
+	handleHideHintsOverlay = (): void => {
+		this.props.hideHintsOverlay();
 	};
 
 	handleToggleHints = (): void => {
@@ -161,7 +161,7 @@ class Game extends React.Component<GameProps> {
 						onNextLevel={this.handleSetNextLevel}
 					/>
 					<HintsOverlay
-						onClose={this.handleCloseHintsOverlay}
+						onClose={this.handleHideHintsOverlay}
 					/>
 					<MenuBar
 						onShowMenu={this.handleToggleMenu}

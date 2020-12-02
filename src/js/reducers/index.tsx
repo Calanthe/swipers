@@ -8,7 +8,8 @@ import {
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
-	TOGGLE_HINTS_OVERLAY
+	SHOW_HINTS_OVERLAY,
+	HIDE_HINTS_OVERLAY
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -29,6 +30,7 @@ import {
 	RootReducerAction,
 } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
+import React from "react";
 
 const INITIAL_LEVEL = 0;
 
@@ -156,6 +158,11 @@ function moveTile(move: number, state: CellState): Cell[] {
 
 	const traversals = buildTraversals(move),
 		moveVector = getMoveVector(move);
+
+	//close hints overlay if still open
+	if (state.isHintsOverlayVisible) {
+		state.isHintsOverlayVisible = false;
+	}
 
 	// Traverse the grid in the right direction and move tiles
 	traversals.x.forEach((x) => {
@@ -410,10 +417,16 @@ const rootReducer = (
 		case TOGGLE_HINTS:
 			newState = toogleHintsAvailable(state);
 			return newState;
-		case TOGGLE_HINTS_OVERLAY:
+		case SHOW_HINTS_OVERLAY:
 			newState = {
 				...state,
-				isHintsOverlayVisible: !state.isHintsOverlayVisible
+				isHintsOverlayVisible: true
+			};
+			return newState;
+		case HIDE_HINTS_OVERLAY:
+			newState = {
+				...state,
+				isHintsOverlayVisible: false
 			};
 			return newState;
 		default:

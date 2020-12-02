@@ -8,7 +8,8 @@ import {
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
-	TOGGLE_HINTS_OVERLAY
+	SHOW_HINTS_OVERLAY,
+	HIDE_HINTS_OVERLAY
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -103,8 +104,12 @@ export interface toggleHintsAction {
 	type: typeof TOGGLE_HINTS;
 }
 
-export interface toggleHintsOverlayAction {
-	type: typeof TOGGLE_HINTS_OVERLAY;
+export interface showHintsOverlayAction {
+	type: typeof SHOW_HINTS_OVERLAY;
+}
+
+export interface hideHintsOverlayAction {
+	type: typeof HIDE_HINTS_OVERLAY;
 }
 
 export interface RootReducerAction {

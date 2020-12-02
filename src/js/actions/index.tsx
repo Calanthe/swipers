@@ -8,7 +8,8 @@ import {
 	SET_LEVEL,
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
-	TOGGLE_HINTS_OVERLAY
+	SHOW_HINTS_OVERLAY,
+	HIDE_HINTS_OVERLAY
 } from "./actionTypes";
 import {
 	Cell,
@@ -21,7 +22,8 @@ import {
 	SetLevelAction,
 	toggleMenuOverlayAction,
 	toggleHintsAction,
-	toggleHintsOverlayAction
+	showHintsOverlayAction,
+	hideHintsOverlayAction
 } from "../misc/tsTypes";
 
 export function updateCells(keyPressedNo: number): UpdateCellsAction {
@@ -81,9 +83,15 @@ export function toggleHints(): toggleHintsAction {
 	};
 }
 
-export function toggleHintsOverlay(): toggleHintsOverlayAction {
+export function showHintsOverlay(): showHintsOverlayAction {
 	return {
-		type: TOGGLE_HINTS_OVERLAY
+		type: SHOW_HINTS_OVERLAY
+	};
+}
+
+export function hideHintsOverlay(): hideHintsOverlayAction {
+	return {
+		type: HIDE_HINTS_OVERLAY
 	};
 }
 
