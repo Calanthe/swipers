@@ -227,7 +227,7 @@ $score-transition-speed: 1s;
 @keyframes menu-overlay-fade-in {
 	0% {
 		opacity: 0;
-		z-index: -1;
+		z-index: 0;
 	}
 
 	100% {
@@ -511,6 +511,7 @@ p {
 	}
 
 	.info-overlay-wrapper {
+		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -519,11 +520,11 @@ p {
 		background-color: $primary-bg-color;
 		opacity: 0;
 		z-index: 0;
-		pointer-events: none;
 
 		&.visible {
 			animation: $transition-speed overlay-fade-in $overlay-transition-delay
 				forwards;
+			display: block;
 		}
 	}
 
@@ -653,9 +654,8 @@ p {
 		top: 0;
 		left: 0;
 		opacity: 0;
-		z-index: -1;
+		z-index: 0;
 		font-family: sans-serif;
-		outline: 1px solid $secondary-font-color;
 
 		&.visible {
 			animation: $transition-speed menu-overlay-fade-in
