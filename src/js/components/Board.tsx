@@ -6,17 +6,17 @@ import Tile from "./Tile";
 import { Cell, FinishCords } from "../misc/tsTypes";
 
 interface Props {
-	cells: Array<Cell>;
-	finishCords: FinishCords;
+	cells: Cell[];
+	finishCords: Array<FinishCords>;
 	activeType: number;
 	onMouseClick: (cell: Cell) => void;
 }
 
 const mapStateToProps = (state) => {
 	return {
-		cells: state.cells,
-		finishCords: state.finishCords,
-		activeType: state.activeType,
+		cells: state.levelData.cells,
+		finishCords: state.levelData.finishCords,
+		activeType: state.levelData.activeType,
 	};
 };
 
@@ -44,19 +44,23 @@ class Grid extends React.Component {
 	}
 }
 
-const Board: React.FunctionComponent<Props> = (props) => {
-	const cells = props.cells,
-		finishCords = props.finishCords[props.activeType - 1], //get only finish cords of active type, not the whole array
-		boardClassName = classNames("game", TILE_TYPES[props.activeType]);
+const Board: React.FunctionComponent<Props> = ({
+	cells,
+	finishCords,
+	activeType,
+	onMouseClick
+}) => {
+	const activeFinishCords = finishCords[activeType - 1], //get only finish cords of active type, not the whole array
+		boardClassName = classNames("game", TILE_TYPES[activeType]);
 	let tiles = [];
 
 	cells.forEach((cell, i) => {
 		const typeClass = "tile-type-" + TILE_TYPES[cell.type],
 			positionClass = "tile-position-" + cell.positionX + "-" + cell.positionY,
 			positionClassFinish =
-				"tile-position-" + finishCords.positionX + "-" + finishCords.positionY,
+				"tile-position-" + activeFinishCords.positionX + "-" + activeFinishCords.positionY,
 			actionClass = "tile-action-" + cell.actionClass,
-			isTileActive = props.activeType === cell.type,
+			isTileActive = activeType === cell.type,
 			isTileFinish = cell.isFinishTile,
 			tileClassName = classNames(
 				"tile",
@@ -70,7 +74,7 @@ const Board: React.FunctionComponent<Props> = (props) => {
 				<Tile
 					tileClassName={tileClassName}
 					cell={cell}
-					onMouseClick={props.onMouseClick}
+					onMouseClick={onMouseClick}
 					key={cell.uniqueKey.toString()}
 				/>
 			);

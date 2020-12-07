@@ -18,8 +18,8 @@ interface Props {
 const mapStateToProps = (state) => {
 	return {
         isMenuVisible: state.isMenuVisible,
-        level: state.level,
-        moves: state.moves,
+        level: state.levelData.level,
+        moves: state.levelData.moves,
         isHintsVisible: state.isHintsVisible
 	};
 };

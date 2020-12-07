@@ -11,7 +11,7 @@ interface Props {
 
 const mapStateToProps = (state) => {
 	return {
-		hint: state.hint,
+		hint: state.levelData.hint,
 		isHintsVisible: state.isHintsVisible,
         isHintsOverlayVisible: state.isHintsOverlayVisible,
 	};

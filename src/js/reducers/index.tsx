@@ -26,11 +26,11 @@ import {
 import {
 	Cell,
 	CellState,
+	LevelData,
 	FinishCords,
 	RootReducerAction,
 } from "../misc/tsTypes";
 import { LEVELS } from "../misc/levels";
-import React from "react";
 
 const INITIAL_LEVEL = 0;
 
@@ -46,27 +46,33 @@ interface Traversals {
 
 function initializeState(level: number = 0): CellState {
 	return {
-		cells: initializeCells(level),
-		activeType: 1,
+		levelData: initializeLevel(level),
+		maxScores: getMaxScores(), //an array with the best scores for every level
+		starScores: getStarScores(), //an array with the best star scores for every level
+		levelsAmount: LEVELS.length,
+		isMenuVisible: false,
+		isHintsVisible: getHintsVisibility(),
+		isHintsOverlayVisible: true
+	};
+}
+
+function initializeLevel(level: number = 0): LevelData {
+	return {
 		level: level,
+		cells: initializeCells(level),
 		finishCords: setFinishCords(level),
+		activeType: 1,
 		nonStandardTilesAmount: countTiles(level), //counter of nonstandard tiles, needed to calc if lvl is finished
 		hint: setHint(level),
 		stars: LEVELS[level][0].stars, //an object that indicates how many moves are neeed to get 1, 2 or 3 stars
 		score: 0,
 		singleScore: 0,
 		scoreClass: "",
-		maxScores: getMaxScores(), //an array with the best scores for every level
 		isNewBestScore: false,
 		moves: 0,
-		starScores: getStarScores(), //an array with the best star scores for every level
 		isLevelFinished: false,
-		levelsAmount: LEVELS.length,
 		isGameFinished: false,
-		isMenuVisible: false,
-		isHintsVisible: getHintsVisibility(),
-		isHintsOverlayVisible: true
-	};
+	}
 }
 
 // Build a grid based on the current level
@@ -136,9 +142,9 @@ function setHint(level: number = 0): string {
 }
 
 function resetCssClasses(state: CellState): Cell[] {
-	let cellsInGrid = transformFromStateToGrid(state.cells);
+	let cellsInGrid = transformFromStateToGrid(state.levelData.cells);
 	//remove 'merged' css class from the finish tiles
-	state.finishCords.forEach((finishCoordinates) => {
+	state.levelData.finishCords.forEach((finishCoordinates) => {
 		cellsInGrid[finishCoordinates.positionX][
 			finishCoordinates.positionY
 		].actionClass = "";
@@ -150,9 +156,9 @@ function resetCssClasses(state: CellState): Cell[] {
 function moveTile(move: number, state: CellState): Cell[] {
 	let cell: Cell,
 		newPosition: Cell,
-		availableCells = removeMergedCells(state.cells),
+		availableCells = removeMergedCells(state.levelData.cells),
 		cellsInGrid = transformFromStateToGrid(availableCells),
-		cellsAmount = availableCells.length - state.nonStandardTilesAmount,
+		cellsAmount = availableCells.length - state.levelData.nonStandardTilesAmount,
 		mergedCounter: number = 0,
 		alreadyMovedTile: boolean = false;
 
@@ -168,7 +174,7 @@ function moveTile(move: number, state: CellState): Cell[] {
 	traversals.x.forEach((x) => {
 		traversals.y.forEach((y) => {
 			cell = cellsInGrid[x][y];
-			if (cell && cell.type === state.activeType && !cell.isFinishTile) {
+			if (cell && cell.type === state.levelData.activeType && !cell.isFinishTile) {
 				newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
 				if (
 					newPosition.nextTile &&
@@ -195,7 +201,7 @@ function moveTile(move: number, state: CellState): Cell[] {
 				moveCell(cellsInGrid, newPosition, cell);
 
 				if (!alreadyMovedTile) {
-					state.moves++;
+					state.levelData.moves++;
 					alreadyMovedTile = true;
 				}
 			}
@@ -203,20 +209,20 @@ function moveTile(move: number, state: CellState): Cell[] {
 	});
 
 	if (!mergedCounter) {
-		state.scoreClass = "";
+		state.levelData.scoreClass = "";
 	} else {
 		updateScore(state, mergedCounter);
 	}
 
 	if (cellsAmount === 0) {
-		state.isLevelFinished = true;
-		state.starScores[state.level] = calculateStarScore(state);
+		state.levelData.isLevelFinished = true;
+		state.starScores[state.levelData.level] = calculateStarScore(state);
 
 		setMaxScores(state);
 		setStarScores(state);
 
-		if (state.level === state.levelsAmount - 1) {
-			state.isGameFinished = true;
+		if (state.levelData.level === state.levelsAmount - 1) {
+			state.levelData.isGameFinished = true;
 		}
 	}
 
@@ -226,22 +232,22 @@ function moveTile(move: number, state: CellState): Cell[] {
 function updateScore(state: CellState, mergedCounter: number): void {
 	const singleScore = factorial(mergedCounter) * 10;
 
-	state.singleScore = singleScore;
-	state.score += singleScore;
-	state.scoreClass = "score-up";
+	state.levelData.singleScore = singleScore;
+	state.levelData.score += singleScore;
+	state.levelData.scoreClass = "score-up";
 
-	if (state.score > state.maxScores[state.level]) {
-		state.maxScores[state.level] = state.score;
-		state.isNewBestScore = true;
+	if (state.levelData.score > state.maxScores[state.levelData.level]) {
+		state.maxScores[state.levelData.level] = state.levelData.score;
+		state.levelData.isNewBestScore = true;
 	}
 }
 
 function calculateStarScore(state: CellState): number {
 	let starScore = 1; //if you manage to finish the level, get at least one star
 
-	if (state.moves <= state.stars.maxPoints) {
+	if (state.levelData.moves <= state.levelData.stars.maxPoints) {
 		starScore = 3;
-	} else if (state.moves <= state.stars.minPoints) {
+	} else if (state.levelData.moves <= state.levelData.stars.minPoints) {
 		starScore = 2;
 	}
 
@@ -381,15 +387,18 @@ const rootReducer = (
 
 	switch (action.type) {
 		case UPDATE_CELLS:
-			newState = { ...state, cells: moveTile(action.payload, state) };
+			newState = { 
+				...state,
+				levelData: {...state.levelData, cells: moveTile(action.payload, state)}
+			};
 			return newState;
 		case SET_ACTIVE_TYPE:
 			newState = {
 				...state,
-				activeType: setActiveType(action.payload, state.activeType),
+				levelData: {...state.levelData, activeType: setActiveType(action.payload, state.levelData.activeType)}
 			};
 			return newState;
-		case RESTART_CSS_CLASSES:
+		case RESTART_CSS_CLASSES: //TODO remove?
 			newState = {
 				...state,
 				cells: resetCssClasses(state),
@@ -397,16 +406,35 @@ const rootReducer = (
 			};
 			return newState;
 		case RESTART_LEVEL:
-			newState = initializeState(state.level);
+			newState = { 
+				...state, 
+				levelData: initializeLevel(state.levelData.level), 
+				isMenuVisible: false,
+				isHintsOverlayVisible: true
+			};
 			return newState;
 		case RESTART_GAME:
-			newState = initializeState(INITIAL_LEVEL);
+			newState = { 
+				...state, 
+				levelData: initializeLevel(INITIAL_LEVEL), 
+				isMenuVisible: false,
+				isHintsOverlayVisible: true
+			};
 			return newState;
 		case SET_NEXT_LEVEL:
-			newState = initializeState(state.level + 1);
+			newState = { 
+				...state, 
+				levelData: initializeLevel(state.levelData.level + 1),
+				isHintsOverlayVisible: true
+			};
 			return newState;
 		case SET_LEVEL:
-			newState = initializeState(action.payload);
+			newState = { 
+				...state, 
+				levelData: initializeLevel(action.payload), 
+				isMenuVisible: false,
+				isHintsOverlayVisible: true
+			};
 			return newState;
 		case TOGGLE_MENU_OVERLAY:
 			newState = {

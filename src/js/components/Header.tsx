@@ -15,13 +15,13 @@ interface Props {
 
 const mapStateToProps = (state) => {
 	return {
-		score: state.score,
-		singleScore: state.singleScore,
+		score: state.levelData.score,
+		singleScore: state.levelData.singleScore,
 		maxScores: state.maxScores,
-		level: state.level,
-		moves: state.moves,
-		activeType: state.activeType,
-		scoreClass: state.scoreClass,
+		level: state.levelData.level,
+		moves: state.levelData.moves,
+		activeType: state.levelData.activeType,
+		scoreClass: state.levelData.scoreClass,
 	};
 };
 

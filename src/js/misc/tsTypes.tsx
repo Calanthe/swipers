@@ -28,29 +28,34 @@ export interface FinishCords {
 	positionY: number;
 }
 
-export interface StarsThresholds {
+interface StarsThresholds {
 	maxPoints: number;
 	minPoints: number;
 }
 
-export interface CellState {
-	cells: Cell[];
-	activeType: number;
+export interface LevelData {
 	level: number;
+	cells: Cell[];
 	finishCords: Array<FinishCords>;
+	activeType: number;
 	nonStandardTilesAmount: number;
 	hint: string;
 	stars: StarsThresholds;
 	score: number;
-	maxScores: Array<number>;
 	singleScore: number;
 	scoreClass: string;
 	isNewBestScore: boolean;
 	moves: number;
-	starScores: Array<number>;
 	isLevelFinished: boolean;
-	levelsAmount: number;
 	isGameFinished: boolean;
+
+}
+
+export interface CellState {
+	levelData: LevelData;
+	maxScores: Array<number>;
+	starScores: Array<number>;
+	levelsAmount: number;
 	isMenuVisible: boolean;
 	isHintsVisible: boolean;
 	isHintsOverlayVisible: boolean;
