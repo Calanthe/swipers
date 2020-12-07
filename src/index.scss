@@ -772,8 +772,7 @@ p {
 		cursor: pointer;
 
 		&:focus {
-			outline: none;
-			border: 1px solid $secondary-font-color;
+			outline: none
 		}
 	}
 

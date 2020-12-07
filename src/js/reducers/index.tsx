@@ -15,7 +15,6 @@ import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
 	transformFromStateToGrid,
 	transformFromGridToState,
-	factorial,
 	getMaxScores,
 	getStarScores,
 	getHintsVisibility,
@@ -23,6 +22,11 @@ import {
 	setStarScores,
 	setHintsVisibility
 } from "../misc/utils";
+import { 
+	resetCssClasses,
+	updateScore,
+	calculateStarScore
+} from "../misc/helpers";
 import {
 	Cell,
 	CellState,
@@ -141,18 +145,6 @@ function setHint(level: number = 0): string {
 	return hint;
 }
 
-function resetCssClasses(state: CellState): Cell[] {
-	let cellsInGrid = transformFromStateToGrid(state.levelData.cells);
-	//remove 'merged' css class from the finish tiles
-	state.levelData.finishCords.forEach((finishCoordinates) => {
-		cellsInGrid[finishCoordinates.positionX][
-			finishCoordinates.positionY
-		].actionClass = "";
-	});
-
-	return transformFromGridToState(cellsInGrid);
-}
-
 function moveTile(move: number, state: CellState): Cell[] {
 	let cell: Cell,
 		newPosition: Cell,
@@ -227,31 +219,6 @@ function moveTile(move: number, state: CellState): Cell[] {
 	}
 
 	return transformFromGridToState(cellsInGrid);
-}
-
-function updateScore(state: CellState, mergedCounter: number): void {
-	const singleScore = factorial(mergedCounter) * 10;
-
-	state.levelData.singleScore = singleScore;
-	state.levelData.score += singleScore;
-	state.levelData.scoreClass = "score-up";
-
-	if (state.levelData.score > state.maxScores[state.levelData.level]) {
-		state.maxScores[state.levelData.level] = state.levelData.score;
-		state.levelData.isNewBestScore = true;
-	}
-}
-
-function calculateStarScore(state: CellState): number {
-	let starScore = 1; //if you manage to finish the level, get at least one star
-
-	if (state.levelData.moves <= state.levelData.stars.maxPoints) {
-		starScore = 3;
-	} else if (state.levelData.moves <= state.levelData.stars.minPoints) {
-		starScore = 2;
-	}
-
-	return starScore;
 }
 
 function removeMergedCells(cells: Cell[]): Cell[] {
