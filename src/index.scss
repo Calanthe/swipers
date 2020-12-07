@@ -650,6 +650,7 @@ p {
 		left: 0;
 		opacity: 0;
 		z-index: 0;
+		background-color: $secondary-bg-color;
 
 		&.visible {
 			animation: $transition-speed menu-overlay-wrapper-fade-in
@@ -658,10 +659,9 @@ p {
 		}
 
 		.menu-overlay {
-			width: $game-width;
+			width: 308px;
 			margin: 0 auto;
-			padding: 70px 40px;
-			background-color: $secondary-bg-color;
+			padding: 70px 0 0 0;
 			font-family: sans-serif;
 		}
 
@@ -674,7 +674,7 @@ p {
 		}
 
 		.content-wrapper {
-			padding: 0 0 0 40px;
+			padding: 0 40px;
 
 			.button {
 				display: block;
