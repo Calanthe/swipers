@@ -65,8 +65,6 @@ class Game extends React.Component<GameProps> {
 			}, IDLE_TIMER);*/
 			//}
 		});
-
-		this.props.toggleMenuOverlay();
 	}
 
 	handleKeyPress = (eventKey: string): void => {
@@ -153,8 +151,19 @@ class Game extends React.Component<GameProps> {
 					onSwipeDown={this.onSwipeDown.bind(this)}
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
 					onSwipeRight={this.onSwipeRight.bind(this)}>
+					<MenuOverlay
+						onCloseMenu={this.handleToggleMenu}
+						onLevelRestart={this.handleRestartLevel}
+						onGameRestart={this.handleRestartGame}
+						onSetLevel={this.handleSetLevel}
+						onToggleHints={this.handleToggleHints}
+					/>
 					<Header/>
 					<Board onMouseClick={this.handleMouseClick}/>
+					<MenuBar
+						onShowMenu={this.handleToggleMenu}
+						onLevelRestart={this.handleRestartLevel}
+					/>
 					<InfoOverlay
 						onLevelRestart={this.handleRestartLevel}
 						onGameRestart={this.handleRestartGame}
@@ -162,17 +171,6 @@ class Game extends React.Component<GameProps> {
 					/>
 					<HintsOverlay
 						onClose={this.handleHideHintsOverlay}
-					/>
-					<MenuBar
-						onShowMenu={this.handleToggleMenu}
-						onLevelRestart={this.handleRestartLevel}
-					/>
-					<MenuOverlay
-						onCloseMenu={this.handleToggleMenu}
-						onLevelRestart={this.handleRestartLevel}
-						onGameRestart={this.handleRestartGame}
-						onSetLevel={this.handleSetLevel}
-						onToggleHints={this.handleToggleHints}
 					/>
       			</Swipe>
 			</div>

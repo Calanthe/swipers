@@ -50,9 +50,9 @@ function initializeState(level: number = 0): CellState {
 		maxScores: getMaxScores(), //an array with the best scores for every level
 		starScores: getStarScores(), //an array with the best star scores for every level
 		levelsAmount: LEVELS.length,
-		isMenuVisible: false,
+		isMenuVisible: true,
 		isHintsVisible: getHintsVisibility(),
-		isHintsOverlayVisible: true
+		isHintsOverlayVisible: false
 	};
 }
 
