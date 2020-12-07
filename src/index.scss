@@ -242,13 +242,8 @@ body {
 	font-family: helvetica, arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: $primary-bg-color;
+	background-color: $secondary-bg-color;
 	color: $primary-font-color;
-	background: linear-gradient(
-		to bottom,
-		$secondary-bg-color 0%,
-		$primary-bg-color 100%
-	);
 }
 
 p {
@@ -766,7 +761,7 @@ p {
 		font-size: 12px;
 		color: $secondary-font-color;
 		text-align: center;
-		background-color: $primary-bg-color;
+		background-color: $secondary-bg-color;
 		cursor: pointer;
 	}
 
