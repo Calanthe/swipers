@@ -136,7 +136,7 @@ $secondary-font-color: #658fff;
 $tertiary-font-color: #3369ff;
 $primary-star-color: #f3d00b;
 
-$game-width: 372px;
+$game-width: 364px;
 $tile-size: 45px;
 $grid-row-cells: 7;
 $grid-spacing: 4;
@@ -770,6 +770,11 @@ p {
 		text-align: center;
 		background-color: $secondary-bg-color;
 		cursor: pointer;
+
+		&:focus {
+			outline: none;
+			border: 1px solid $secondary-font-color;
+		}
 	}
 
 	.hint {
