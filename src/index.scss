@@ -136,6 +136,7 @@ $secondary-font-color: #658fff;
 $tertiary-font-color: #3369ff;
 $primary-star-color: #f3d00b;
 
+$game-width: 372px;
 $tile-size: 45px;
 $grid-row-cells: 7;
 $grid-spacing: 4;
@@ -151,7 +152,7 @@ $tile-bg-wall: #656262;
 
 $transition-speed: 200ms;
 $overlay-transition-delay: 400ms;
-$menu-overlay-transition-delay: 100ms;
+$menu-overlay-wrapper-transition-delay: 100ms;
 $score-transition-speed: 1s;
 
 @keyframes fade-out {
@@ -224,7 +225,7 @@ $score-transition-speed: 1s;
 	}
 }
 
-@keyframes menu-overlay-fade-in {
+@keyframes menu-overlay-wrapper-fade-in {
 	0% {
 		opacity: 0;
 		z-index: 0;
@@ -251,7 +252,7 @@ p {
 }
 
 .app {
-	width: 372px;
+	width: $game-width;
 	margin: 0 auto;
 
 	.header {
@@ -528,8 +529,9 @@ p {
 		background-color: $secondary-bg-color;
 		position: absolute;
 		border-radius: 5px;
-		top: 30%;
-		left: 12%;
+		top: 27%;
+		left: 50%;
+		margin-left: -140px;
 		opacity: 0;
 		z-index: 0;
 		font-family: sans-serif;
@@ -638,24 +640,29 @@ p {
     	grid-template-columns: [col] 180px [col] 180px;
 	}
 
-	.menu-overlay {
+	.menu-overlay-wrapper {
 		display: none;
 		box-sizing: border-box;
 		width: 100%;
 		height: 100%;
-		padding: 70px 40px;
-		background-color: $secondary-bg-color;
 		position: absolute;
 		top: 0;
 		left: 0;
 		opacity: 0;
 		z-index: 0;
-		font-family: sans-serif;
 
 		&.visible {
-			animation: $transition-speed menu-overlay-fade-in
-				$menu-overlay-transition-delay forwards;
+			animation: $transition-speed menu-overlay-wrapper-fade-in
+				$menu-overlay-wrapper-transition-delay forwards;
 			display: block;
+		}
+
+		.menu-overlay {
+			width: $game-width;
+			margin: 0 auto;
+			padding: 70px 40px;
+			background-color: $secondary-bg-color;
+			font-family: sans-serif;
 		}
 
 		.logo {
