@@ -19,10 +19,10 @@ const Level: React.FunctionComponent<LevelProps> = ({
     onSetLevel
 }) => {
     return (
-        <div className="level" onClick={() => onSetLevel(level - 1)}>
+        <button className="level" onClick={() => onSetLevel(level - 1)}>
             <p className="level-no">{level}</p>
             <StarsPoints level={level} score={score}/>
-        </div>
+        </button>
     );
 };
 

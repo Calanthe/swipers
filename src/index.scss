@@ -680,6 +680,10 @@ p {
 				display: block;
 				width: 228px;
 				margin: 10px 0;
+
+				&:focus {
+					outline: 1px solid $tile-bg-secondary;
+				}
 			}
 
 			.hints {
@@ -722,6 +726,8 @@ p {
 					border: 1px solid $secondary-font-color;
 					border-radius: 0.15em;
 					padding: 4px;
+					background-color: $primary-bg-color;
+					cursor: pointer;
 				}
 				
 				.level-no {
@@ -772,7 +778,11 @@ p {
 		cursor: pointer;
 
 		&:focus {
-			outline: none
+			outline: 1px solid $secondary-font-color;
+		}
+
+		&:first-child {
+			margin-right: 1px;
 		}
 	}
 
