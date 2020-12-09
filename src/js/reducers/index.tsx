@@ -17,9 +17,11 @@ import {
 	transformFromGridToState,
 	getMaxScores,
 	getStarScores,
+	getLastLevelPlayed,
 	getHintsVisibility,
 	setMaxScores,
 	setStarScores,
+	setLastLevelPlayed,
 	setHintsVisibility
 } from "../misc/utils";
 import { 
@@ -37,6 +39,7 @@ import {
 import { LEVELS } from "../misc/levels";
 
 const INITIAL_LEVEL = 0;
+const lastLevelPlayed = getLastLevelPlayed(INITIAL_LEVEL);
 
 interface Vector {
 	x: number;
@@ -347,7 +350,7 @@ function toogleHintsAvailable(state: CellState): CellState {
 }
 
 const rootReducer = (
-	state = initializeState(INITIAL_LEVEL),
+	state = initializeState(lastLevelPlayed + 1),
 	action: RootReducerAction
 ): CellState => {
 	let newState;
@@ -394,6 +397,7 @@ const rootReducer = (
 				levelData: initializeLevel(state.levelData.level + 1),
 				isHintsOverlayVisible: true
 			};
+			setLastLevelPlayed(state.levelData.level + 1);
 			return newState;
 		case SET_LEVEL:
 			newState = { 
@@ -402,6 +406,7 @@ const rootReducer = (
 				isMenuVisible: false,
 				isHintsOverlayVisible: true
 			};
+			setLastLevelPlayed(action.payload);
 			return newState;
 		case TOGGLE_MENU_OVERLAY:
 			newState = {

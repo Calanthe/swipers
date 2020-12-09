@@ -104,3 +104,17 @@ export function getHintsVisibility(): boolean {
 
 	return (typeof hintsVisibility === 'undefined' || hintsVisibility === null) ? initialHintsVisibility : hintsVisibility;
 }
+
+export function getLastLevelPlayed(initialLevel: number): number {
+	const localStorage = window.localStorage;
+
+	let lastLevelPlayed = localStorage.getObject('swipers_game--last_level_played');
+
+	return (typeof lastLevelPlayed === 'undefined' || lastLevelPlayed === null) ? initialLevel : lastLevelPlayed;
+}
+
+export function setLastLevelPlayed(level: number): void {
+	const localStorage = window.localStorage;
+
+	localStorage.setObject('swipers_game--last_level_played', level);
+}
