@@ -350,7 +350,7 @@ function toogleHintsAvailable(state: CellState): CellState {
 }
 
 const rootReducer = (
-	state = initializeState(lastLevelPlayed + 1),
+	state = initializeState(lastLevelPlayed),
 	action: RootReducerAction
 ): CellState => {
 	let newState;

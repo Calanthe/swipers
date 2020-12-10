@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
+import Overlay from "./Overlay";
 
 interface Props {
 	hint: string;
@@ -31,20 +32,18 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 		});
 
 	return (
-		<div>
-			<div className={hintsOverlayWrapperClass}></div>
-			<div className={hintsOverlayClass}>
-				<p className="title">Hint</p>
-				<div className="text">
-					{hint}
-				</div>
-				<div className="buttons-wrapper">
-					<button className="button" onClick={onClose}>
+		<Overlay 
+			overlayClass={hintsOverlayClass} 
+			overlayWrapperClass={hintsOverlayWrapperClass}
+			title="Hint"
+			text={hint}
+			buttons=
+				{
+					<button className="info-overlay__single-btn button" onClick={onClose}>
 						OK!
 					</button>
-				</div>
-			</div>
-		</div>
+				}
+		/>
 	);
 };
 

@@ -576,6 +576,11 @@ p {
 			}
 		}
 
+		.info-overlay__single-btn {
+			width: 120px;
+			margin-left: 120px;
+		}
+
 		.score-info {
 			display: grid;
 			grid-template-columns: [col] 64px [col] 50px;

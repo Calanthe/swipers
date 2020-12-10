@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import StarsPoints from "./StarsPoints";
+import Overlay from "./Overlay";
 
 interface Props {
 	isLevelFinished: boolean;
@@ -52,43 +53,45 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 		starScore = starScores[level];
 
 	return (
-		<div>
-			<div className={infoOverlayWrapperClass}></div>
-			<div className={infoOverlayClass}>
-				<p className="title">Congratulations!</p>
-				<div className="text">
-					<div>
-						<p className="info">
-							Level {level + 1} completed!
-						</p>
-						<div className="score-info">
-							<div className={scoreClass}>Score:</div> 
-							<div className="score-value">{score}</div>
-						</div>
-						<div className="score-info">
-							<div className="score-title">Moves:</div> 
-							<div className="score-value">{moves}</div>
-						</div>
-						<div className="line"></div>
-						<StarsPoints level={level} score={starScore} customCssClass={'stars-points'}/>
+		<Overlay 
+			overlayClass={infoOverlayClass} 
+			overlayWrapperClass={infoOverlayWrapperClass}
+			title="Congratulations!"
+			text={
+				<div>
+					<p className="info">
+						Level {level + 1} completed!
+					</p>
+					<div className="score-info">
+						<div className={scoreClass}>Score:</div> 
+						<div className="score-value">{score}</div>
 					</div>
+					<div className="score-info">
+						<div className="score-title">Moves:</div> 
+						<div className="score-value">{moves}</div>
+					</div>
+					<div className="line"></div>
+					<StarsPoints level={level} score={starScore} customCssClass={'stars-points'}/>
 				</div>
-				<div className="buttons-wrapper">
-					<button className="button" onClick={onLevelRestart}>
-						<i className="fas fa-undo"></i> Restart
-					</button>
-					{isGameFinished ? (
-						<button className="button" onClick={onGameRestart}>
-							Restart game
+			}
+			buttons=
+				{
+					<div className="buttons-wrapper">
+						<button className="button" onClick={onLevelRestart}>
+							<i className="fas fa-undo"></i> Restart
 						</button>
-					) : (
-						<button className="button" onClick={onNextLevel}>
-							Next <i className="fas fa-arrow-right"></i>
-						</button>
-					)}
-				</div>
-			</div>
-		</div>
+						{isGameFinished ? (
+							<button className="button" onClick={onGameRestart}>
+								Restart game
+							</button>
+						) : (
+							<button className="button" onClick={onNextLevel}>
+								Next <i className="fas fa-arrow-right"></i>
+							</button>
+						)}
+					</div>
+				}
+		/>
 	);
 };
 
