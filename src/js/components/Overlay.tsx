@@ -19,8 +19,8 @@ const Overlay: React.FunctionComponent<Props> = ({
 		<div>
 			<div className={overlayWrapperClass}></div>
 			<div className={overlayClass}>
-                <p className="title">{title}</p>
-				<div className="text">
+                <p className="overlay__title">{title}</p>
+				<div className="overlay__text">
 					{text}
 				</div>
 				<div>

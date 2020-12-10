@@ -35,7 +35,7 @@ const Header: React.FunctionComponent<Props> = ({
 	scoreClass,
 }) => {
 	const logoClass = classNames("logo", "logo-" + TILE_TYPES[activeType]),
-		singleScoreClassName = classNames("single-score", scoreClass),
+		singleScoreClassName = classNames("header__single-score", scoreClass),
 		singleScoreValue = "+" + singleScore,
 		bestScore = maxScores[level],
 		levelToShow = level + 1;
@@ -43,23 +43,23 @@ const Header: React.FunctionComponent<Props> = ({
 	return (
 		<div className="header">
 			<h1 className={logoClass}>Swipers</h1>
-			<div className="score-wrapper">
-				<div className="score-unit">
-					<p className="score-subheader score">Level</p>
-					<p className="score">{levelToShow}</p>
+			<div className="header__score-wrapper">
+				<div className="header__score-unit">
+					<p className="header__score-subheader header__score">Level</p>
+					<p className="header__score">{levelToShow}</p>
 				</div>
-				<div className="score-unit">
-					<p className="score-subheader score">Moves</p>
-					<p className="score">{moves}</p>
+				<div className="header__score-unit">
+					<p className="header__score-subheader header__score">Moves</p>
+					<p className="header__score">{moves}</p>
 				</div>
-				<div className="score-unit">
-					<p className="score-subheader score">Score</p>
-					<p className="score">{score}</p>
+				<div className="header__score-unit">
+					<p className="header__score-subheader header__score">Score</p>
+					<p className="header__score">{score}</p>
 					<span className={singleScoreClassName}>{singleScoreValue}</span>
 				</div>
-				<div className="score-unit">
-					<p className="score-subheader score">Best</p>
-					<p className="score">{bestScore}</p>
+				<div className="header__score-unit">
+					<p className="header__score-subheader header__score">Best</p>
+					<p className="header__score">{bestScore}</p>
 				</div>
 			</div>
 		</div>

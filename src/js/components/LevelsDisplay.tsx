@@ -19,8 +19,8 @@ const Level: React.FunctionComponent<LevelProps> = ({
     onSetLevel
 }) => {
     return (
-        <button className="level" onClick={() => onSetLevel(level - 1)}>
-            <p className="level-no">{level}</p>
+        <button className="levels__single-level" onClick={() => onSetLevel(level - 1)}>
+            <p className="levels__level-no">{level}</p>
             <StarsPoints level={level} score={score}/>
         </button>
     );
@@ -48,8 +48,8 @@ const LevelsDisplay: React.FunctionComponent<Props> = ({
     }
     
 	return (
-        <div className="levels-display">
-            <p className="levels-header">Levels</p>
+        <div className="levels">
+            <p className="levels__header">Levels</p>
             {levels}
         </div>
 	);

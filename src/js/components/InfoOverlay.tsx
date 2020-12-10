@@ -41,13 +41,13 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 	onGameRestart,
 	onNextLevel,
 }) => {
-	const infoOverlayClass = classNames("info-overlay", {
+	const infoOverlayClass = classNames("overlay", {
 			visible: isLevelFinished,
 		}),
-		infoOverlayWrapperClass = classNames("info-overlay-wrapper", {
+		infoOverlayWrapperClass = classNames("overlay-wrapper", {
 			visible: isLevelFinished,
 		}),
-		scoreClass = classNames("score-title", {
+		scoreClass = classNames("overlay__score-title", {
 			best: isNewBestScore,
 		}),
 		starScore = starScores[level];
@@ -59,24 +59,24 @@ const InfoOverlay: React.FunctionComponent<Props> = ({
 			title="Congratulations!"
 			text={
 				<div>
-					<p className="info">
+					<p className="overlay__info">
 						Level {level + 1} completed!
 					</p>
-					<div className="score-info">
+					<div className="overlay__score-info">
 						<div className={scoreClass}>Score:</div> 
-						<div className="score-value">{score}</div>
+						<div className="overlay__score-value">{score}</div>
 					</div>
-					<div className="score-info">
-						<div className="score-title">Moves:</div> 
-						<div className="score-value">{moves}</div>
+					<div className="overlay__score-info">
+						<div className="overlay__score-title">Moves:</div> 
+						<div className="overlay__score-value">{moves}</div>
 					</div>
-					<div className="line"></div>
+					<div className="overlay__line"></div>
 					<StarsPoints level={level} score={starScore} customCssClass={'stars-points'}/>
 				</div>
 			}
 			buttons=
 				{
-					<div className="buttons-wrapper">
+					<div className="overlay__buttons-wrapper">
 						<button className="button" onClick={onLevelRestart}>
 							<i className="fas fa-undo"></i> Restart
 						</button>

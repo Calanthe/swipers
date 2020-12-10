@@ -27,10 +27,10 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 	isMenuVisible,
 	onClose
 }) => {
-	const hintsOverlayClass = classNames("info-overlay", {
+	const hintsOverlayClass = classNames("overlay", {
 			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
 		}),
-		hintsOverlayWrapperClass = classNames("info-overlay-wrapper", {
+		hintsOverlayWrapperClass = classNames("overlay-wrapper", {
 			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
 		});
 
@@ -42,7 +42,7 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 			text={hint}
 			buttons=
 				{
-					<button className="info-overlay__single-btn button" onClick={onClose}>
+					<button className="overlay__single-btn button" onClick={onClose}>
 						OK!
 					</button>
 				}

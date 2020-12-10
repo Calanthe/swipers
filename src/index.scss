@@ -201,7 +201,7 @@ $score-transition-speed: 1s;
 	}
 }
 
-@keyframes overlay-fade-in {
+@keyframes overlay-wrapper-fade-in {
 	0% {
 		opacity: 0;
 		z-index: 0;
@@ -213,7 +213,7 @@ $score-transition-speed: 1s;
 	}
 }
 
-@keyframes info-overlay-fade-in {
+@keyframes overlay-fade-in {
 	0% {
 		opacity: 0;
 		z-index: 0;
@@ -259,7 +259,7 @@ p {
 		display: grid;
 		grid-template-columns: [col] 206px [col] 152px;
 
-		.score-wrapper {
+		.header__score-wrapper {
 			margin: 10px 0 0 0;
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
@@ -267,40 +267,40 @@ p {
 			grid-auto-flow: row;
 			position: relative;
 			font-size: 12px;
+		}
 
-			.score-unit {
-				background-color: $secondary-bg-color;
-				padding: 10px;
-				width: 50px;
-				border-radius: 5px;
-				border: #f3ecec 1px solid;
-				margin: 0 0 8px 0;
-				box-shadow: inset 0 -0.6em 0 -0.5em rgba(0, 0, 0, 0.17);
+		.header__score-subheader {
+			border-bottom: 1px solid $tertiary-font-color;
+			margin-bottom: 6px;
+		}
 
-				.score-subheader {
-					border-bottom: 1px solid $tertiary-font-color;
-					margin-bottom: 6px;
-				}
+		.header__score-unit {
+			background-color: $secondary-bg-color;
+			padding: 10px;
+			width: 50px;
+			border-radius: 5px;
+			border: #f3ecec 1px solid;
+			margin: 0 0 8px 0;
+			box-shadow: inset 0 -0.6em 0 -0.5em rgba(0, 0, 0, 0.17);
+		}
 
-				.score {
-					font-weight: bold;
-					text-align: center;
-					text-transform: uppercase;
-				}
+		.header__single-score {
+			position: absolute;
+			opacity: 0;
+			bottom: 24px;
+			left: 34px;
+			font-weight: bold;
+			color: $tertiary-font-color;
 
-				.single-score {
-					position: absolute;
-					opacity: 0;
-					bottom: 24px;
-					left: 34px;
-					font-weight: bold;
-					color: $tertiary-font-color;
-
-					&.score-up {
-						animation: $score-transition-speed score-up backwards;
-					}
-				}
+			&.score-up {
+				animation: $score-transition-speed score-up backwards;
 			}
+		}
+
+		.header__score {
+			font-weight: bold;
+			text-align: center;
+			text-transform: uppercase;
 		}
 	}
 
@@ -506,7 +506,7 @@ p {
 		animation: $transition-speed fade-out forwards;
 	}
 
-	.info-overlay-wrapper {
+	.overlay-wrapper {
 		display: none;
 		position: fixed;
 		top: 0;
@@ -518,13 +518,13 @@ p {
 		z-index: 0;
 
 		&.visible {
-			animation: $transition-speed overlay-fade-in $overlay-transition-delay
+			animation: $transition-speed overlay-wrapper-fade-in $overlay-transition-delay
 				forwards;
 			display: block;
 		}
 	}
 
-	.info-overlay {
+	.overlay {
 		padding: 15px;
 		background-color: $secondary-bg-color;
 		position: absolute;
@@ -538,82 +538,82 @@ p {
 		outline: 1px solid $secondary-font-color;
 
 		&.visible {
-			animation: $transition-speed info-overlay-fade-in
+			animation: $transition-speed overlay-fade-in
 				$overlay-transition-delay forwards;
 		}
+	}
 
-		.title {
+	.overlay__title {
+		position: absolute;
+		top: -24px;
+		left: -1px;
+		text-transform: uppercase;
+		color: $primary-bg-color;
+		background-color: $secondary-font-color;
+		font-size: 12px;
+		padding: 6px;
+		border: none;
+		border-radius: 0.15em 0.15em 0 0;
+	}
+
+	.overlay__text {
+		margin: 10px 0px 20px;
+		white-space: pre-line;
+		line-height: 20px;
+	}
+
+	.overlay__info {
+		text-transform: uppercase;
+		color: $tertiary-font-color;
+		font-size: 23px;
+	}
+
+	.overlay__buttons-wrapper {
+		display: grid;
+		grid-template-columns: [col] 133px [col] 112px;
+
+		.button {
+			max-width: 110px;
+		}
+	}
+
+	.overlay__single-btn {
+		width: 120px;
+		margin-left: 120px;
+	}
+
+	.overlay__score-info {
+		display: grid;
+		grid-template-columns: [col] 64px [col] 50px;
+		margin-left: 100px;
+	}
+
+	.overlay__score-title {
+		padding: 14px 0 0 0;
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: bold;
+		position: relative;
+
+		&.best:before {
+			content: "BEST!";
 			position: absolute;
-			top: -24px;
-			left: -1px;
-			text-transform: uppercase;
-			color: $primary-bg-color;
-			background-color: $secondary-font-color;
-			font-size: 12px;
-			padding: 6px;
-			border: none;
-			border-radius: 0.15em 0.15em 0 0;
-		}
-
-		.text {
-			margin: 10px 0px 20px;
-			white-space: pre-line;
-			line-height: 20px;
-		}
-
-		.info {
-			text-transform: uppercase;
+			top: 2px;
+			left: 0;
 			color: $tertiary-font-color;
-			font-size: 23px;
+			font-weight: bold;
+			font-size: 10px;
 		}
+	}
 
-		.buttons-wrapper {
-			display: grid;
-			grid-template-columns: [col] 133px [col] 112px;
+	.overlay__score-value {
+		padding: 22px 0 0 0;
+		font-size: 34px;
+	}
 
-			.button {
-				max-width: 110px;
-			}
-		}
-
-		.info-overlay__single-btn {
-			width: 120px;
-			margin-left: 120px;
-		}
-
-		.score-info {
-			display: grid;
-			grid-template-columns: [col] 64px [col] 50px;
-			margin-left: 100px;
-
-			.score-title {
-				padding: 14px 0 0 0;
-				font-size: 12px;
-				text-transform: uppercase;
-				font-weight: bold;
-				position: relative;
-
-				&.best:before {
-					content: "BEST!";
-					position: absolute;
-					top: 2px;
-					left: 0;
-					color: $tertiary-font-color;
-					font-weight: bold;
-					font-size: 10px;
-				}
-			}
-
-			.score-value {
-				padding: 22px 0 0 0;
-				font-size: 34px;
-			}
-		}
-
-		.line {
-			border-bottom: $secondary-font-color 2px solid;
-			padding-bottom: 10px;
-		}
+	.overlay__line {
+		border-bottom: $secondary-font-color 2px solid;
+		padding-bottom: 10px;
 	}
 
 	.button {
@@ -670,7 +670,7 @@ p {
 			font-family: sans-serif;
 		}
 
-		.logo {
+		.menu-overlay__logo {
 			padding: 0 0 20px 40px;
 			margin: 0;
 			text-shadow: 3px 3px $tile-bg-primary;
@@ -678,10 +678,10 @@ p {
 			-moz-text-stroke-color: $tile-bg-primary;
 		}
 
-		.content-wrapper {
+		.menu-overlay__content-wrapper {
 			padding: 0 40px;
 
-			.button {
+			.menu-overlay__button {
 				display: block;
 				width: 228px;
 				margin: 10px 0;
@@ -691,7 +691,7 @@ p {
 				}
 			}
 
-			.hints {
+			.menu-overlay__hints {
 				text-align: left;
 				box-shadow: none;
 				background-color: $primary-bg-color;
@@ -701,58 +701,58 @@ p {
 					margin-left: 76px;
 				}
 			}
-
-			.levels-display {
-				position: relative;
-				display: grid;
-				grid-template-columns: repeat(3, 64px);
-    			grid-template-rows: repeat(3, 56px);
-    			grid-auto-flow: row;
-				grid-gap: 10px;
-				margin: 50px 0;
-				padding: 8px;
-				max-width: 212px;
-				background-color: $primary-bg-color;
-
-				.levels-header {
-					position: absolute;
-					top: -24px;
-					left: 0;
-					text-transform: uppercase;
-					color: $primary-bg-color;
-					background-color: $secondary-font-color;
-					font-size: 12px;
-					padding: 6px;
-					border: none;
-					border-radius: 0.15em 0.15em 0 0;
-				}
-
-				.level {
-					border: 1px solid $secondary-font-color;
-					border-radius: 0.15em;
-					padding: 4px;
-					background-color: $primary-bg-color;
-					cursor: pointer;
-				}
-				
-				.level-no {
-					text-align: center;
-					color: $secondary-font-color;
-					font-size: 20px;
-					padding: 4px 0;
-				}
-			}
 		}
 
-		.credits {
+		.menu-overlay__credits {
 			text-align: center;
 			margin: 70px auto 10px auto;
 		
-			.credits-link {
+			.menu-overlay__credits-link {
 				text-decoration: none;
 				color: $secondary-font-color;
 			}
 		}
+	}
+
+	.levels {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(3, 64px);
+		grid-template-rows: repeat(3, 56px);
+		grid-auto-flow: row;
+		grid-gap: 10px;
+		margin: 50px 0;
+		padding: 8px;
+		max-width: 212px;
+		background-color: $primary-bg-color;
+	}
+
+	.levels__header {
+		position: absolute;
+		top: -24px;
+		left: 0;
+		text-transform: uppercase;
+		color: $primary-bg-color;
+		background-color: $secondary-font-color;
+		font-size: 12px;
+		padding: 6px;
+		border: none;
+		border-radius: 0.15em 0.15em 0 0;
+	}
+
+	.levels__single-level {
+		border: 1px solid $secondary-font-color;
+		border-radius: 0.15em;
+		padding: 4px;
+		background-color: $primary-bg-color;
+		cursor: pointer;
+	}
+	
+	.levels__level-no {
+		text-align: center;
+		color: $secondary-font-color;
+		font-size: 20px;
+		padding: 4px 0;
 	}
 
 	.fa-star {
