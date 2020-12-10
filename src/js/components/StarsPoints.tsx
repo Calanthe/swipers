@@ -1,15 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 
 interface Props {
 	score: number;
     level: number;
-    customCssClass: string | null;
+    customCssClass?: string | null;
 }
-
-const mapStateToProps = (state) => {
-	return {};
-};
 
 const StarsPoints: React.FunctionComponent<Props> = ({
 	score,
@@ -37,4 +32,4 @@ const StarsPoints: React.FunctionComponent<Props> = ({
 	);
 };
 
-export default connect(mapStateToProps)(StarsPoints);
+export default StarsPoints;

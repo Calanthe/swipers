@@ -1,14 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 
 interface Props {
 	onLevelRestart: () => void;
 	onShowMenu: () => void;
 }
-
-const mapStateToProps = (state) => {
-	return {};
-};
 
 const MenuBar: React.FunctionComponent<Props> = ({
 	onLevelRestart,
@@ -26,4 +21,4 @@ const MenuBar: React.FunctionComponent<Props> = ({
 	);
 };
 
-export default connect(mapStateToProps)(MenuBar);
+export default MenuBar;
