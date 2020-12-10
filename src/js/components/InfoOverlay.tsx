@@ -20,7 +20,7 @@ interface Props {
 const mapStateToProps = (state) => {
 	return {
 		isLevelFinished: state.levelData.isLevelFinished,
-		isGameFinished: state.levelData.isLevelFinisGameFinishedished,
+		isGameFinished: state.levelData.isGameFinished,
 		starScores: state.starScores,
 		level: state.levelData.level,
 		moves: state.levelData.moves,
