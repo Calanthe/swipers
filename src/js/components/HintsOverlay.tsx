@@ -6,7 +6,8 @@ import Overlay from "./Overlay";
 interface Props {
 	hint: string;
 	isHintsVisible: boolean;
-    isHintsOverlayVisible: boolean;
+	isHintsOverlayVisible: boolean;
+	isMenuVisible: boolean;
 	onClose: () => void;
 }
 
@@ -14,21 +15,23 @@ const mapStateToProps = (state) => {
 	return {
 		hint: state.levelData.hint,
 		isHintsVisible: state.isHintsVisible,
-        isHintsOverlayVisible: state.isHintsOverlayVisible,
+		isHintsOverlayVisible: state.isHintsOverlayVisible,
+		isMenuVisible: state.isMenuVisible
 	};
 };
 
 const HintsOverlay: React.FunctionComponent<Props> = ({
 	hint,
 	isHintsVisible,
-    isHintsOverlayVisible,
+	isHintsOverlayVisible,
+	isMenuVisible,
 	onClose
 }) => {
 	const hintsOverlayClass = classNames("info-overlay", {
-			visible: (hint && isHintsOverlayVisible && isHintsVisible) ? true : false,
+			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
 		}),
 		hintsOverlayWrapperClass = classNames("info-overlay-wrapper", {
-			visible: (hint && isHintsOverlayVisible && isHintsVisible) ? true : false,
+			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
 		});
 
 	return (
