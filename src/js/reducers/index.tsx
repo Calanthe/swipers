@@ -165,6 +165,8 @@ function moveTile(move: number, state: CellState): Cell[] {
 		state.isHintsOverlayVisible = false;
 	}
 
+	resetCssClasses(state);
+
 	// Traverse the grid in the right direction and move tiles
 	traversals.x.forEach((x) => {
 		traversals.y.forEach((y) => {
@@ -368,11 +370,10 @@ const rootReducer = (
 				levelData: {...state.levelData, activeType: setActiveType(action.payload, state.levelData.activeType)}
 			};
 			return newState;
-		case RESTART_CSS_CLASSES: //TODO remove?
+		case RESTART_CSS_CLASSES:
 			newState = {
 				...state,
-				cells: resetCssClasses(state),
-				scoreClass: "",
+				levelData: {...state.levelData, cells: resetCssClasses(state), scoreClass: ""}
 			};
 			return newState;
 		case RESTART_LEVEL:
@@ -411,6 +412,7 @@ const rootReducer = (
 		case TOGGLE_MENU_OVERLAY:
 			newState = {
 				...state,
+				starScores: getStarScores(),
 				isMenuVisible: !state.isMenuVisible
 			};
 			return newState;

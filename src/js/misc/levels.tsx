@@ -8,7 +8,8 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
-			hint: `Swipe to move the blue rounded tile 
+			hint: `Swipe orthogonally to move 
+					the blue rounded tile 
 					to the square finish one.`,
 			stars: {
 				maxPoints: 2, //how many moves are needed to get maximum 3 stars
@@ -107,7 +108,7 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 17,
+				maxPoints: 18,
 				minPoints: 20, 
 			}
 		},

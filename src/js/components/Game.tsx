@@ -34,10 +34,6 @@ interface GameProps {
 	hideHintsOverlay: typeof hideHintsOverlay;
 }
 
-const IDLE_TIMER = 600; // at least 200ms transition speed + 200ms transition delay
-
-let isKeyPressed = false;
-
 const mapDispatchToProps = (dispatch) => {
 	return {
 		updateCells: (keyPressedNo: number) => dispatch(updateCells(keyPressedNo)),
@@ -56,14 +52,7 @@ const mapDispatchToProps = (dispatch) => {
 class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
-			//if (!isKeyPressed) {
 			this.handleKeyPress(event.key);
-			//isKeyPressed = true;
-			/*window.setTimeout(() => {
-				//isKeyPressed = false;
-				this.props.restartCssClasses();
-			}, IDLE_TIMER);*/
-			//}
 		});
 	}
 
@@ -85,6 +74,7 @@ class Game extends React.Component<GameProps> {
 
 		if (KeyPressMap[eventKey]) {
 			this.props.updateCells(KeyPressMap[eventKey]);
+			//this.props.restartCssClasses();
 		}
 	};
 
