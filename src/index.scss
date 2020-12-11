@@ -666,7 +666,7 @@ p {
 		.menu-overlay {
 			width: 308px;
 			margin: 0 auto;
-			padding: 70px 0 0 0;
+			padding: 10px 0 0 0;
 			font-family: sans-serif;
 		}
 
@@ -680,34 +680,39 @@ p {
 
 		.menu-overlay__content-wrapper {
 			padding: 0 40px;
+		}
 
-			.menu-overlay__button {
-				display: block;
-				width: 228px;
-				margin: 10px 0;
+		.menu-overlay__button {
+			display: block;
+			width: 228px;
+			margin: 10px 0;
 
-				&:focus {
-					outline: 1px solid $secondary-font-color;
-				}
+			&:focus {
+				outline: 1px solid $secondary-font-color;
 			}
+		}
 
-			.menu-overlay__hints {
-				text-align: left;
-				box-shadow: none;
-				background-color: $primary-bg-color;
-				color: $tile-bg-wall;
+		.menu-overlay__hints {
+			text-align: left;
+			box-shadow: none;
+			background-color: $primary-bg-color;
+			color: $tile-bg-wall;
 
-				.fas {
-					margin-left: 76px;
-				}
+			.fas {
+				margin-left: 76px;
 			}
 		}
 
 		.menu-overlay__credits {
 			text-align: center;
-			margin: 70px auto 10px auto;
-		
-			.menu-overlay__credits-link {
+			margin: 20px auto 10px auto;
+		}
+
+		.menu-overlay__credits-link {
+			text-decoration: none;
+			color: $secondary-font-color;
+
+			&:hover, &:active, &:focus, &:visited {
 				text-decoration: none;
 				color: $secondary-font-color;
 			}
@@ -721,7 +726,7 @@ p {
 		grid-template-rows: repeat(3, 56px);
 		grid-auto-flow: row;
 		grid-gap: 10px;
-		margin: 50px 0;
+		margin: 50px 0 0 0;
 		padding: 8px;
 		max-width: 212px;
 		background-color: $primary-bg-color;
@@ -744,6 +749,7 @@ p {
 		border: 1px solid $secondary-font-color;
 		border-radius: 0.15em;
 		padding: 4px;
+		height: 60px;
 		background-color: $primary-bg-color;
 		cursor: pointer;
 	}

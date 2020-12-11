@@ -77,7 +77,7 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
                     <LevelsDisplay onSetLevel={onSetLevel}/>
                 </div>
                 <p className="menu-overlay__credits">
-                    © 2020 <a href="http://zofiakorcz.pl" className="credits-link" target="_blank" rel="noopener noreferrer">
+                    © 2020 <a href="http://zofiakorcz.pl" className="menu-overlay__credits-link" target="_blank" rel="noopener noreferrer">
                         Zofia Korcz
                     </a>
                 </p>

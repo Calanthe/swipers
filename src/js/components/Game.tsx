@@ -49,14 +49,27 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
+const IDLE_TIMER = 200;
+let isKeyPressed = false;
+
 class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
-			this.handleKeyPress(event.key);
+			this.handleMove(event.key)
 		});
 	}
 
-	handleKeyPress = (eventKey: string): void => {
+	handleMove = (eventKey: string): void => {
+		if (!isKeyPressed) {
+			this.handleCellsUpdate(eventKey);
+			isKeyPressed = true;
+			window.setTimeout(() => {
+				isKeyPressed = false;
+			}, IDLE_TIMER); //to prevent moving tiles diagonally
+		}
+	};
+
+	handleCellsUpdate = (eventKey: string): void => {
 		const KeyPressMap = {
 			ArrowUp: 1,
 			ArrowRight: 2,
@@ -74,7 +87,6 @@ class Game extends React.Component<GameProps> {
 
 		if (KeyPressMap[eventKey]) {
 			this.props.updateCells(KeyPressMap[eventKey]);
-			//this.props.restartCssClasses();
 		}
 	};
 
@@ -111,19 +123,19 @@ class Game extends React.Component<GameProps> {
 	};
 
 	onSwipeUp = (): void => {
-		this.handleKeyPress('SwipeUp');
+		this.handleMove('SwipeUp');
 	};
 
 	onSwipeDown = (): void => {
-		this.handleKeyPress('SwipeDown');
+		this.handleMove('SwipeDown');
 	};
 
 	onSwipeLeft = (): void => {
-		this.handleKeyPress('SwipeLeft');
+		this.handleMove('SwipeLeft');
 	};
 
 	onSwipeRight = (): void => {
-		this.handleKeyPress('SwipeRight');
+		this.handleMove('SwipeRight');
 	};
 
 	onSwipeMove = (position, event) : boolean => {
