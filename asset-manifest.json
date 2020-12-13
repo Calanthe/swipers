@@ -1,22 +1,22 @@
 {
-  "files": {
-    "main.css": "/swipers/static/css/main.fec003ca.chunk.css",
-    "main.js": "/swipers/static/js/main.235e54c4.chunk.js",
-    "main.js.map": "/swipers/static/js/main.235e54c4.chunk.js.map",
-    "runtime-main.js": "/swipers/static/js/runtime-main.e34253b7.js",
-    "runtime-main.js.map": "/swipers/static/js/runtime-main.e34253b7.js.map",
-    "static/js/2.46190b77.chunk.js": "/swipers/static/js/2.46190b77.chunk.js",
-    "static/js/2.46190b77.chunk.js.map": "/swipers/static/js/2.46190b77.chunk.js.map",
-    "index.html": "/swipers/index.html",
-    "precache-manifest.91313162056cde224476863c1bb68291.js": "/swipers/precache-manifest.91313162056cde224476863c1bb68291.js",
-    "service-worker.js": "/swipers/service-worker.js",
-    "static/css/main.fec003ca.chunk.css.map": "/swipers/static/css/main.fec003ca.chunk.css.map",
-    "static/js/2.46190b77.chunk.js.LICENSE": "/swipers/static/js/2.46190b77.chunk.js.LICENSE"
-  },
-  "entrypoints": [
-    "static/js/runtime-main.e34253b7.js",
-    "static/js/2.46190b77.chunk.js",
-    "static/css/main.fec003ca.chunk.css",
-    "static/js/main.235e54c4.chunk.js"
-  ]
+	"files": {
+		"main.css": "/swipers/static/css/main.fec003ca.chunk.css",
+		"main.js": "/swipers/static/js/main.235e54c4.chunk.js",
+		"main.js.map": "/swipers/static/js/main.235e54c4.chunk.js.map",
+		"runtime-main.js": "/swipers/static/js/runtime-main.e34253b7.js",
+		"runtime-main.js.map": "/swipers/static/js/runtime-main.e34253b7.js.map",
+		"static/js/2.46190b77.chunk.js": "/swipers/static/js/2.46190b77.chunk.js",
+		"static/js/2.46190b77.chunk.js.map": "/swipers/static/js/2.46190b77.chunk.js.map",
+		"index.html": "/swipers/index.html",
+		"precache-manifest.91313162056cde224476863c1bb68291.js": "/swipers/precache-manifest.91313162056cde224476863c1bb68291.js",
+		"service-worker.js": "/swipers/service-worker.js",
+		"static/css/main.fec003ca.chunk.css.map": "/swipers/static/css/main.fec003ca.chunk.css.map",
+		"static/js/2.46190b77.chunk.js.LICENSE": "/swipers/static/js/2.46190b77.chunk.js.LICENSE"
+	},
+	"entrypoints": [
+		"static/js/runtime-main.e34253b7.js",
+		"static/js/2.46190b77.chunk.js",
+		"static/css/main.fec003ca.chunk.css",
+		"static/js/main.235e54c4.chunk.js"
+	]
 }
