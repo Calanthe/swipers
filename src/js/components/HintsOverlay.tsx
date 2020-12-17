@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 		hint: state.levelData.hint,
 		isHintsVisible: state.isHintsVisible,
 		isHintsOverlayVisible: state.isHintsOverlayVisible,
-		isMenuVisible: state.isMenuVisible
+		isMenuVisible: state.isMenuVisible,
 	};
 };
 
@@ -25,27 +25,32 @@ const HintsOverlay: React.FunctionComponent<Props> = ({
 	isHintsVisible,
 	isHintsOverlayVisible,
 	isMenuVisible,
-	onClose
+	onClose,
 }) => {
 	const hintsOverlayClass = classNames("overlay", {
-			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
+			visible:
+				hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible
+					? true
+					: false,
 		}),
 		hintsOverlayWrapperClass = classNames("overlay-wrapper", {
-			visible: (hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible) ? true : false,
+			visible:
+				hint && isHintsOverlayVisible && isHintsVisible && !isMenuVisible
+					? true
+					: false,
 		});
 
 	return (
-		<Overlay 
-			overlayClass={hintsOverlayClass} 
+		<Overlay
+			overlayClass={hintsOverlayClass}
 			overlayWrapperClass={hintsOverlayWrapperClass}
-			title="Hint"
+			title="Tutorial hint"
 			text={hint}
-			buttons=
-				{
-					<button className="overlay__single-btn button" onClick={onClose}>
-						OK!
-					</button>
-				}
+			buttons={
+				<button className="overlay__single-btn button" onClick={onClose}>
+					OK!
+				</button>
+			}
 		/>
 	);
 };

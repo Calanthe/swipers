@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import Swipe from 'react-easy-swipe';
+import Swipe from "react-easy-swipe";
 import Board from "./Board";
 import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
@@ -16,7 +16,7 @@ import {
 	setLevel,
 	toggleMenuOverlay,
 	toggleHints,
-	hideHintsOverlay
+	hideHintsOverlay,
 } from "../actions/index";
 import { Cell } from "../misc/tsTypes";
 import MenuOverlay from "./MenuOverlay";
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 		setLevel: (levelNo: number) => dispatch(setLevel(levelNo)),
 		toggleMenuOverlay: () => dispatch(toggleMenuOverlay()),
 		toggleHints: () => dispatch(toggleHints()),
-		hideHintsOverlay: () => dispatch(hideHintsOverlay())
+		hideHintsOverlay: () => dispatch(hideHintsOverlay()),
 	};
 };
 
@@ -55,7 +55,7 @@ let isKeyPressed = false;
 class Game extends React.Component<GameProps> {
 	componentDidMount() {
 		document.addEventListener("keydown", (event) => {
-			this.handleMove(event.key)
+			this.handleMove(event.key);
 		});
 	}
 
@@ -82,7 +82,7 @@ class Game extends React.Component<GameProps> {
 			SwipeUp: 1,
 			SwipeRight: 2,
 			SwipeDown: 3,
-			SwipeLeft: 4
+			SwipeLeft: 4,
 		};
 
 		if (KeyPressMap[eventKey]) {
@@ -123,22 +123,22 @@ class Game extends React.Component<GameProps> {
 	};
 
 	onSwipeUp = (): void => {
-		this.handleMove('SwipeUp');
+		this.handleMove("SwipeUp");
 	};
 
 	onSwipeDown = (): void => {
-		this.handleMove('SwipeDown');
+		this.handleMove("SwipeDown");
 	};
 
 	onSwipeLeft = (): void => {
-		this.handleMove('SwipeLeft');
+		this.handleMove("SwipeLeft");
 	};
 
 	onSwipeRight = (): void => {
-		this.handleMove('SwipeRight');
+		this.handleMove("SwipeRight");
 	};
 
-	onSwipeMove = (position, event) : boolean => {
+	onSwipeMove = (position, event): boolean => {
 		return true; //to prevent accidental scrolling on swipe
 	};
 
@@ -147,12 +147,13 @@ class Game extends React.Component<GameProps> {
 			<div className="app">
 				<Swipe
 					innerRef={() => {}}
-					tolerance={20}
+					tolerance={40}
 					onSwipeMove={this.onSwipeMove}
 					onSwipeUp={this.onSwipeUp.bind(this)}
 					onSwipeDown={this.onSwipeDown.bind(this)}
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
-					onSwipeRight={this.onSwipeRight.bind(this)}>
+					onSwipeRight={this.onSwipeRight.bind(this)}
+				>
 					<MenuOverlay
 						onCloseMenu={this.handleToggleMenu}
 						onLevelRestart={this.handleRestartLevel}
@@ -160,8 +161,8 @@ class Game extends React.Component<GameProps> {
 						onSetLevel={this.handleSetLevel}
 						onToggleHints={this.handleToggleHints}
 					/>
-					<Header/>
-					<Board onMouseClick={this.handleMouseClick}/>
+					<Header />
+					<Board onMouseClick={this.handleMouseClick} />
 					<MenuBar
 						onShowMenu={this.handleToggleMenu}
 						onLevelRestart={this.handleRestartLevel}
@@ -171,10 +172,8 @@ class Game extends React.Component<GameProps> {
 						onGameRestart={this.handleRestartGame}
 						onNextLevel={this.handleSetNextLevel}
 					/>
-					<HintsOverlay
-						onClose={this.handleHideHintsOverlay}
-					/>
-      			</Swipe>
+					<HintsOverlay onClose={this.handleHideHintsOverlay} />
+				</Swipe>
 			</div>
 		);
 	}

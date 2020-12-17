@@ -454,7 +454,8 @@ p {
 			outline: 4px solid $tile-bg-primary;
 			outline-offset: -4px;
 
-			&:before, &:after {
+			&:before,
+			&:after {
 				border: 4px solid $tile-bg-primary;
 			}
 		}
@@ -463,7 +464,8 @@ p {
 			outline: 4px solid $tile-bg-secondary;
 			outline-offset: -4px;
 
-			&:before, &:after {
+			&:before,
+			&:after {
 				border: 4px solid $tile-bg-secondary;
 			}
 		}
@@ -472,7 +474,8 @@ p {
 			outline: 4px solid $tile-bg-tertiary;
 			outline-offset: -4px;
 
-			&:before, &:after {
+			&:before,
+			&:after {
 				border: 4px solid $tile-bg-tertiary;
 			}
 		}
@@ -481,7 +484,8 @@ p {
 			outline: 4px solid $tile-bg-quaternary;
 			outline-offset: -4px;
 
-			&:before, &:after {
+			&:before,
+			&:after {
 				border: 4px solid $tile-bg-quaternary;
 			}
 		}
@@ -518,8 +522,8 @@ p {
 		z-index: 0;
 
 		&.visible {
-			animation: $transition-speed overlay-wrapper-fade-in $overlay-transition-delay
-				forwards;
+			animation: $transition-speed overlay-wrapper-fade-in
+				$overlay-transition-delay forwards;
 			display: block;
 		}
 	}
@@ -538,8 +542,8 @@ p {
 		outline: 1px solid $secondary-font-color;
 
 		&.visible {
-			animation: $transition-speed overlay-fade-in
-				$overlay-transition-delay forwards;
+			animation: $transition-speed overlay-fade-in $overlay-transition-delay
+				forwards;
 		}
 	}
 
@@ -642,7 +646,7 @@ p {
 
 	.menu-bar {
 		display: grid;
-    	grid-template-columns: [col] 180px [col] 180px;
+		grid-template-columns: [col] 180px [col] 180px;
 	}
 
 	.menu-overlay-wrapper {
@@ -699,7 +703,7 @@ p {
 			color: $tile-bg-wall;
 
 			.fas {
-				margin-left: 76px;
+				margin-left: 56px;
 			}
 		}
 
@@ -712,7 +716,10 @@ p {
 			text-decoration: none;
 			color: $secondary-font-color;
 
-			&:hover, &:active, &:focus, &:visited {
+			&:hover,
+			&:active,
+			&:focus,
+			&:visited {
 				text-decoration: none;
 				color: $secondary-font-color;
 			}
@@ -753,7 +760,7 @@ p {
 		background-color: $primary-bg-color;
 		cursor: pointer;
 	}
-	
+
 	.levels__level-no {
 		text-align: center;
 		color: $secondary-font-color;
