@@ -169,7 +169,7 @@ class Game extends React.Component<GameProps> {
 					/>
 					<InfoOverlay
 						onLevelRestart={this.handleRestartLevel}
-						onGameRestart={this.handleRestartGame}
+						onShowMenu={this.handleToggleMenu}
 						onNextLevel={this.handleSetNextLevel}
 					/>
 					<HintsOverlay onClose={this.handleHideHintsOverlay} />

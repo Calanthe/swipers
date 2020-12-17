@@ -9,7 +9,7 @@ import {
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
 	SHOW_HINTS_OVERLAY,
-	HIDE_HINTS_OVERLAY
+	HIDE_HINTS_OVERLAY,
 } from "../actions/actionTypes";
 import { BOARD_WIDTH, BOARD_HEIGHT, WALL_TYPE } from "../misc/constants";
 import {
@@ -22,12 +22,12 @@ import {
 	setMaxScores,
 	setStarScores,
 	setLastLevelPlayed,
-	setHintsVisibility
+	setHintsVisibility,
 } from "../misc/utils";
-import { 
+import {
 	resetCssClasses,
 	updateScore,
-	calculateStarScore
+	calculateStarScore,
 } from "../misc/helpers";
 import {
 	Cell,
@@ -59,7 +59,7 @@ function initializeState(level: number = 0): CellState {
 		levelsAmount: LEVELS.length,
 		isMenuVisible: true,
 		isHintsVisible: getHintsVisibility(),
-		isHintsOverlayVisible: false
+		isHintsOverlayVisible: false,
 	};
 }
 
@@ -79,7 +79,7 @@ function initializeLevel(level: number = 0): LevelData {
 		moves: 0,
 		isLevelFinished: false,
 		isGameFinished: false,
-	}
+	};
 }
 
 // Build a grid based on the current level
@@ -153,7 +153,8 @@ function moveTile(move: number, state: CellState): Cell[] {
 		newPosition: Cell,
 		availableCells = removeMergedCells(state.levelData.cells),
 		cellsInGrid = transformFromStateToGrid(availableCells),
-		cellsAmount = availableCells.length - state.levelData.nonStandardTilesAmount,
+		cellsAmount =
+			availableCells.length - state.levelData.nonStandardTilesAmount,
 		mergedCounter: number = 0,
 		alreadyMovedTile: boolean = false;
 
@@ -171,7 +172,11 @@ function moveTile(move: number, state: CellState): Cell[] {
 	traversals.x.forEach((x) => {
 		traversals.y.forEach((y) => {
 			cell = cellsInGrid[x][y];
-			if (cell && cell.type === state.levelData.activeType && !cell.isFinishTile) {
+			if (
+				cell &&
+				cell.type === state.levelData.activeType &&
+				!cell.isFinishTile
+			) {
 				newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
 				if (
 					newPosition.nextTile &&
@@ -343,7 +348,7 @@ function setActiveType(cell: Cell, activeType: number): number {
 function toogleHintsAvailable(state: CellState): CellState {
 	const newState = {
 		...state,
-		isHintsVisible: !state.isHintsVisible
+		isHintsVisible: !state.isHintsVisible,
 	};
 
 	setHintsVisibility(!state.isHintsVisible);
@@ -359,61 +364,72 @@ const rootReducer = (
 
 	switch (action.type) {
 		case UPDATE_CELLS:
-			newState = { 
+			newState = {
 				...state,
-				levelData: {...state.levelData, cells: moveTile(action.payload, state)}
+				levelData: {
+					...state.levelData,
+					cells: moveTile(action.payload, state),
+				},
 			};
 			return newState;
 		case SET_ACTIVE_TYPE:
 			newState = {
 				...state,
-				levelData: {...state.levelData, activeType: setActiveType(action.payload, state.levelData.activeType)}
+				levelData: {
+					...state.levelData,
+					activeType: setActiveType(action.payload, state.levelData.activeType),
+				},
 			};
 			return newState;
 		case RESTART_CSS_CLASSES:
 			newState = {
 				...state,
-				levelData: {...state.levelData, cells: resetCssClasses(state), scoreClass: ""}
+				levelData: {
+					...state.levelData,
+					cells: resetCssClasses(state),
+					scoreClass: "",
+				},
 			};
 			return newState;
 		case RESTART_LEVEL:
-			newState = { 
-				...state, 
-				levelData: initializeLevel(state.levelData.level), 
+			newState = {
+				...state,
+				levelData: initializeLevel(state.levelData.level),
 				isMenuVisible: false,
-				isHintsOverlayVisible: true
+				isHintsOverlayVisible: true,
 			};
 			return newState;
 		case RESTART_GAME:
-			newState = { 
-				...state, 
-				levelData: initializeLevel(INITIAL_LEVEL), 
+			newState = {
+				...state,
+				levelData: initializeLevel(INITIAL_LEVEL),
 				isMenuVisible: false,
-				isHintsOverlayVisible: true
+				isHintsOverlayVisible: true,
 			};
 			return newState;
 		case SET_NEXT_LEVEL:
-			newState = { 
-				...state, 
+			newState = {
+				...state,
 				levelData: initializeLevel(state.levelData.level + 1),
-				isHintsOverlayVisible: true
+				isHintsOverlayVisible: true,
 			};
 			setLastLevelPlayed(state.levelData.level + 1);
 			return newState;
 		case SET_LEVEL:
-			newState = { 
-				...state, 
-				levelData: initializeLevel(action.payload), 
+			newState = {
+				...state,
+				levelData: initializeLevel(action.payload),
 				isMenuVisible: false,
-				isHintsOverlayVisible: true
+				isHintsOverlayVisible: true,
 			};
 			setLastLevelPlayed(action.payload);
 			return newState;
 		case TOGGLE_MENU_OVERLAY:
 			newState = {
 				...state,
+				levelData: { ...state.levelData, isLevelFinished: false },
 				starScores: getStarScores(),
-				isMenuVisible: !state.isMenuVisible
+				isMenuVisible: !state.isMenuVisible,
 			};
 			return newState;
 		case TOGGLE_HINTS:
@@ -422,13 +438,13 @@ const rootReducer = (
 		case SHOW_HINTS_OVERLAY:
 			newState = {
 				...state,
-				isHintsOverlayVisible: true
+				isHintsOverlayVisible: true,
 			};
 			return newState;
 		case HIDE_HINTS_OVERLAY:
 			newState = {
 				...state,
-				isHintsOverlayVisible: false
+				isHintsOverlayVisible: false,
 			};
 			return newState;
 		default:
