@@ -1,13 +1,10 @@
 import {
 	transformFromStateToGrid,
 	transformFromGridToState,
-	factorial
+	factorial,
 } from "../misc/utils";
 
-import {
-	Cell,
-	CellState,
-} from "../misc/tsTypes";
+import { Cell, CellState } from "../misc/tsTypes";
 
 export function resetCssClasses(state: CellState): Cell[] {
 	let cellsInGrid = transformFromStateToGrid(state.levelData.cells);
@@ -22,7 +19,7 @@ export function resetCssClasses(state: CellState): Cell[] {
 }
 
 export function updateScore(state: CellState, mergedCounter: number): void {
-	const singleScore = factorial(mergedCounter) * 10;
+	const singleScore = factorial(mergedCounter) * mergedCounter * 10;
 
 	state.levelData.singleScore = singleScore;
 	state.levelData.score += singleScore;

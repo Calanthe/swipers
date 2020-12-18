@@ -13,8 +13,8 @@ export const LEVELS: tileInLevel[][] = [
 					to the square finish one.`,
 			stars: {
 				maxPoints: 2, //how many moves are needed to get maximum 3 stars
-				minPoints: 3, //how many moves are needed to get 2 stars 
-			}
+				minPoints: 3, //how many moves are needed to get 2 stars
+			},
 		},
 		{
 			positionX: 3,
@@ -30,24 +30,17 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 6,
 			type: 1,
 			isFinishTile: true,
-			hint:
-				`You will get more points
+			hint: `You will get more points
 				if all of the blue tiles
 				reach finish tile in the same move.`,
 			stars: {
 				maxPoints: 2,
-				minPoints: 4, 
-			}
+				minPoints: 4,
+			},
 		},
 		{
-			positionX: 2,
+			positionX: 3,
 			positionY: 3,
-			type: 1,
-			isFinishTile: false,
-		},
-		{
-			positionX: 4,
-			positionY: 4,
 			type: 1,
 			isFinishTile: false,
 		},
@@ -65,15 +58,44 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 6,
 			type: 1,
 			isFinishTile: true,
-			hint:
-				`Select a different tile to 
-				change active color.
-
-				Use inactive tiles as walls.`,
+			hint: `Select a different tile to 
+				change active color.`,
+			stars: {
+				maxPoints: 4,
+				minPoints: 6,
+			},
+		},
+		{
+			positionX: 4,
+			positionY: 0,
+			type: 1,
+			isFinishTile: false,
+		},
+		{
+			positionX: 6,
+			positionY: 6,
+			type: 2,
+			isFinishTile: true,
+		},
+		{
+			positionX: 2,
+			positionY: 0,
+			type: 2,
+			isFinishTile: false,
+		},
+	],
+	//level 4
+	[
+		{
+			positionX: 0,
+			positionY: 6,
+			type: 1,
+			isFinishTile: true,
+			hint: `Use inactive tiles as walls.`,
 			stars: {
 				maxPoints: 6,
-				minPoints: 8, 
-			}
+				minPoints: 8,
+			},
 		},
 		{
 			positionX: 2,
@@ -98,51 +120,51 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 6,
 			type: WALL_TYPE,
 			isFinishTile: false,
-		}
-	],
-	//level 4
-	[
-		{
-			positionX: 3,
-			positionY: 4,
-			type: 1,
-			isFinishTile: true,
-			stars: {
-				maxPoints: 18,
-				minPoints: 20, 
-			}
-		},
-		{
-			positionX: 0,
-			positionY: 0,
-			type: 1,
-			isFinishTile: false,
-		},
-		{
-			positionX: 2,
-			positionY: 2,
-			type: 2,
-			isFinishTile: true,
-		},
-		{
-			positionX: 1,
-			positionY: 0,
-			type: 2,
-			isFinishTile: false,
-		},
-		{
-			positionX: 4,
-			positionY: 5,
-			type: WALL_TYPE,
-			isFinishTile: false,
-		},
-		{
-			positionX: 3,
-			positionY: 3,
-			type: WALL_TYPE,
-			isFinishTile: false,
 		},
 	],
+	//old level 4
+	// [
+	// 	{
+	// 		positionX: 3,
+	// 		positionY: 4,
+	// 		type: 1,
+	// 		isFinishTile: true,
+	// 		stars: {
+	// 			maxPoints: 18,
+	// 			minPoints: 20,
+	// 		}
+	// 	},
+	// 	{
+	// 		positionX: 0,
+	// 		positionY: 0,
+	// 		type: 1,
+	// 		isFinishTile: false,
+	// 	},
+	// 	{
+	// 		positionX: 2,
+	// 		positionY: 2,
+	// 		type: 2,
+	// 		isFinishTile: true,
+	// 	},
+	// 	{
+	// 		positionX: 1,
+	// 		positionY: 0,
+	// 		type: 2,
+	// 		isFinishTile: false,
+	// 	},
+	// 	{
+	// 		positionX: 4,
+	// 		positionY: 5,
+	// 		type: WALL_TYPE,
+	// 		isFinishTile: false,
+	// 	},
+	// 	{
+	// 		positionX: 3,
+	// 		positionY: 3,
+	// 		type: WALL_TYPE,
+	// 		isFinishTile: false,
+	// 	},
+	// ],
 	//level 5
 	[
 		{
@@ -152,8 +174,8 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			stars: {
 				maxPoints: 8,
-				minPoints: 11, 
-			}
+				minPoints: 11,
+			},
 		},
 		{
 			positionX: 2,
@@ -237,8 +259,8 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			stars: {
 				maxPoints: 6,
-				minPoints: 8, 
-			}
+				minPoints: 8,
+			},
 		},
 		{
 			positionX: 2,
@@ -286,8 +308,8 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			stars: {
 				maxPoints: 10,
-				minPoints: 11, 
-			}
+				minPoints: 11,
+			},
 		},
 		{
 			positionX: 3,
@@ -341,8 +363,8 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			stars: {
 				maxPoints: 12,
-				minPoints: 14, 
-			}
+				minPoints: 14,
+			},
 		},
 		{
 			positionX: 2,
@@ -408,8 +430,8 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			stars: {
 				maxPoints: 16,
-				minPoints: 18, 
-			}
+				minPoints: 18,
+			},
 		},
 		{
 			positionX: 2,
