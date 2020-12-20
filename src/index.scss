@@ -251,13 +251,14 @@ p {
 	margin: 0;
 }
 
+.swipeable {
+	height: 100vh;
+	width: 100vw;
+}
+
 .app {
 	width: $game-width;
 	margin: 0 auto;
-
-	.app-swipeable {
-		height: 100vh;
-	}
 
 	.header {
 		display: grid;

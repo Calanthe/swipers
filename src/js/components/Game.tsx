@@ -144,7 +144,7 @@ class Game extends React.Component<GameProps> {
 
 	render() {
 		return (
-			<div className="app">
+			<div>
 				<Swipe
 					innerRef={() => {}}
 					tolerance={40}
@@ -154,26 +154,28 @@ class Game extends React.Component<GameProps> {
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
 					onSwipeRight={this.onSwipeRight.bind(this)}
 				>
-					<div className="app-swipeable">
-						<MenuOverlay
-							onCloseMenu={this.handleToggleMenu}
-							onLevelRestart={this.handleRestartLevel}
-							onGameRestart={this.handleRestartGame}
-							onSetLevel={this.handleSetLevel}
-							onToggleHints={this.handleToggleHints}
-						/>
-						<Header />
-						<Board onMouseClick={this.handleMouseClick} />
-						<MenuBar
-							onShowMenu={this.handleToggleMenu}
-							onLevelRestart={this.handleRestartLevel}
-						/>
-						<InfoOverlay
-							onLevelRestart={this.handleRestartLevel}
-							onShowMenu={this.handleToggleMenu}
-							onNextLevel={this.handleSetNextLevel}
-						/>
-						<HintsOverlay onClose={this.handleHideHintsOverlay} />
+					<div className="swipeable">
+						<div className="app">
+							<MenuOverlay
+								onCloseMenu={this.handleToggleMenu}
+								onLevelRestart={this.handleRestartLevel}
+								onGameRestart={this.handleRestartGame}
+								onSetLevel={this.handleSetLevel}
+								onToggleHints={this.handleToggleHints}
+							/>
+							<Header />
+							<Board onMouseClick={this.handleMouseClick} />
+							<MenuBar
+								onShowMenu={this.handleToggleMenu}
+								onLevelRestart={this.handleRestartLevel}
+							/>
+							<InfoOverlay
+								onLevelRestart={this.handleRestartLevel}
+								onShowMenu={this.handleToggleMenu}
+								onNextLevel={this.handleSetNextLevel}
+							/>
+							<HintsOverlay onClose={this.handleHideHintsOverlay} />
+						</div>
 					</div>
 				</Swipe>
 			</div>
