@@ -154,25 +154,27 @@ class Game extends React.Component<GameProps> {
 					onSwipeLeft={this.onSwipeLeft.bind(this)}
 					onSwipeRight={this.onSwipeRight.bind(this)}
 				>
-					<MenuOverlay
-						onCloseMenu={this.handleToggleMenu}
-						onLevelRestart={this.handleRestartLevel}
-						onGameRestart={this.handleRestartGame}
-						onSetLevel={this.handleSetLevel}
-						onToggleHints={this.handleToggleHints}
-					/>
-					<Header />
-					<Board onMouseClick={this.handleMouseClick} />
-					<MenuBar
-						onShowMenu={this.handleToggleMenu}
-						onLevelRestart={this.handleRestartLevel}
-					/>
-					<InfoOverlay
-						onLevelRestart={this.handleRestartLevel}
-						onShowMenu={this.handleToggleMenu}
-						onNextLevel={this.handleSetNextLevel}
-					/>
-					<HintsOverlay onClose={this.handleHideHintsOverlay} />
+					<div className="app-swipeable">
+						<MenuOverlay
+							onCloseMenu={this.handleToggleMenu}
+							onLevelRestart={this.handleRestartLevel}
+							onGameRestart={this.handleRestartGame}
+							onSetLevel={this.handleSetLevel}
+							onToggleHints={this.handleToggleHints}
+						/>
+						<Header />
+						<Board onMouseClick={this.handleMouseClick} />
+						<MenuBar
+							onShowMenu={this.handleToggleMenu}
+							onLevelRestart={this.handleRestartLevel}
+						/>
+						<InfoOverlay
+							onLevelRestart={this.handleRestartLevel}
+							onShowMenu={this.handleToggleMenu}
+							onNextLevel={this.handleSetNextLevel}
+						/>
+						<HintsOverlay onClose={this.handleHideHintsOverlay} />
+					</div>
 				</Swipe>
 			</div>
 		);

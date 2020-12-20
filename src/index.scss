@@ -255,6 +255,10 @@ p {
 	width: $game-width;
 	margin: 0 auto;
 
+	.app-swipeable {
+		height: 100vh;
+	}
+
 	.header {
 		display: grid;
 		grid-template-columns: [col] 206px [col] 152px;
