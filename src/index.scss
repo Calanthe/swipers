@@ -136,8 +136,8 @@ $secondary-font-color: #658fff;
 $tertiary-font-color: #3369ff;
 $primary-star-color: #f3d00b;
 
-$game-width: 364px;
-$tile-size: 45px;
+$game-width: 360px;
+$tile-size: 43px;
 $grid-row-cells: 7;
 $grid-spacing: 4;
 $tiles-no-width: 7;
@@ -346,8 +346,8 @@ p {
 
 	.game {
 		position: relative;
-		width: 340px;
-		height: 340px;
+		width: 326px;
+		height: 326px;
 		border: 10px solid $tile-bg-primary;
 		border-radius: 5px;
 		padding: 2px;
