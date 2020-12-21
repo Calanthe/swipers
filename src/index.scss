@@ -967,8 +967,45 @@ $tile-size: 68px;
 			grid-template-columns: [col] 270px [col] 270px;
 		}
 
+		.button {
+			padding: 14px;
+			font-size: 16px;
+		}
+
+		.overlay__buttons-wrapper {
+			grid-template-columns: [col] 150px [col] 112px;
+
+			& .button {
+				max-width: 126px;
+			}
+		}
+
 		.button-link {
 			padding: 20px;
+			font-size: 16px;
+		}
+
+		.overlay__title {
+			font-size: 18px;
+			top: -38px;
+			padding: 10px;
+		}
+
+		.overlay__text {
+			line-height: 26px;
+			font-size: 20px;
+		}
+
+		.overlay__single-btn {
+			margin-left: 126px;
+		}
+
+		.overlay__score-info {
+			grid-template-columns: [col] 74px [col] 50px;
+			margin-left: 78px;
+		}
+
+		.overlay__score-title {
 			font-size: 16px;
 		}
 	}
