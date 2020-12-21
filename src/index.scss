@@ -697,7 +697,7 @@ p {
 	}
 
 	.menu-overlay__logo {
-		padding: 0 0 20px 40px;
+		padding: 0 0 12px 40px;
 		margin: 0;
 		text-shadow: 3px 3px $tile-bg-primary;
 		-webkit-text-stroke-color: $tile-bg-primary;
@@ -754,7 +754,7 @@ p {
 		grid-template-rows: repeat(3, 60px);
 		grid-auto-flow: row;
 		grid-gap: 10px;
-		margin: 50px 0 0 0;
+		margin: 44px 0 0 0;
 		padding: 8px;
 		max-width: 212px;
 		background-color: $primary-bg-color;
