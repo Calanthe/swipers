@@ -687,63 +687,63 @@ p {
 				$menu-overlay-wrapper-transition-delay forwards;
 			display: block;
 		}
+	}
 
-		.menu-overlay {
-			width: 308px;
-			margin: 0 auto;
-			padding: 10px 0 0 0;
-			font-family: sans-serif;
+	.menu-overlay {
+		width: 308px;
+		margin: 0 auto;
+		padding: 10px 0 0 0;
+		font-family: sans-serif;
+	}
+
+	.menu-overlay__logo {
+		padding: 0 0 20px 40px;
+		margin: 0;
+		text-shadow: 3px 3px $tile-bg-primary;
+		-webkit-text-stroke-color: $tile-bg-primary;
+		-moz-text-stroke-color: $tile-bg-primary;
+	}
+
+	.menu-overlay__content-wrapper {
+		padding: 0 40px;
+	}
+
+	.menu-overlay__button {
+		display: block;
+		width: 228px;
+		margin: 10px 0;
+
+		&:focus {
+			outline: 1px solid $secondary-font-color;
 		}
+	}
 
-		.menu-overlay__logo {
-			padding: 0 0 20px 40px;
-			margin: 0;
-			text-shadow: 3px 3px $tile-bg-primary;
-			-webkit-text-stroke-color: $tile-bg-primary;
-			-moz-text-stroke-color: $tile-bg-primary;
+	.menu-overlay__hints {
+		text-align: left;
+		box-shadow: none;
+		background-color: $primary-bg-color;
+		color: $tile-bg-wall;
+
+		.fas {
+			margin-left: 56px;
 		}
+	}
 
-		.menu-overlay__content-wrapper {
-			padding: 0 40px;
-		}
+	.menu-overlay__credits {
+		text-align: center;
+		margin: 20px auto 10px auto;
+	}
 
-		.menu-overlay__button {
-			display: block;
-			width: 228px;
-			margin: 10px 0;
+	.menu-overlay__credits-link {
+		text-decoration: none;
+		color: $secondary-font-color;
 
-			&:focus {
-				outline: 1px solid $secondary-font-color;
-			}
-		}
-
-		.menu-overlay__hints {
-			text-align: left;
-			box-shadow: none;
-			background-color: $primary-bg-color;
-			color: $tile-bg-wall;
-
-			.fas {
-				margin-left: 56px;
-			}
-		}
-
-		.menu-overlay__credits {
-			text-align: center;
-			margin: 20px auto 10px auto;
-		}
-
-		.menu-overlay__credits-link {
+		&:hover,
+		&:active,
+		&:focus,
+		&:visited {
 			text-decoration: none;
 			color: $secondary-font-color;
-
-			&:hover,
-			&:active,
-			&:focus,
-			&:visited {
-				text-decoration: none;
-				color: $secondary-font-color;
-			}
 		}
 	}
 
@@ -1007,6 +1007,24 @@ $tile-size: 68px;
 
 		.overlay__score-title {
 			font-size: 16px;
+		}
+
+		.menu-overlay {
+			width: 378px;
+			padding-top: 20px;
+		}
+
+		.menu-overlay__content-wrapper {
+			padding: 0 14px;
+		}
+
+		.menu-overlay__button {
+			font-size: 20px;
+			width: 304px;
+		}
+
+		.menu-overlay__hints .fas {
+			margin-left: 48px;
 		}
 	}
 }
