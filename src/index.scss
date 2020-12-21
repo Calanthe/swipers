@@ -260,6 +260,10 @@ p {
 	width: $game-width;
 	margin: 0 auto;
 
+	/*-------------------------------------*/
+	/*----------------Header---------------*/
+	/*-------------------------------------*/
+
 	.header {
 		display: grid;
 		grid-template-columns: [col] 206px [col] 152px;
@@ -343,6 +347,10 @@ p {
 			-moz-text-stroke-color: $tile-bg-quaternary;
 		}
 	}
+
+	/*-------------------------------------*/
+	/*----------Game grid and tiles--------*/
+	/*-------------------------------------*/
 
 	.game {
 		position: relative;
@@ -533,6 +541,10 @@ p {
 		}
 	}
 
+	/*-------------------------------------*/
+	/*-------------Info overlay------------*/
+	/*-------------------------------------*/
+
 	.overlay {
 		padding: 15px;
 		background-color: $secondary-bg-color;
@@ -648,6 +660,10 @@ p {
 			top: 1px;
 		}
 	}
+
+	/*-------------------------------------*/
+	/*---------Menu bar and overlay--------*/
+	/*-------------------------------------*/
 
 	.menu-bar {
 		display: grid;
@@ -794,7 +810,7 @@ p {
 		text-transform: uppercase;
 		font-family: sans-serif;
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 14px;
 		color: $secondary-font-color;
 		text-align: center;
 		background-color: $secondary-bg-color;
@@ -830,6 +846,130 @@ p {
 
 		& .buttons {
 			padding: 14px 0 0 0;
+		}
+	}
+}
+
+/*-------------------------------------*/
+/*-----------Tablet and above----------*/
+/*-------------------------------------*/
+
+$game-width: 500px;
+$tile-size: 68px;
+
+@media only screen and (min-device-width: 768px) {
+	.app {
+		width: 560px;
+
+		.header {
+			grid-template-columns: [col] 386px [col] 168px;
+		}
+
+		.header__score-wrapper {
+			font-size: 14px;
+		}
+
+		.logo {
+			font-size: 5rem;
+			padding: 20px 4px 20px 12px;
+		}
+
+		.game {
+			width: $game-width;
+			height: $game-width;
+		}
+
+		.grid {
+			grid-template-columns: repeat($tiles-no-height, $tile-size);
+			grid-template-rows: repeat($tiles-no-width, $tile-size);
+		}
+
+		.tile {
+			width: ceil($tile-size);
+			height: ceil($tile-size);
+			line-height: ceil($tile-size);
+		}
+
+		// Build position classes
+		@for $x from 0 through ($grid-row-cells - 1) {
+			@for $y from 0 through ($grid-row-cells - 1) {
+				.tile-position-#{$x}-#{$y} {
+					$xPos: floor(($tile-size + $grid-spacing) * $x);
+					$yPos: floor(($tile-size + $grid-spacing) * $y);
+
+					top: $yPos;
+					left: $xPos;
+				}
+			}
+		}
+
+		.tile-type-finish {
+			&:before {
+				content: " ";
+				position: absolute;
+				top: 12px;
+				left: 12px;
+				right: 12px;
+				bottom: 12px;
+			}
+
+			&:after {
+				content: " ";
+				position: absolute;
+				top: 24px;
+				left: 24px;
+				right: 24px;
+				bottom: 24px;
+			}
+
+			&.tile-type-primary {
+				outline: 8px solid $tile-bg-primary;
+				outline-offset: -8px;
+
+				&:before,
+				&:after {
+					border: 8px solid $tile-bg-primary;
+				}
+			}
+
+			&.tile-type-secondary {
+				outline: 8px solid $tile-bg-secondary;
+				outline-offset: -8px;
+
+				&:before,
+				&:after {
+					border: 8px solid $tile-bg-secondary;
+				}
+			}
+
+			&.tile-type-tertiary {
+				outline: 8px solid $tile-bg-tertiary;
+				outline-offset: -8px;
+
+				&:before,
+				&:after {
+					border: 8px solid $tile-bg-tertiary;
+				}
+			}
+
+			&.tile-type-quaternary {
+				outline: 8px solid $tile-bg-quaternary;
+				outline-offset: -8px;
+
+				&:before,
+				&:after {
+					border: 8px solid $tile-bg-quaternary;
+				}
+			}
+		}
+
+		.menu-bar {
+			grid-template-columns: [col] 270px [col] 270px;
+		}
+
+		.button-link {
+			padding: 20px;
+			font-size: 16px;
 		}
 	}
 }
