@@ -751,7 +751,7 @@ p {
 		position: relative;
 		display: grid;
 		grid-template-columns: repeat(3, 64px);
-		grid-template-rows: repeat(3, 56px);
+		grid-template-rows: repeat(3, 60px);
 		grid-auto-flow: row;
 		grid-gap: 10px;
 		margin: 50px 0 0 0;
@@ -863,6 +863,7 @@ $tile-size: 68px;
 
 		.header {
 			grid-template-columns: [col] 386px [col] 168px;
+			padding: 20px 0;
 		}
 
 		.header__score-wrapper {
@@ -1025,6 +1026,32 @@ $tile-size: 68px;
 
 		.menu-overlay__hints .fas {
 			margin-left: 48px;
+		}
+
+		.levels__header {
+			top: -38px;
+			font-size: 18px;
+			padding: 10px;
+		}
+
+		.levels {
+			grid-template-columns: repeat(3, 89px);
+			grid-template-rows: repeat(3, 88px);
+			max-width: 288px;
+			margin-top: 68px;
+		}
+
+		.levels__single-level {
+			height: 88px;
+			font-size: 20px;
+		}
+
+		.levels__level-no {
+			font-size: 30px;
+		}
+
+		.menu-overlay__credits {
+			font-size: 20px;
 		}
 	}
 }

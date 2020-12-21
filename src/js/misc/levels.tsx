@@ -173,8 +173,8 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 8,
-				minPoints: 11,
+				maxPoints: 7,
+				minPoints: 9,
 			},
 		},
 		{
@@ -190,12 +190,6 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: false,
 		},
 		{
-			positionX: 4,
-			positionY: 5,
-			type: 1,
-			isFinishTile: false,
-		},
-		{
 			positionX: 5,
 			positionY: 6,
 			type: 2,
@@ -204,12 +198,6 @@ export const LEVELS: tileInLevel[][] = [
 		{
 			positionX: 4,
 			positionY: 4,
-			type: 2,
-			isFinishTile: false,
-		},
-		{
-			positionX: 5,
-			positionY: 3,
 			type: 2,
 			isFinishTile: false,
 		},
@@ -258,8 +246,8 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 6,
-				minPoints: 8,
+				maxPoints: 8,
+				minPoints: 10,
 			},
 		},
 		{
