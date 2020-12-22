@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fb53b086fcc01007a7d1a3d2783ff899",
+    "revision": "f8a3320bdd1c80bc30eacbe686fcdaef",
     "url": "/swipers/index.html"
   },
   {
-    "revision": "dca045e03c5decdb12df",
+    "revision": "8d1806e90dd67e7d83c3",
     "url": "/swipers/static/css/main.af66b190.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/swipers/static/js/2.d4c05f79.chunk.js.LICENSE"
   },
   {
-    "revision": "dca045e03c5decdb12df",
-    "url": "/swipers/static/js/main.68aa969d.chunk.js"
+    "revision": "8d1806e90dd67e7d83c3",
+    "url": "/swipers/static/js/main.50e1a767.chunk.js"
   },
   {
     "revision": "27959af1fde352a27e28",
