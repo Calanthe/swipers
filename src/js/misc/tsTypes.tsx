@@ -9,7 +9,7 @@ import {
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
 	SHOW_HINTS_OVERLAY,
-	HIDE_HINTS_OVERLAY
+	HIDE_HINTS_OVERLAY,
 } from "../actions/actionTypes";
 
 export interface Cell {
@@ -29,8 +29,9 @@ export interface FinishCords {
 }
 
 interface StarsThresholds {
-	maxPoints: number;
-	minPoints: number;
+	maxMoves: number;
+	minMoves: number;
+	maxPoints?: number;
 }
 
 export interface LevelData {
@@ -48,7 +49,6 @@ export interface LevelData {
 	moves: number;
 	isLevelFinished: boolean;
 	isGameFinished: boolean;
-
 }
 
 export interface CellState {

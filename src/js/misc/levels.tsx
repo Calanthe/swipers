@@ -12,8 +12,9 @@ export const LEVELS: tileInLevel[][] = [
 					the blue rounded tile 
 					to the square finish one.`,
 			stars: {
-				maxPoints: 2, //how many moves are needed to get maximum 3 stars
-				minPoints: 3, //how many moves are needed to get 2 stars
+				maxMoves: 2, //how many moves are needed to get maximum 3 stars
+				minMoves: 3, //how many moves are needed to get 2 stars
+				maxPoints: 0, //how many points are needed to get maximum 3 stars, if 0 - it doesn't matter, only moves count
 			},
 		},
 		{
@@ -34,8 +35,9 @@ export const LEVELS: tileInLevel[][] = [
 				if all of the blue tiles
 				reach finish tile in the same move.`,
 			stars: {
-				maxPoints: 2,
-				minPoints: 4,
+				maxMoves: 2,
+				minMoves: 4,
+				maxPoints: 40,
 			},
 		},
 		{
@@ -61,8 +63,9 @@ export const LEVELS: tileInLevel[][] = [
 			hint: `Select a different tile to 
 				change active color.`,
 			stars: {
-				maxPoints: 4,
-				minPoints: 6,
+				maxMoves: 4,
+				minMoves: 6,
+				maxPoints: 0,
 			},
 		},
 		{
@@ -93,8 +96,9 @@ export const LEVELS: tileInLevel[][] = [
 			isFinishTile: true,
 			hint: `Use inactive tiles as walls.`,
 			stars: {
-				maxPoints: 6,
-				minPoints: 8,
+				maxMoves: 6,
+				minMoves: 8,
+				maxPoints: 0,
 			},
 		},
 		{
@@ -130,8 +134,8 @@ export const LEVELS: tileInLevel[][] = [
 	// 		type: 1,
 	// 		isFinishTile: true,
 	// 		stars: {
-	// 			maxPoints: 18,
-	// 			minPoints: 20,
+	// 			maxMoves: 18,
+	// 			minMoves: 20,
 	// 		}
 	// 	},
 	// 	{
@@ -173,8 +177,9 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 7,
-				minPoints: 9,
+				maxMoves: 7,
+				minMoves: 9,
+				maxPoints: 80,
 			},
 		},
 		{
@@ -246,8 +251,9 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 8,
-				minPoints: 10,
+				maxMoves: 8,
+				minMoves: 10,
+				maxPoints: 60,
 			},
 		},
 		{
@@ -295,8 +301,9 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 10,
-				minPoints: 11,
+				maxMoves: 10,
+				minMoves: 11,
+				maxPoints: 0,
 			},
 		},
 		{
@@ -350,8 +357,9 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 12,
-				minPoints: 14,
+				maxMoves: 12,
+				minMoves: 14,
+				maxPoints: 100,
 			},
 		},
 		{
@@ -417,8 +425,9 @@ export const LEVELS: tileInLevel[][] = [
 			type: 1,
 			isFinishTile: true,
 			stars: {
-				maxPoints: 16,
-				minPoints: 18,
+				maxMoves: 16,
+				minMoves: 18,
+				maxPoints: 0,
 			},
 		},
 		{

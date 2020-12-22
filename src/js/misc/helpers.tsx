@@ -34,9 +34,18 @@ export function updateScore(state: CellState, mergedCounter: number): void {
 export function calculateStarScore(state: CellState): number {
 	let starScore = 1; //if you manage to finish the level, get at least one star
 
-	if (state.levelData.moves <= state.levelData.stars.maxPoints) {
+	if (
+		state.levelData.moves === state.levelData.stars.maxMoves &&
+		(!state.levelData.stars.maxPoints ||
+			state.levelData.score === state.levelData.stars.maxPoints)
+	) {
 		starScore = 3;
-	} else if (state.levelData.moves <= state.levelData.stars.minPoints) {
+	} else if (
+		(state.levelData.moves === state.levelData.stars.maxMoves &&
+			state.levelData.stars.maxPoints &&
+			state.levelData.score !== state.levelData.stars.maxPoints) ||
+		state.levelData.moves <= state.levelData.stars.minMoves
+	) {
 		starScore = 2;
 	}
 
