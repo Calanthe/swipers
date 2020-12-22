@@ -148,7 +148,7 @@ function setHint(level: number = 0): string {
 	return hint;
 }
 
-function moveTile(move: number, state: CellState): Cell[] {
+function moveTiles(move: number, state: CellState): Cell[] {
 	let cell: Cell,
 		newPosition: Cell,
 		availableCells = removeMergedCells(state.levelData.cells),
@@ -156,7 +156,8 @@ function moveTile(move: number, state: CellState): Cell[] {
 		cellsAmount =
 			availableCells.length - state.levelData.nonStandardTilesAmount,
 		mergedCounter: number = 0,
-		alreadyMovedTile: boolean = false;
+		alreadyMovedTile: boolean = false,
+		isCellMovable: boolean = false;
 
 	const traversals = buildTraversals(move),
 		moveVector = getMoveVector(move);
@@ -200,9 +201,9 @@ function moveTile(move: number, state: CellState): Cell[] {
 					mergedCounter++;
 					cellsAmount--;
 				}
-				moveCell(cellsInGrid, newPosition, cell);
+				isCellMovable = moveCell(cellsInGrid, newPosition, cell);
 
-				if (!alreadyMovedTile) {
+				if (isCellMovable && !alreadyMovedTile) {
 					state.levelData.moves++;
 					alreadyMovedTile = true;
 				}
@@ -240,15 +241,19 @@ function removeMergedCells(cells: Cell[]): Cell[] {
 }
 
 function moveCell(cells: Cell[][], newPosition: Cell, prevPosition: Cell) {
+	let isCellMovable: boolean = false;
+
 	if (
 		newPosition.positionX !== prevPosition.positionX ||
 		newPosition.positionY !== prevPosition.positionY
 	) {
 		cells[newPosition.positionX][newPosition.positionY] = newPosition;
 		cells[prevPosition.positionX][prevPosition.positionY] = null;
+
+		isCellMovable = true;
 	}
 
-	return;
+	return isCellMovable;
 }
 
 function getMoveVector(move: number): Vector {
@@ -368,7 +373,7 @@ const rootReducer = (
 				...state,
 				levelData: {
 					...state.levelData,
-					cells: moveTile(action.payload, state),
+					cells: moveTiles(action.payload, state),
 				},
 			};
 			return newState;
