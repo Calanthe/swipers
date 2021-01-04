@@ -15,7 +15,7 @@
 			"type": "image/png"
 		}
     ],
-    "start_url": "/?source=pwa",
+    "start_url": "/",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
@@ -25,7 +25,6 @@
         "name": "Swipers game",
         "short_name": "Swipers",
         "description": "A sliding puzzle game",
-        "url": "/today?source=pwa",
         "icons": [
             {
                 "src": "/android-chrome-192x192.png",
