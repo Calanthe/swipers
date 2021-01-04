@@ -15,11 +15,12 @@
 			"type": "image/png"
 		}
     ],
-    "start_url": "/",
+    "start_url": "/swipers",
     "background_color": "#ffffff",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/swipers",
     "theme_color": "#ffffff",
+    "prefer_related_applications": false,
     "shortcuts": [
       {
         "name": "Swipers game",
