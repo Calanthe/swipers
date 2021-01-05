@@ -157,6 +157,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 			availableCells.length - state.levelData.nonStandardTilesAmount,
 		mergedCounter: number = 0,
 		alreadyMovedTile: boolean = false,
+		isCellMergable: boolean = false,
 		isCellMovable: boolean = false;
 
 	const traversals = buildTraversals(move),
@@ -185,6 +186,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 						newPosition.nextTile.type === cell.type) ||
 						newPosition.nextTile.toBeMergedWithFinish)
 				) {
+					isCellMergable = true;
 					//add merge class to the finish tile
 					if (
 						newPosition.nextTile.isFinishTile &&
@@ -203,7 +205,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 				}
 				isCellMovable = moveCell(cellsInGrid, newPosition, cell);
 
-				if (isCellMovable && !alreadyMovedTile) {
+				if ((isCellMovable || isCellMergable) && !alreadyMovedTile) {
 					state.levelData.moves++;
 					alreadyMovedTile = true;
 				}
