@@ -379,6 +379,7 @@ p {
 	}
 
 	.grid {
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAYAAABzJ5OsAAAAnElEQVRoQ+3ZMQ7DIBQE0XD/C0OF6zhVRiNLWEO/y9fjd4y99/4cctZaX5OOhn/o5ZJ/CPrnmuSTBwKtDUBTIskrjKAkeYCmRJJXGEFJ8gBNiSSvMIKS5AGaEkleYQQlyQM0JZK8wghKkgdoSiR5hRGUJA/QlEjyCiMoSR6gKZHkFUZQkjxAUyLvkp9zHvN9f3++0fDKRv9fcrT8BZDYOKiqhQJRAAAAAElFTkSuQmCC");
 		position: absolute;
 		z-index: 1;
 		display: grid;
@@ -387,10 +388,6 @@ p {
 		grid-auto-flow: row;
 		grid-gap: 4px;
 		background-color: $secondary-bg-color;
-
-		.block {
-			background-color: $primary-bg-color;
-		}
 	}
 
 	.board {
@@ -881,6 +878,7 @@ $tile-size: 68px;
 		}
 
 		.grid {
+			background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAA1UlEQVR4Xu3cMQ6AIBQFQbn/haHCzsRGYrYdjrCZ/0rG3ntf3lNgrfWqMQR66xDocC0CCdQGlSCCCGoFCGr9bBBBBLUCBLV+NogggloBglo/G0QQQa0AQa2fDSKIoFaAoNbPBhFEUCtAUOtngwgiqBUgqPWzQQQR1AoQ1PrZIIIIagUIav1sEEEEtQIEtX42iCCCWgGCWj8bRBBBrQBBrZ8NIoigVoCg1s8GEURQK0BQ62eDCCKoFSCo9bNBBBHUCvwVNOf0h9lHtCHQNymBDicn0CHQDSMD5VBWl92CAAAAAElFTkSuQmCC");
 			grid-template-columns: repeat($tiles-no-height, $tile-size);
 			grid-template-rows: repeat($tiles-no-width, $tile-size);
 		}
