@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/swipers/static/css/main.af66b190.chunk.css",
-    "main.js": "/swipers/static/js/main.ee535923.chunk.js",
-    "main.js.map": "/swipers/static/js/main.ee535923.chunk.js.map",
+    "main.css": "/swipers/static/css/main.5f4e420b.chunk.css",
+    "main.js": "/swipers/static/js/main.d94c50d2.chunk.js",
+    "main.js.map": "/swipers/static/js/main.d94c50d2.chunk.js.map",
     "runtime-main.js": "/swipers/static/js/runtime-main.e34253b7.js",
     "runtime-main.js.map": "/swipers/static/js/runtime-main.e34253b7.js.map",
-    "static/js/2.d4c05f79.chunk.js": "/swipers/static/js/2.d4c05f79.chunk.js",
-    "static/js/2.d4c05f79.chunk.js.map": "/swipers/static/js/2.d4c05f79.chunk.js.map",
+    "static/js/2.8b55913e.chunk.js": "/swipers/static/js/2.8b55913e.chunk.js",
+    "static/js/2.8b55913e.chunk.js.map": "/swipers/static/js/2.8b55913e.chunk.js.map",
     "index.html": "/swipers/index.html",
-    "precache-manifest.11cfad47e60d5ea751516c8ceb1ad610.js": "/swipers/precache-manifest.11cfad47e60d5ea751516c8ceb1ad610.js",
+    "precache-manifest.20d660ee012c5bb6c8acdc98a8d116cc.js": "/swipers/precache-manifest.20d660ee012c5bb6c8acdc98a8d116cc.js",
     "service-worker.js": "/swipers/service-worker.js",
-    "static/css/main.af66b190.chunk.css.map": "/swipers/static/css/main.af66b190.chunk.css.map",
-    "static/js/2.d4c05f79.chunk.js.LICENSE": "/swipers/static/js/2.d4c05f79.chunk.js.LICENSE"
+    "static/css/main.5f4e420b.chunk.css.map": "/swipers/static/css/main.5f4e420b.chunk.css.map",
+    "static/js/2.8b55913e.chunk.js.LICENSE": "/swipers/static/js/2.8b55913e.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.e34253b7.js",
-    "static/js/2.d4c05f79.chunk.js",
-    "static/css/main.af66b190.chunk.css",
-    "static/js/main.ee535923.chunk.js"
+    "static/js/2.8b55913e.chunk.js",
+    "static/css/main.5f4e420b.chunk.css",
+    "static/js/main.d94c50d2.chunk.js"
   ]
 }
