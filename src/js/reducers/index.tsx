@@ -149,6 +149,11 @@ function setHint(level: number = 0): string {
 }
 
 function moveTiles(move: number, state: CellState): Cell[] {
+	//menu overlays the board so don't allow to move tiles unless menu is closed
+	if (state.isMenuVisible) {
+		return state.levelData.cells;
+	}
+
 	let cell: Cell,
 		newPosition: Cell,
 		availableCells = removeMergedCells(state.levelData.cells),
@@ -170,7 +175,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 
 	resetCssClasses(state);
 
-	// Traverse the grid in the right direction and move tiles
+	//Traverse the grid in the right direction and move tiles
 	traversals.x.forEach((x) => {
 		traversals.y.forEach((y) => {
 			cell = cellsInGrid[x][y];
