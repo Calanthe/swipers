@@ -52,69 +52,97 @@ export function factorial(n) {
 	}
 }
 
-Storage.prototype.setObject = function(key, obj) {
-    return this.setItem(key, JSON.stringify(obj))
+export function isMobile() {
+	if (
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		)
+	) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
-Storage.prototype.getObject = function(key) {
-    return JSON.parse(this.getItem(key))
-}
+Storage.prototype.setObject = function (key, obj) {
+	return this.setItem(key, JSON.stringify(obj));
+};
+
+Storage.prototype.getObject = function (key) {
+	return JSON.parse(this.getItem(key));
+};
 
 export function setMaxScores(state: CellState): void {
 	const localStorage = window.localStorage;
 
-	localStorage.setObject('swipers_game--best_scores', state.maxScores);
+	localStorage.setObject("swipers_game--best_scores", state.maxScores);
 }
 
 export function getMaxScores(): Array<number> {
 	const localStorage = window.localStorage;
 	let emptyBestScores: Array<number> = new Array(9).fill(0);
 
-	let bestScores = localStorage.getObject('swipers_game--best_scores');
+	let bestScores = localStorage.getObject("swipers_game--best_scores");
 
-	return (typeof bestScores === 'undefined' || bestScores === null || bestScores.length === 0) ? emptyBestScores : bestScores;
+	return typeof bestScores === "undefined" ||
+		bestScores === null ||
+		bestScores.length === 0
+		? emptyBestScores
+		: bestScores;
 }
 
 export function setStarScores(state: CellState): void {
 	const localStorage = window.localStorage;
 
-	localStorage.setObject('swipers_game--star_scores', state.starScores);
+	localStorage.setObject("swipers_game--star_scores", state.starScores);
 }
 
 export function getStarScores(): Array<number> {
 	const localStorage = window.localStorage;
 	let emptyStarScores: Array<number> = new Array(9).fill(0);
 
-	let starScores = localStorage.getObject('swipers_game--star_scores');
+	let starScores = localStorage.getObject("swipers_game--star_scores");
 
-	return (typeof starScores === 'undefined' || starScores === null || starScores.length === 0) ? emptyStarScores : starScores;
+	return typeof starScores === "undefined" ||
+		starScores === null ||
+		starScores.length === 0
+		? emptyStarScores
+		: starScores;
 }
 
 export function setHintsVisibility(isHintsVisible: boolean): void {
 	const localStorage = window.localStorage;
 
-	localStorage.setObject('swipers_game--hints-visibility', isHintsVisible);
+	localStorage.setObject("swipers_game--hints-visibility", isHintsVisible);
 }
 
 export function getHintsVisibility(): boolean {
 	const localStorage = window.localStorage;
 	let initialHintsVisibility: boolean = true;
 
-	let hintsVisibility = localStorage.getObject('swipers_game--hints-visibility');
+	let hintsVisibility = localStorage.getObject(
+		"swipers_game--hints-visibility"
+	);
 
-	return (typeof hintsVisibility === 'undefined' || hintsVisibility === null) ? initialHintsVisibility : hintsVisibility;
+	return typeof hintsVisibility === "undefined" || hintsVisibility === null
+		? initialHintsVisibility
+		: hintsVisibility;
 }
 
 export function getLastLevelPlayed(initialLevel: number): number {
 	const localStorage = window.localStorage;
 
-	let lastLevelPlayed = localStorage.getObject('swipers_game--last_level_played');
+	let lastLevelPlayed = localStorage.getObject(
+		"swipers_game--last_level_played"
+	);
 
-	return (typeof lastLevelPlayed === 'undefined' || lastLevelPlayed === null) ? initialLevel : lastLevelPlayed;
+	return typeof lastLevelPlayed === "undefined" || lastLevelPlayed === null
+		? initialLevel
+		: lastLevelPlayed;
 }
 
 export function setLastLevelPlayed(level: number): void {
 	const localStorage = window.localStorage;
 
-	localStorage.setObject('swipers_game--last_level_played', level);
+	localStorage.setObject("swipers_game--last_level_played", level);
 }

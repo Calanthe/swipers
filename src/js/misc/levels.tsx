@@ -1,5 +1,15 @@
 import { WALL_TYPE } from "../misc/constants";
 import { tileInLevel } from "../misc/tsTypes";
+import { isMobile } from "../misc/utils";
+
+const firstLevelHint = isMobile()
+	? `Swipe up, down or sideways
+to move the blue circle 
+to the square finish tile.`
+	: `Use the arrow keys (or WASD)
+to move the blue circle 
+to the square finish tile.`;
+
 export const LEVELS: tileInLevel[][] = [
 	//level 1
 	[
@@ -8,9 +18,7 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
-			hint: `Swipe up, down or sideways
-					to move the blue circle 
-					to the square finish tile.`,
+			hint: firstLevelHint,
 			stars: {
 				maxMoves: 2, //how many moves are needed to get maximum 3 stars
 				minMoves: 3, //how many moves are needed to get 2 stars
