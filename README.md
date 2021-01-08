@@ -4,8 +4,11 @@ The game's main objective is to move active tiles to the finish one with minimal
 
 You can play it here: http://zofiakorcz.pl/swipers
 
-![Image of Swipers menu](./public/swipers_game.png)
-![Image of Swipers game](./public/swipers_menu.png)
+![Image of Swipers menu](./public/swipers_menu.png)
+
+![Image of Swipers game](./public/swipers_game.png)
+
+![Image of Swipers game - advanced level](./public/swipers_advanced.png)
 
 # Tech
 
