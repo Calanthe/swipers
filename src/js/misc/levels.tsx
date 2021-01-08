@@ -8,9 +8,9 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 0,
 			type: 1,
 			isFinishTile: true,
-			hint: `Swipe orthogonally to move 
-					the blue rounded tile 
-					to the square finish one.`,
+			hint: `Swipe up, down or sideways
+					to move the blue circle 
+					to the square finish tile.`,
 			stars: {
 				maxMoves: 2, //how many moves are needed to get maximum 3 stars
 				minMoves: 3, //how many moves are needed to get 2 stars
@@ -31,9 +31,9 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 6,
 			type: 1,
 			isFinishTile: true,
-			hint: `You will get more points
-				if all of the blue tiles
-				reach finish tile in the same move.`,
+			hint: `You will get more points 
+					if all of the blue circles reach
+					the finish tile in the same move.`,
 			stars: {
 				maxMoves: 2,
 				minMoves: 4,
@@ -60,8 +60,8 @@ export const LEVELS: tileInLevel[][] = [
 			positionY: 6,
 			type: 1,
 			isFinishTile: true,
-			hint: `Select a different tile to 
-				change active color.`,
+			hint: `Select a different colored tile 
+				to change active color.`,
 			stars: {
 				maxMoves: 4,
 				minMoves: 6,
