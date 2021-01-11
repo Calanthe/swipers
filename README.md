@@ -1,4 +1,4 @@
-# Swipers game
+# The Swipers game
 
 The game's main objective is to move active tiles to the finish one with minimal moves. User can select a different tile to change active color and then use inactive tiles as walls.
 
@@ -26,4 +26,7 @@ which runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # License
-Swipers is licensed under the MIT license.
+
+The game's code is open source so you are free to fork the repo, play with the code and hopefully learn from it. 
+
+You are not allowed to distribute and use it commercially without my approval. Contact me if you are interested in licensing this game.
