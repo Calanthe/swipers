@@ -12,7 +12,9 @@ const Tile: React.FunctionComponent<Props> = ({
 	cell,
 	onMouseClick,
 }) => {
-	const [newTileClassName, setData] = useState<Props["tileClassName"] | null>(null);
+	const [newTileClassName, setData] = useState<Props["tileClassName"] | null>(
+		null
+	);
 
 	useEffect(() => {
 		requestAnimationFrame(() => {
@@ -21,7 +23,11 @@ const Tile: React.FunctionComponent<Props> = ({
 	}, [tileClassName]);
 
 	return (
-		<div className={newTileClassName} onClick={() => onMouseClick(cell)} />
+		<div
+			className={newTileClassName}
+			data-type={cell.type}
+			onClick={() => onMouseClick(cell)}
+		/>
 	);
 };
 

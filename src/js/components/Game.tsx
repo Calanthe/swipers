@@ -5,6 +5,7 @@ import Board from "./Board";
 import Header from "./Header";
 import InfoOverlay from "./InfoOverlay";
 import HintsOverlay from "./HintsOverlay";
+import MenuOverlay from "./MenuOverlay";
 import MenuBar from "./MenuBar";
 import {
 	updateCells,
@@ -19,8 +20,7 @@ import {
 	hideHintsOverlay,
 } from "../actions/index";
 import { Cell, UpdateCellsObj } from "../misc/tsTypes";
-import { TILE_TYPES } from "../misc/constants";
-import MenuOverlay from "./MenuOverlay";
+import { WALL_TYPE } from "../misc/constants";
 
 interface GameProps {
 	updateCells: typeof updateCells;
@@ -62,12 +62,15 @@ class Game extends React.Component<GameProps> {
 	}
 
 	handleMove = (eventKey: string, target: HTMLElement = null): void => {
+		const selectedType = parseInt(target.dataset.type, 10);
 		let newActiveType;
 
 		if (!isKeyPressed) {
-			//console.log(target, target.classList)
-			if (!target.classList.contains("tile-active")) {
-				newActiveType = 2;
+			if (
+				!target.classList.contains("tile-active") &&
+				selectedType !== WALL_TYPE
+			) {
+				newActiveType = selectedType;
 			}
 			this.handleCellsUpdate(eventKey, newActiveType);
 			isKeyPressed = true;

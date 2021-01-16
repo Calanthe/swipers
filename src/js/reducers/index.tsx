@@ -381,7 +381,9 @@ const rootReducer = (
 				...state,
 				levelData: {
 					...state.levelData,
-					activeType: action.payload.newActiveType,
+					activeType: action.payload.newActiveType
+						? action.payload.newActiveType
+						: state.levelData.activeType,
 					cells: moveTiles(
 						action.payload.keyPressedNo,
 						state,
