@@ -18,7 +18,8 @@ import {
 	toggleHints,
 	hideHintsOverlay,
 } from "../actions/index";
-import { Cell } from "../misc/tsTypes";
+import { Cell, UpdateCellsObj } from "../misc/tsTypes";
+import { TILE_TYPES } from "../misc/constants";
 import MenuOverlay from "./MenuOverlay";
 
 interface GameProps {
@@ -36,7 +37,8 @@ interface GameProps {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		updateCells: (keyPressedNo: number) => dispatch(updateCells(keyPressedNo)),
+		updateCells: (updateCellsObj: UpdateCellsObj) =>
+			dispatch(updateCells(updateCellsObj)),
 		setActiveType: (cell: Cell) => dispatch(setActiveType(cell)),
 		restartCssClasses: () => dispatch(restartCssClasses()),
 		restartLevel: () => dispatch(restartLevel()),
@@ -59,9 +61,15 @@ class Game extends React.Component<GameProps> {
 		});
 	}
 
-	handleMove = (eventKey: string): void => {
+	handleMove = (eventKey: string, target: HTMLElement = null): void => {
+		let newActiveType;
+
 		if (!isKeyPressed) {
-			this.handleCellsUpdate(eventKey);
+			//console.log(target, target.classList)
+			if (!target.classList.contains("tile-active")) {
+				newActiveType = 2;
+			}
+			this.handleCellsUpdate(eventKey, newActiveType);
 			isKeyPressed = true;
 			window.setTimeout(() => {
 				isKeyPressed = false;
@@ -69,7 +77,10 @@ class Game extends React.Component<GameProps> {
 		}
 	};
 
-	handleCellsUpdate = (eventKey: string): void => {
+	handleCellsUpdate = (
+		eventKey: string,
+		newActiveType: number = null
+	): void => {
 		const KeyPressMap = {
 			ArrowUp: 1,
 			ArrowRight: 2,
@@ -86,7 +97,10 @@ class Game extends React.Component<GameProps> {
 		};
 
 		if (KeyPressMap[eventKey]) {
-			this.props.updateCells(KeyPressMap[eventKey]);
+			this.props.updateCells({
+				keyPressedNo: KeyPressMap[eventKey],
+				newActiveType: newActiveType,
+			});
 		}
 	};
 
@@ -122,20 +136,20 @@ class Game extends React.Component<GameProps> {
 		this.props.toggleHints();
 	};
 
-	onSwipeUp = (): void => {
-		this.handleMove("SwipeUp");
+	onSwipeUp = (no, event): void => {
+		this.handleMove("SwipeUp", event.target);
 	};
 
-	onSwipeDown = (): void => {
-		this.handleMove("SwipeDown");
+	onSwipeDown = (no, event): void => {
+		this.handleMove("SwipeDown", event.target);
 	};
 
-	onSwipeLeft = (): void => {
-		this.handleMove("SwipeLeft");
+	onSwipeLeft = (no, event): void => {
+		this.handleMove("SwipeLeft", event.target);
 	};
 
-	onSwipeRight = (): void => {
-		this.handleMove("SwipeRight");
+	onSwipeRight = (no, event): void => {
+		this.handleMove("SwipeRight", event.target);
 	};
 
 	onSwipeMove = (position, event): boolean => {

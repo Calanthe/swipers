@@ -70,9 +70,14 @@ export interface tileInLevel {
 	stars?: StarsThresholds;
 }
 
+export interface UpdateCellsObj {
+	keyPressedNo: number;
+	newActiveType: number | null;
+}
+
 export interface UpdateCellsAction {
 	type: typeof UPDATE_CELLS;
-	payload: number;
+	payload: UpdateCellsObj;
 }
 
 export interface SetActiveTypeAction {

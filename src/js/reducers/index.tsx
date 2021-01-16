@@ -148,7 +148,11 @@ function setHint(level: number = 0): string {
 	return hint;
 }
 
-function moveTiles(move: number, state: CellState): Cell[] {
+function moveTiles(
+	move: number,
+	state: CellState,
+	newActiveType: number | null
+): Cell[] {
 	//menu overlays the board so don't allow to move tiles unless menu is closed
 	if (state.isMenuVisible) {
 		return state.levelData.cells;
@@ -156,6 +160,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 
 	let cell: Cell,
 		newPosition: Cell,
+		activeType = newActiveType ? newActiveType : state.levelData.activeType,
 		availableCells = removeMergedCells(state.levelData.cells),
 		cellsInGrid = transformFromStateToGrid(availableCells),
 		cellsAmount =
@@ -179,11 +184,7 @@ function moveTiles(move: number, state: CellState): Cell[] {
 	traversals.x.forEach((x) => {
 		traversals.y.forEach((y) => {
 			cell = cellsInGrid[x][y];
-			if (
-				cell &&
-				cell.type === state.levelData.activeType &&
-				!cell.isFinishTile
-			) {
+			if (cell && cell.type === activeType && !cell.isFinishTile) {
 				newPosition = findAvailablePosition(cell, cellsInGrid, moveVector);
 				if (
 					newPosition.nextTile &&
@@ -380,7 +381,12 @@ const rootReducer = (
 				...state,
 				levelData: {
 					...state.levelData,
-					cells: moveTiles(action.payload, state),
+					activeType: action.payload.newActiveType,
+					cells: moveTiles(
+						action.payload.keyPressedNo,
+						state,
+						action.payload.newActiveType
+					),
 				},
 			};
 			return newState;

@@ -9,10 +9,11 @@ import {
 	TOGGLE_MENU_OVERLAY,
 	TOGGLE_HINTS,
 	SHOW_HINTS_OVERLAY,
-	HIDE_HINTS_OVERLAY
+	HIDE_HINTS_OVERLAY,
 } from "./actionTypes";
 import {
 	Cell,
+	UpdateCellsObj,
 	UpdateCellsAction,
 	SetActiveTypeAction,
 	RestartCssClasses,
@@ -23,13 +24,13 @@ import {
 	toggleMenuOverlayAction,
 	toggleHintsAction,
 	showHintsOverlayAction,
-	hideHintsOverlayAction
+	hideHintsOverlayAction,
 } from "../misc/tsTypes";
 
-export function updateCells(keyPressedNo: number): UpdateCellsAction {
+export function updateCells(updateCellsObj: UpdateCellsObj): UpdateCellsAction {
 	return {
 		type: UPDATE_CELLS,
-		payload: keyPressedNo,
+		payload: updateCellsObj,
 	};
 }
 
@@ -67,31 +68,30 @@ export function setNextLevel(): SetNextLevelAction {
 export function setLevel(levelNo: number): SetLevelAction {
 	return {
 		type: SET_LEVEL,
-		payload: levelNo
+		payload: levelNo,
 	};
 }
 
 export function toggleMenuOverlay(): toggleMenuOverlayAction {
 	return {
-		type: TOGGLE_MENU_OVERLAY
+		type: TOGGLE_MENU_OVERLAY,
 	};
 }
 
 export function toggleHints(): toggleHintsAction {
 	return {
-		type: TOGGLE_HINTS
+		type: TOGGLE_HINTS,
 	};
 }
 
 export function showHintsOverlay(): showHintsOverlayAction {
 	return {
-		type: SHOW_HINTS_OVERLAY
+		type: SHOW_HINTS_OVERLAY,
 	};
 }
 
 export function hideHintsOverlay(): hideHintsOverlayAction {
 	return {
-		type: HIDE_HINTS_OVERLAY
+		type: HIDE_HINTS_OVERLAY,
 	};
 }
-
