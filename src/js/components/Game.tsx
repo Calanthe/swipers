@@ -62,8 +62,12 @@ class Game extends React.Component<GameProps> {
 	}
 
 	handleMove = (eventKey: string, target: HTMLElement = null): void => {
-		const selectedType = parseInt(target.dataset.type, 10);
-		let newActiveType;
+		let selectedType = null,
+			newActiveType;
+
+		if (target && target.dataset && target.dataset.type) {
+			selectedType = parseInt(target.dataset.type, 10);
+		}
 
 		if (!isKeyPressed) {
 			if (
