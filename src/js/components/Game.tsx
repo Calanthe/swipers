@@ -62,8 +62,7 @@ class Game extends React.Component<GameProps> {
 	}
 
 	handleMove = (eventKey: string, target: HTMLElement = null): void => {
-		let selectedType = null,
-			newActiveType;
+		let selectedType, newActiveType;
 
 		if (target && target.dataset && target.dataset.type) {
 			selectedType = parseInt(target.dataset.type, 10);
@@ -71,6 +70,7 @@ class Game extends React.Component<GameProps> {
 
 		if (!isKeyPressed) {
 			if (
+				target &&
 				!target.classList.contains("tile-active") &&
 				selectedType !== WALL_TYPE
 			) {
