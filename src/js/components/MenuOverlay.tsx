@@ -106,6 +106,16 @@ const MenuOverlay: React.FunctionComponent<Props> = ({
 					>
 						Zofia Korcz
 					</a>
+					<br />
+					<a
+						className="github-button"
+						href="https://github.com/Calanthe/swipers/"
+						data-color-scheme="no-preference: light; light: light; dark: light;"
+						data-size="large"
+						aria-label="View Calanthe/swipers on Github"
+					>
+						View on Github
+					</a>
 				</p>
 			</div>
 		</div>
