@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/swipers/static/css/main.5f4e420b.chunk.css",
-    "main.js": "/swipers/static/js/main.8366de07.chunk.js",
-    "main.js.map": "/swipers/static/js/main.8366de07.chunk.js.map",
+    "main.css": "/swipers/static/css/main.328161bf.chunk.css",
+    "main.js": "/swipers/static/js/main.6150a796.chunk.js",
+    "main.js.map": "/swipers/static/js/main.6150a796.chunk.js.map",
     "runtime-main.js": "/swipers/static/js/runtime-main.e34253b7.js",
     "runtime-main.js.map": "/swipers/static/js/runtime-main.e34253b7.js.map",
     "static/js/2.8b55913e.chunk.js": "/swipers/static/js/2.8b55913e.chunk.js",
     "static/js/2.8b55913e.chunk.js.map": "/swipers/static/js/2.8b55913e.chunk.js.map",
     "index.html": "/swipers/index.html",
-    "precache-manifest.26fc2eee86ee239f1bfb471856d8e84b.js": "/swipers/precache-manifest.26fc2eee86ee239f1bfb471856d8e84b.js",
+    "precache-manifest.bb70063825f5f278c85fc3df039d477d.js": "/swipers/precache-manifest.bb70063825f5f278c85fc3df039d477d.js",
     "service-worker.js": "/swipers/service-worker.js",
-    "static/css/main.5f4e420b.chunk.css.map": "/swipers/static/css/main.5f4e420b.chunk.css.map",
+    "static/css/main.328161bf.chunk.css.map": "/swipers/static/css/main.328161bf.chunk.css.map",
     "static/js/2.8b55913e.chunk.js.LICENSE": "/swipers/static/js/2.8b55913e.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.e34253b7.js",
     "static/js/2.8b55913e.chunk.js",
-    "static/css/main.5f4e420b.chunk.css",
-    "static/js/main.8366de07.chunk.js"
+    "static/css/main.328161bf.chunk.css",
+    "static/js/main.6150a796.chunk.js"
   ]
 }
